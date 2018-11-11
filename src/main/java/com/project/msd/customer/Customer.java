@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 
 import com.project.msd.account.Account;
 import com.project.msd.location.Address;
+import com.project.msd.subscription.Subscription;
 
 @Entity
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
@@ -27,13 +28,13 @@ public class Customer extends Account implements Serializable{
 			   joinColumns = {@JoinColumn(name = "customer_id")},
 			   inverseJoinColumns = {@JoinColumn(name = "address_id")})
 	private List<Address> addresses = new ArrayList<Address>();
-	/*@ManyToMany
+	@ManyToMany
 	@JoinTable(name = "customer_subscriptions",
 			  joinColumns = {@JoinColumn(name = "customer_id")},
 			  inverseJoinColumns = {@JoinColumn(name = "subscription_id")})
 	private List<Subscription> subscriptions = new ArrayList<Subscription>();
-	@OneToMany(mappedBy = "customer")
-	private List<Rating> ratings = new ArrayList<Rating>();*/
+//	@OneToMany(mappedBy = "customer")
+//	private List<Rating> ratings = new ArrayList<Rating>();
 	
 	// -----Constructors-----
 	public Customer() {
@@ -63,16 +64,16 @@ public class Customer extends Account implements Serializable{
 		this.addresses = addresses;
 	}
 
-	/*
-	 * public List<Subscription> getSubscriptions() { return subscriptions; }
-	 * 
-	 * public void setSubscriptions(List<Subscription> subscriptions) {
-	 * this.subscriptions = subscriptions; }
-	 * 
-	 * public List<Rating> getRatings() { return ratings; }
-	 * 
-	 * public void setRatings(List<Rating> ratings) { this.ratings = ratings; }
-	 */
+	
+	  public List<Subscription> getSubscriptions() { return subscriptions; }
+	  
+	  public void setSubscriptions(List<Subscription> subscriptions) {
+	  this.subscriptions = subscriptions; }
+	  
+//	  public List<Rating> getRatings() { return ratings; }
+//	  
+//	  public void setRatings(List<Rating> ratings) { this.ratings = ratings; }
+	 
 	
 	// -----Methods-----
 	public String toString() {
