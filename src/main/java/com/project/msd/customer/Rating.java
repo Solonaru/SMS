@@ -11,9 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.project.msd.product.Product;
+
 @Entity
 @NamedQuery(name = "Rating.findAll", query = "SELECT r FROM Rating r")
-public class Rating implements Serializable{
+public class Rating implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -24,9 +26,9 @@ public class Rating implements Serializable{
 	private Double stars;
 	@ManyToOne
 	private Customer customer;
-//	@ManyToOne
-//	private Product product;
-	
+	@ManyToOne
+	private Product product;
+
 	// -----Constructors-----
 	public Rating() {
 		super();
@@ -36,7 +38,7 @@ public class Rating implements Serializable{
 		super();
 		this.stars = stars;
 	}
-	
+
 	// -----Getters and Setters-----
 	public Integer getId() {
 		return id;
@@ -45,7 +47,7 @@ public class Rating implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public Double getStars() {
 		return stars;
 	}
@@ -62,12 +64,12 @@ public class Rating implements Serializable{
 		this.customer = customer;
 	}
 
-//	public Product getProduct() {
-//		return product;
-//	}
-//
-//	public void setProduct(Product product) {
-//		this.product = product;
-//	}
-	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 }
