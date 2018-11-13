@@ -1,15 +1,24 @@
 package com.project.msd.location;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.project.msd.account.Account;
+import com.project.msd.customer.Customer;
 
 @Entity
 @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")
@@ -26,13 +35,12 @@ public class Address implements Serializable {
 	private Integer zipCode;
 	@ManyToOne
 	private City city;
-	/*@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "address")
 	private List<Account> accounts = new ArrayList<Account>();
 	@ManyToMany
-	@JoinTable(name = "delivery_addresses",
-			   joinColumns = {@JoinColumn(name = "address_id")},
-			   inverseJoinColumns = {@JoinColumn(name = "customer_id")})
-	private List<Customer> customers = new ArrayList<Customer>();*/
+	@JoinTable(name = "delivery_addresses", joinColumns = { @JoinColumn(name = "address_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "customer_id") })
+	private List<Customer> customers = new ArrayList<Customer>();
 
 	// -----Constructors-----
 	public Address() {
@@ -87,21 +95,21 @@ public class Address implements Serializable {
 		this.city = city;
 	}
 
-	/*public List<Account> getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
-	}	
-	
+	}
+
 	public List<Customer> getCustomers() {
 		return customers;
 	}
 
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
-	}*/
+	}
 
 	// -----Methods-----
 	public String toString() {

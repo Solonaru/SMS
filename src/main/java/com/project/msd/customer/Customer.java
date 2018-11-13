@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import com.project.msd.account.Account;
 import com.project.msd.location.Address;
@@ -33,8 +34,8 @@ public class Customer extends Account implements Serializable{
 			  joinColumns = {@JoinColumn(name = "customer_id")},
 			  inverseJoinColumns = {@JoinColumn(name = "subscription_id")})
 	private List<Subscription> subscriptions = new ArrayList<Subscription>();
-//	@OneToMany(mappedBy = "customer")
-//	private List<Rating> ratings = new ArrayList<Rating>();
+	@OneToMany(mappedBy = "customer")
+	private List<Rating> ratings = new ArrayList<Rating>();
 	
 	// -----Constructors-----
 	public Customer() {
@@ -70,9 +71,9 @@ public class Customer extends Account implements Serializable{
 	  public void setSubscriptions(List<Subscription> subscriptions) {
 	  this.subscriptions = subscriptions; }
 	  
-//	  public List<Rating> getRatings() { return ratings; }
-//	  
-//	  public void setRatings(List<Rating> ratings) { this.ratings = ratings; }
+	  public List<Rating> getRatings() { return ratings; }
+	  
+	  public void setRatings(List<Rating> ratings) { this.ratings = ratings; }
 	 
 	
 	// -----Methods-----

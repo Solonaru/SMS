@@ -8,16 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 @NamedQuery(name = "Order.findAll", query = "SELECT o FROM Orders o")
-public class Orders implements Serializable{
+public class Orders implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_generator")
 	@SequenceGenerator(name = "order_generator", sequenceName = "order_sequence", initialValue = 300000001, allocationSize = 1)
@@ -27,9 +26,9 @@ public class Orders implements Serializable{
 	private String status;
 	@OneToOne
 	private Cart cart;
-	@ManyToOne
+	@OneToOne
 	private Payment payment;
-	
+
 	// -----Constructors-----
 	public Orders() {
 		super();
@@ -40,7 +39,7 @@ public class Orders implements Serializable{
 		this.date = date;
 		this.status = status;
 	}
-	
+
 	// -----Getters and Setters-----
 	public Integer getId() {
 		return id;

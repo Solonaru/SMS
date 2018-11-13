@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p")
-public class Payment implements Serializable{
+public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,7 +23,7 @@ public class Payment implements Serializable{
 	private Integer id;
 	private String type;
 	private Date date;
-	
+
 	// -----Constructors-----
 	public Payment() {
 		super();
@@ -34,7 +34,7 @@ public class Payment implements Serializable{
 		this.type = type;
 		this.date = date;
 	}
-	
+
 	// -----Getters and Setters-----
 	public Integer getId() {
 		return id;
