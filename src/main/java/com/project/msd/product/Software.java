@@ -1,5 +1,7 @@
 package com.project.msd.product;
 
+import java.sql.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -18,8 +20,8 @@ public class Software extends Product {
 		super();
 	}
 
-	public Software(String name, Integer unitsInStock, String version) {
-		super(name, unitsInStock);
+	public Software(String name, Integer unitsInStock, String version, Date updateDate) {
+		super(name, unitsInStock, updateDate);
 		this.version = version;
 	}
 

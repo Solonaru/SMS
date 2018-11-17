@@ -1,6 +1,7 @@
 package com.project.msd.product;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import javax.persistence.SequenceGenerator;
 import com.project.msd.catalogue.Catalogue;
 import com.project.msd.customer.Comment;
 import com.project.msd.customer.Rating;
+import com.project.msd.employee.Employee;
 
 @Entity
 @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
@@ -39,26 +41,30 @@ public abstract class Product implements Serializable {
 	protected Integer id;
 	protected String name;
 	protected Integer unitsInStock;
+	protected Date updateDate;
 	@OneToMany(mappedBy = "product")
 	protected List<Rating> ratings = new ArrayList<Rating>();
 	@ManyToMany
 	@JoinTable(name = "catalogue_products", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "catalogue_id") })
-	private List<Catalogue> catalogues = new ArrayList<Catalogue>();
+	protected List<Catalogue> catalogues = new ArrayList<Catalogue>();
 	@ManyToOne
-	private Category category;
+	protected Category category;
 	@OneToMany(mappedBy = "product")
-	private List<Comment> comments = new ArrayList<Comment>();
+	protected List<Comment> comments = new ArrayList<Comment>();
+	@ManyToOne
+	protected Employee employee;
 
 	// -----Constructors-----
 	public Product() {
 		super();
 	}
 
-	public Product(String name, Integer unitsInStock) {
+	public Product(String name, Integer unitsInStock, Date updateDate) {
 		super();
 		this.name = name;
 		this.unitsInStock = unitsInStock;
+		this.updateDate = updateDate;
 	}
 
 	// -----Getters and Setters-----
@@ -84,6 +90,14 @@ public abstract class Product implements Serializable {
 
 	public void setUnitsInStock(Integer unitsInStock) {
 		this.unitsInStock = unitsInStock;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public List<Rating> getRatings() {
@@ -116,6 +130,14 @@ public abstract class Product implements Serializable {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	// -----Methods-----

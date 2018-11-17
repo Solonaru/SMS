@@ -1,5 +1,7 @@
 package com.project.msd.product;
 
+import java.sql.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -15,8 +17,8 @@ public class Hardware extends Product {
 		super();
 	}
 
-	public Hardware(String name, Integer unitsInStock) {
-		super(name, unitsInStock);
+	public Hardware(String name, Integer unitsInStock, Date updateDate) {
+		super(name, unitsInStock, updateDate);
 	}
 	
 }

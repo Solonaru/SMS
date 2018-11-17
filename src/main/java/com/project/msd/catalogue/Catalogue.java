@@ -1,6 +1,7 @@
 package com.project.msd.catalogue;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Catalogue implements Serializable {
 	private Integer id;
 	private Integer month;
 	private Integer year;
+	private Date updateDate;
 	@ManyToOne
 	private Employee employee;
 	@ManyToMany
@@ -72,6 +74,14 @@ public class Catalogue implements Serializable {
 
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public Employee getEmployee() {

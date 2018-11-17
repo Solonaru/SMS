@@ -9,18 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import com.project.msd.customer.Customer;
 
-
 @Entity
 @NamedQuery(name = "Subscription.findAll", query = "SELECT s FROM Subscription s")
-public class Subscription implements Serializable{
+public class Subscription implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,11 +29,10 @@ public class Subscription implements Serializable{
 	private Integer id;
 	private String name;
 	@ManyToMany
-	@JoinTable(name = "customer_subscriptions",
-			  joinColumns = {@JoinColumn(name = "subscription_id")},
-			  inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+	@JoinTable(name = "customer_subscriptions", joinColumns = {
+			@JoinColumn(name = "subscription_id") }, inverseJoinColumns = { @JoinColumn(name = "customer_id") })
 	private List<Customer> customers = new ArrayList<Customer>();
-	
+
 	// -----Constructors-----
 	public Subscription() {
 		super();
@@ -44,7 +42,7 @@ public class Subscription implements Serializable{
 		super();
 		this.name = name;
 	}
-	
+
 	// -----Getters and Setters-----
 	public Integer getId() {
 		return id;
@@ -61,7 +59,7 @@ public class Subscription implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public List<Customer> getCustomers() {
 		return customers;
 	}

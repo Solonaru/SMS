@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -23,6 +24,8 @@ public class Payment implements Serializable {
 	private Integer id;
 	private String type;
 	private Date date;
+	@OneToOne(mappedBy = "payment")
+	private Orders order;
 
 	// -----Constructors-----
 	public Payment() {
@@ -59,4 +62,13 @@ public class Payment implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public Orders getOrder() {
+		return order;
+	}
+
+	public void setOrder(Orders order) {
+		this.order = order;
+	}
+
 }

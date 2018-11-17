@@ -15,28 +15,27 @@ import javax.persistence.OneToMany;
 
 import com.project.msd.account.Account;
 import com.project.msd.location.Address;
+import com.project.msd.order.Orders;
 import com.project.msd.subscription.Subscription;
 
 @Entity
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 @DiscriminatorValue("Customer")
-public class Customer extends Account implements Serializable{
+public class Customer extends Account implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String type;
 	@ManyToMany
-	@JoinTable(name = "delivery_addresses",
-			   joinColumns = {@JoinColumn(name = "customer_id")},
-			   inverseJoinColumns = {@JoinColumn(name = "address_id")})
+	@JoinTable(name = "delivery_addresses", joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "address_id") })
 	private List<Address> addresses = new ArrayList<Address>();
 	@ManyToMany
-	@JoinTable(name = "customer_subscriptions",
-			  joinColumns = {@JoinColumn(name = "customer_id")},
-			  inverseJoinColumns = {@JoinColumn(name = "subscription_id")})
+	@JoinTable(name = "customer_subscriptions", joinColumns = {
+			@JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "subscription_id") })
 	private List<Subscription> subscriptions = new ArrayList<Subscription>();
-	@OneToMany(mappedBy = "customer")
-	private List<Rating> ratings = new ArrayList<Rating>();
-	
+	@OneToMany
+	private List<Orders> orders = new ArrayList<Orders>();
+
 	// -----Constructors-----
 	public Customer() {
 		super();
@@ -65,19 +64,24 @@ public class Customer extends Account implements Serializable{
 		this.addresses = addresses;
 	}
 
-	
-	  public List<Subscription> getSubscriptions() { return subscriptions; }
-	  
-	  public void setSubscriptions(List<Subscription> subscriptions) {
-	  this.subscriptions = subscriptions; }
-	  
-	  public List<Rating> getRatings() { return ratings; }
-	  
-	  public void setRatings(List<Rating> ratings) { this.ratings = ratings; }
-	 
-	
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(List<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
+	}
+
+	public List<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
+
 	// -----Methods-----
 	public String toString() {
-		return "Username: " + username;
+		return username;
 	}
 }

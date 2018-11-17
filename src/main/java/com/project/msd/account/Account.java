@@ -132,6 +132,6 @@ public abstract class Account implements Serializable{
 
 	// -----Methods-----
 	public String toString() {
-		return "Username: " + username +  ". Password: " + password + ". Status: " + status;
+		return username;
 	}
 }

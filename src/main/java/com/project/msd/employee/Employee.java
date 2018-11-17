@@ -47,7 +47,7 @@ public class Employee extends Account {
 
 	// ----- Methods -----
 	public String toString() {
-		return "Username: " + username;
+		return username;
 	}
 
 }

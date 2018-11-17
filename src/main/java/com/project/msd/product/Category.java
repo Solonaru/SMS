@@ -1,6 +1,7 @@
 package com.project.msd.product;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class Category implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 	private String name;
+	private Date updateDate;
 	@ManyToOne
 	private Employee employee;
 	@OneToMany(mappedBy = "category")
@@ -57,6 +59,14 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public Employee getEmployee() {
