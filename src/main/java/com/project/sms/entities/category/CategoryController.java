@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.category;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/software")
-public class SoftwareController {
-
+@RequestMapping("/category")
+public class CategoryController {
+	
 	@Autowired
-	private ISoftwareService softwareService;
+	private ICategoryService categoryService;
 
-	@RequestMapping(value = "/{softwareId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<Software> findSoftwareById(@PathVariable("softwareId") int softwareId) {
-		return softwareService.findSoftwareById(softwareId);
+	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Optional<Category> findCategoryById(@PathVariable("categoryId") int categoryId) {
+		return categoryService.findCategoryById(categoryId);
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Software> getSoftwares() {
-		return softwareService.findAllSoftwares();
+	public List<Category> getCategories() {
+		return categoryService.findAllCategories();
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertCategory(@RequestBody Software software) {
-		softwareService.insertSoftware(software);
+	public void insertCategory(@RequestBody Category category) {
+		categoryService.insertCategory(category);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateSoftware(@RequestBody Software software) {
-		softwareService.updateSoftware(software);
+	public void updateCategory(@RequestBody Category category) {
+		categoryService.updateCategory(category);
 	}
 
 	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteSoftware(@PathVariable("softwareId") int softwareId) {
-		softwareService.deleteSoftwareById(softwareId);
+	public void deleteCategory(@PathVariable("categoryId") int categoryId) {
+		categoryService.deleteCategoryById(categoryId);
 	}
 }

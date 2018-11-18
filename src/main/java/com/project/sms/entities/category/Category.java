@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.category;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.project.sms.entities.employee.Employee;
+import com.project.sms.entities.item.Item;
 
 @Entity
 @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
@@ -32,7 +33,7 @@ public class Category implements Serializable {
 	@ManyToOne
 	private Employee employee;
 	@OneToMany(mappedBy = "category")
-	private List<Product> products = new ArrayList<Product>();
+	private List<Item> items = new ArrayList<Item>();
 
 	// ----- Constructors -----
 	public Category() {
@@ -77,11 +78,11 @@ public class Category implements Serializable {
 		this.employee = employee;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 }

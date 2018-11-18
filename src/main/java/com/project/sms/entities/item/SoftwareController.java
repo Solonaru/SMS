@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.item;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/category")
-public class CategoryController {
-	
-	@Autowired
-	private ICategoryService categoryService;
+@RequestMapping("/software")
+public class SoftwareController {
 
-	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Optional<Category> findCategoryById(@PathVariable("categoryId") int categoryId) {
-		return categoryService.findCategoryById(categoryId);
+	@Autowired
+	private ISoftwareService softwareService;
+
+	@RequestMapping(value = "/{softwareId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Optional<Software> findSoftwareById(@PathVariable("softwareId") int softwareId) {
+		return softwareService.findSoftwareById(softwareId);
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Category> getCategories() {
-		return categoryService.findAllCategories();
+	public List<Software> getSoftwares() {
+		return softwareService.findAllSoftwares();
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertCategory(@RequestBody Category category) {
-		categoryService.insertCategory(category);
+	public void insertCategory(@RequestBody Software software) {
+		softwareService.insertSoftware(software);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateCategory(@RequestBody Category category) {
-		categoryService.updateCategory(category);
+	public void updateSoftware(@RequestBody Software software) {
+		softwareService.updateSoftware(software);
 	}
 
 	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteCategory(@PathVariable("categoryId") int categoryId) {
-		categoryService.deleteCategoryById(categoryId);
+	public void deleteSoftware(@PathVariable("softwareId") int softwareId) {
+		softwareService.deleteSoftwareById(softwareId);
 	}
 }

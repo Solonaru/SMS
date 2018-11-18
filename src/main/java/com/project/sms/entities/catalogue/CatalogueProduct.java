@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
-import com.project.sms.entities.product.Product;
+import com.project.sms.entities.item.Item;
 
 @Entity
 @NamedQuery(name = "CatalogueProduct.findAll", query = "SELECT cp FROM CatalogueProduct cp")
@@ -23,7 +23,7 @@ public class CatalogueProduct {
 	@ManyToOne
 	private Catalogue catalogue;
 	@ManyToOne
-	private Product product;
+	private Item item;
 
 	// ----- Constructors -----
 	public CatalogueProduct() {
@@ -60,12 +60,12 @@ public class CatalogueProduct {
 		this.catalogue = catalogue;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 }

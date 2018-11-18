@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.item;
 
 import java.sql.Date;
 
@@ -9,7 +9,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQuery(name = "Hardware.findAll", query = "SELECT h FROM Hardware h")
 @DiscriminatorValue("Hardware")
-public class Hardware extends Product {
+public class Hardware extends Component {
 	private static final long serialVersionUID = 1L;
 
 	// ----- Constructors -----
@@ -17,8 +17,8 @@ public class Hardware extends Product {
 		super();
 	}
 
-	public Hardware(String name, Integer unitsInStock, Date updateDate) {
-		super(name, unitsInStock, updateDate);
+	public Hardware(String name, Date updateDate, Integer units) {
+		super(name, updateDate, units);
 	}
-	
+
 }

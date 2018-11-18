@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.item;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -20,45 +20,44 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.project.sms.entities.catalogue.CatalogueProduct;
+import com.project.sms.entities.category.Category;
 import com.project.sms.entities.customer.Comment;
 import com.project.sms.entities.customer.Rating;
 import com.project.sms.entities.employee.Employee;
 
 @Entity
-@NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
+@NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "PRODUCT_TYPE")
-public abstract class Product implements Serializable {
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "ITEM_TYPE")
+public abstract class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
-	@SequenceGenerator(name = "product_generator", sequenceName = "product_sequence", initialValue = 8000001, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_generator")
+	@SequenceGenerator(name = "item_generator", sequenceName = "item_sequence", initialValue = 1, allocationSize = 1)
 	@Column(name = "id", updatable = false, nullable = false)
 	protected Integer id;
 	protected String name;
-	protected Integer unitsInStock;
 	protected Date updateDate;
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "item")
 	protected List<CatalogueProduct> catalogueProducts = new ArrayList<CatalogueProduct>();
 	@ManyToOne
 	protected Category category;
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "item")
 	protected List<Comment> comments = new ArrayList<Comment>();
 	@ManyToOne
 	protected Employee employee;
 
 	// -----Constructors-----
-	public Product() {
+	public Item() {
 		super();
 	}
 
-	public Product(String name, Integer unitsInStock, Date updateDate) {
+	public Item(String name, Date updateDate) {
 		super();
 		this.name = name;
-		this.unitsInStock = unitsInStock;
 		this.updateDate = updateDate;
 	}
 
@@ -77,14 +76,6 @@ public abstract class Product implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Integer getUnitsInStock() {
-		return unitsInStock;
-	}
-
-	public void setUnitsInStock(Integer unitsInStock) {
-		this.unitsInStock = unitsInStock;
 	}
 
 	public Date getUpdateDate() {

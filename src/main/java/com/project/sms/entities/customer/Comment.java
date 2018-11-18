@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.project.sms.entities.account.Account;
-import com.project.sms.entities.product.Product;
+import com.project.sms.entities.item.Item;
 
 @Entity
 public class Comment implements Serializable {
@@ -26,7 +26,7 @@ public class Comment implements Serializable {
 	@ManyToOne
 	private Account account;
 	@ManyToOne
-	private Product product;
+	private Item item;
 	@ManyToOne
 	private Comment previousComment;
 
@@ -65,12 +65,12 @@ public class Comment implements Serializable {
 		this.account = account;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public Comment getPreviousComment() {

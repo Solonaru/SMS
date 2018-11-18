@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.category;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.project.sms.entities.product;
+package com.project.sms.entities.item;
 
 import java.sql.Date;
 
@@ -9,19 +9,18 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQuery(name = "Software.findAll", query = "SELECT s FROM Software s")
 @DiscriminatorValue("Software")
-public class Software extends Product {
+public class Software extends Component {
 	private static final long serialVersionUID = 1L;
 
 	private String version;
 
 	// -----Constructors-----
 	public Software() {
-
 		super();
 	}
 
-	public Software(String name, Integer unitsInStock, String version, Date updateDate) {
-		super(name, unitsInStock, updateDate);
+	public Software(String name, Date updateDate, Integer units, String version) {
+		super(name, updateDate, units);
 		this.version = version;
 	}
 
