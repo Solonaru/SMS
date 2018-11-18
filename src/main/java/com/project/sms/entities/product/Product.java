@@ -14,15 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import com.project.sms.entities.catalogue.Catalogue;
+import com.project.sms.entities.catalogue.CatalogueProduct;
 import com.project.sms.entities.customer.Comment;
 import com.project.sms.entities.customer.Rating;
 import com.project.sms.entities.employee.Employee;
@@ -44,10 +41,8 @@ public abstract class Product implements Serializable {
 	protected Date updateDate;
 	@OneToMany(mappedBy = "product")
 	protected List<Rating> ratings = new ArrayList<Rating>();
-	@ManyToMany
-	@JoinTable(name = "catalogue_products", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "catalogue_id") })
-	protected List<Catalogue> catalogues = new ArrayList<Catalogue>();
+	@OneToMany(mappedBy = "product")
+	protected List<CatalogueProduct> catalogueProducts = new ArrayList<CatalogueProduct>();
 	@ManyToOne
 	protected Category category;
 	@OneToMany(mappedBy = "product")
@@ -108,12 +103,12 @@ public abstract class Product implements Serializable {
 		this.ratings = ratings;
 	}
 
-	public List<Catalogue> getCatalogues() {
-		return catalogues;
+	public List<CatalogueProduct> getCatalogueProducts() {
+		return catalogueProducts;
 	}
 
-	public void setCatalogues(List<Catalogue> catalogues) {
-		this.catalogues = catalogues;
+	public void setCatalogueProducts(List<CatalogueProduct> catalogueProducts) {
+		this.catalogueProducts = catalogueProducts;
 	}
 
 	public Category getCategory() {

@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.project.sms.entities.customer.Customer;
 import com.project.sms.enums.OrderStatus;
 
 @Entity
@@ -30,6 +32,8 @@ public class Orders implements Serializable {
 	private Cart cart;
 	@OneToOne
 	private Payment payment;
+	@ManyToOne
+	private Customer customer;
 
 	// -----Constructors-----
 	public Orders() {
@@ -82,4 +86,13 @@ public class Orders implements Serializable {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 }

@@ -50,4 +50,13 @@ public class Cart implements Serializable {
 	public void setCartLines(List<CartLine> cartLines) {
 		this.cartLines = cartLines;
 	}
+
+	public Orders getOrder() {
+		return order;
+	}
+
+	public void setOrder(Orders order) {
+		this.order = order;
+	}
+
 }

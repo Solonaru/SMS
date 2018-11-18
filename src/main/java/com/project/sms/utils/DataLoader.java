@@ -13,6 +13,9 @@ import com.project.sms.entities.location.County;
 import com.project.sms.entities.location.IAddressService;
 import com.project.sms.entities.location.ICityService;
 import com.project.sms.entities.location.ICountyService;
+import com.project.sms.entities.order.IPaymentService;
+import com.project.sms.entities.order.Payment;
+import com.project.sms.enums.PaymentType;
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -23,6 +26,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private ICityService cityService;
 	@Autowired
 	private IAddressService addressService;
+	@Autowired
+	private IPaymentService paymentService;
 
 	@Autowired
 	private DisplayData displayData;
@@ -43,12 +48,20 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Address address = new Address("Alexandru cel Bun", 51, 270123);
 		address.setCity(city);
+		
+		Payment payment1 = new Payment(PaymentType.MAESTRO, null);
+		Payment payment2 = new Payment(PaymentType.VISA, null);
+		Payment payment3 = new Payment(PaymentType.MAESTRO, null);
 
 		countyService.insertCounty(county);
 
 		cityService.insertCity(city);
 
 		addressService.insertAddress(address);
+		
+		paymentService.insertPayment(payment1);
+		paymentService.insertPayment(payment2);
+		paymentService.insertPayment(payment3);
 
 		displayData.printInfo("Data successfully loaded.");
 	}

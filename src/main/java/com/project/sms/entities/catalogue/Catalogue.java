@@ -10,15 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.project.sms.entities.employee.Employee;
-import com.project.sms.entities.product.Product;
 import com.project.sms.enums.Month;
 
 @Entity
@@ -36,10 +33,8 @@ public class Catalogue implements Serializable {
 	private Date updateDate;
 	@ManyToOne
 	private Employee employee;
-	@ManyToMany
-	@JoinTable(name = "catalogue_products", joinColumns = { @JoinColumn(name = "catalogue_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "product_id") })
-	private List<Product> products = new ArrayList<Product>();
+	@OneToMany(mappedBy = "catalogue")
+	private List<CatalogueProduct> catalogueProducts = new ArrayList<CatalogueProduct>();
 
 	// -----Constructors-----
 	public Catalogue() {
@@ -93,11 +88,12 @@ public class Catalogue implements Serializable {
 		this.employee = employee;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public List<CatalogueProduct> getCatalogueProducts() {
+		return catalogueProducts;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setCatalogueProducts(List<CatalogueProduct> catalogueProducts) {
+		this.catalogueProducts = catalogueProducts;
 	}
+
 }
