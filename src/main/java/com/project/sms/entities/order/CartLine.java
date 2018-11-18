@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
-import com.project.sms.entities.catalogue.Catalogue;
 import com.project.sms.entities.item.Item;
 
 @Entity
@@ -29,8 +28,6 @@ public class CartLine implements Serializable {
 	private Item item;
 	@ManyToOne
 	private Cart cart;
-	@ManyToOne
-	private Catalogue catalogue;
 
 	// -----Constructors-----
 	public CartLine() {
@@ -73,14 +70,6 @@ public class CartLine implements Serializable {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
-	}
-
-	public Catalogue getCatalogue() {
-		return catalogue;
-	}
-
-	public void setCatalogue(Catalogue catalogue) {
-		this.catalogue = catalogue;
 	}
 
 	// -----Methods-----

@@ -34,7 +34,7 @@ public class Catalogue implements Serializable {
 	@ManyToOne
 	private Employee employee;
 	@OneToMany(mappedBy = "catalogue")
-	private List<CatalogueProduct> catalogueProducts = new ArrayList<CatalogueProduct>();
+	private List<CatalogueItem> catalogueItems = new ArrayList<CatalogueItem>();
 
 	// -----Constructors-----
 	public Catalogue() {
@@ -88,12 +88,12 @@ public class Catalogue implements Serializable {
 		this.employee = employee;
 	}
 
-	public List<CatalogueProduct> getCatalogueProducts() {
-		return catalogueProducts;
+	public List<CatalogueItem> getCatalogueItems() {
+		return catalogueItems;
 	}
 
-	public void setCatalogueProducts(List<CatalogueProduct> catalogueProducts) {
-		this.catalogueProducts = catalogueProducts;
+	public void setCatalogueItems(List<CatalogueItem> catalogueItems) {
+		this.catalogueItems = catalogueItems;
 	}
 
 }

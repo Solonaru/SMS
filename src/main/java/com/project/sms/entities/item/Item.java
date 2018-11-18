@@ -19,7 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import com.project.sms.entities.catalogue.CatalogueProduct;
+import com.project.sms.entities.catalogue.CatalogueItem;
 import com.project.sms.entities.category.Category;
 import com.project.sms.entities.customer.Comment;
 import com.project.sms.entities.customer.Rating;
@@ -42,7 +42,7 @@ public abstract class Item implements Serializable {
 	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
 	@OneToMany(mappedBy = "item")
-	protected List<CatalogueProduct> catalogueProducts = new ArrayList<CatalogueProduct>();
+	protected List<CatalogueItem> catalogueItems = new ArrayList<CatalogueItem>();
 	@ManyToOne
 	protected Category category;
 	@OneToMany(mappedBy = "item")
@@ -94,12 +94,12 @@ public abstract class Item implements Serializable {
 		this.ratings = ratings;
 	}
 
-	public List<CatalogueProduct> getCatalogueProducts() {
-		return catalogueProducts;
+	public List<CatalogueItem> getCatalogueItems() {
+		return catalogueItems;
 	}
 
-	public void setCatalogueProducts(List<CatalogueProduct> catalogueProducts) {
-		this.catalogueProducts = catalogueProducts;
+	public void setCatalogueItems(List<CatalogueItem> catalogueItems) {
+		this.catalogueItems = catalogueItems;
 	}
 
 	public Category getCategory() {

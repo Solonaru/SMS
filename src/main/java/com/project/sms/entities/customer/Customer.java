@@ -33,7 +33,7 @@ public class Customer extends Account implements Serializable {
 	@JoinTable(name = "customer_subscriptions", joinColumns = {
 			@JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "subscription_id") })
 	private List<Subscription> subscriptions = new ArrayList<Subscription>();
-	@OneToMany
+	@OneToMany(mappedBy = "customer")
 	private List<Orders> orders = new ArrayList<Orders>();
 
 	// -----Constructors-----
