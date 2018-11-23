@@ -47,12 +47,12 @@ public class Customer extends Account implements Serializable {
 	}
 
 	// -----Getters and Setters-----
-	public List<Address> getAddresses() {
+	public List<Address> getDeliveryAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
+	public void setDeliveryAddresses(List<Address> deliveryAddresses) {
+		this.addresses = deliveryAddresses;
 	}
 
 	public List<Subscription> getSubscriptions() {
