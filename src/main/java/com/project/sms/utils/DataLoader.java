@@ -18,8 +18,11 @@ import com.project.sms.entities.location.ICityService;
 import com.project.sms.entities.location.ICountyService;
 import com.project.sms.entities.order.IPaymentService;
 import com.project.sms.entities.order.Payment;
+import com.project.sms.entities.subscription.ISubscriptionService;
+import com.project.sms.entities.subscription.Subscription;
 import com.project.sms.enums.AccountStatus;
 import com.project.sms.enums.PaymentType;
+import com.project.sms.enums.SubscriptionType;
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -34,6 +37,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private IPaymentService paymentService;
 	@Autowired
 	private ICustomerService customerService;
+	@Autowired
+	private ISubscriptionService subscriptionService;
 
 	@Autowired
 	private DisplayData displayData;
@@ -69,6 +74,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Address address6 = new Address("Cosmopolitan", 129, 270123);
 		address6.setCity(city1);
 		
+		Subscription subscription1=new Subscription(SubscriptionType.DISCOUNTS);
 
 		Customer customer1 = new Customer("Alex", "alex123", "Alexandru", "alex_cozma@gmail.com", "0748974419",
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE);
@@ -82,7 +88,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE);
 		customer3.setAddress(address3);
 		customer3.getDeliveryAddresses().add(address4);
-
+		customer1.getSubscriptions().add(subscription1);
 		Payment payment1 = new Payment(PaymentType.MAESTRO, null);
 		Payment payment2 = new Payment(PaymentType.VISA, null);
 		Payment payment3 = new Payment(PaymentType.MAESTRO, null);
@@ -99,6 +105,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		addressService.insertAddress(address4);
 		addressService.insertAddress(address5);
 		addressService.insertAddress(address6);
+		
+		subscriptionService.insertSubscription(subscription1);
 
 		customerService.insertCustomer(customer1);
 		customerService.insertCustomer(customer2);
@@ -107,6 +115,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		paymentService.insertPayment(payment1);
 		paymentService.insertPayment(payment2);
 		paymentService.insertPayment(payment3);
+		
+		
 
 		displayData.printInfo("Data successfully loaded.");
 	}
