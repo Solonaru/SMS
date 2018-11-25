@@ -14,4 +14,6 @@ public interface ICustomerService {
 	public void updateCustomer(Customer customer);
 
 	public void deleteCustomerById(int customerId);
+	
+	public Customer findCustomerByUsernameAndPassword(String username, String password);
 }

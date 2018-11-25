@@ -31,4 +31,8 @@ public class CustomerService implements ICustomerService {
 	public void deleteCustomerById(int customerId) {
 		customerRepository.deleteById(customerId);
 	}
+	
+	public Customer findCustomerByUsernameAndPassword(String username, String password) {
+		return customerRepository.findCustomerByUsernameAndPassword(username, password);
+	}
 }

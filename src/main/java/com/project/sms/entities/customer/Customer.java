@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.account.Account;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.order.Orders;
@@ -32,6 +33,7 @@ public class Customer extends Account implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "customer_subscriptions", joinColumns = {
 			@JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "subscription_id") })
+	@JsonIgnoreProperties(value = "customers")
 	private List<Subscription> subscriptions = new ArrayList<Subscription>();
 	@OneToMany(mappedBy = "customer")
 	private List<Orders> orders = new ArrayList<Orders>();

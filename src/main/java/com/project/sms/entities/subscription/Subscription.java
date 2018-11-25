@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.enums.SubscriptionType;
 
@@ -32,6 +33,7 @@ public class Subscription implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "customer_subscriptions", joinColumns = {
 			@JoinColumn(name = "subscription_id") }, inverseJoinColumns = { @JoinColumn(name = "customer_id") })
+	@JsonIgnoreProperties(value = "subscriptions")
 	private List<Customer> customers = new ArrayList<Customer>();
 
 	// -----Constructors-----

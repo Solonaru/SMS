@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -41,5 +43,10 @@ public class CustomerController {
 	@RequestMapping(value = "/delete/{customerId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteCustomer(@PathVariable("customerId") int customerId) {
 		customerService.deleteCustomerById(customerId);
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Customer findCustomerByUsernameAndPassword(@RequestBody Customer customer) {
+		return customerService.findCustomerByUsernameAndPassword(customer.getUsername(), customer.getPassword());
 	}
 }
