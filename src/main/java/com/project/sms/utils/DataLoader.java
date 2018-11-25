@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.customer.ICustomerService;
+import com.project.sms.entities.item.Hardware;
+import com.project.sms.entities.item.Software;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.location.City;
 import com.project.sms.entities.location.County;
@@ -18,9 +20,14 @@ import com.project.sms.entities.location.ICityService;
 import com.project.sms.entities.location.ICountyService;
 import com.project.sms.entities.order.IPaymentService;
 import com.project.sms.entities.order.Payment;
+import com.project.sms.entities.pack.Package;
+import com.project.sms.entities.pack.PackageLine;
+import com.project.sms.entities.recipe.Recipe;
+import com.project.sms.entities.recipe.RecipeLine;
 import com.project.sms.entities.subscription.ISubscriptionService;
 import com.project.sms.entities.subscription.Subscription;
 import com.project.sms.enums.AccountStatus;
+import com.project.sms.enums.PaymentStatus;
 import com.project.sms.enums.PaymentType;
 import com.project.sms.enums.SubscriptionType;
 
@@ -96,9 +103,125 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		customer3.getSubscriptions().add(subscription2);
 		customer3.getSubscriptions().add(subscription3);
 
-		Payment payment1 = new Payment(PaymentType.MAESTRO, null);
-		Payment payment2 = new Payment(PaymentType.VISA, null);
-		Payment payment3 = new Payment(PaymentType.MAESTRO, null);
+		// ------------------------------------------------------------------- //
+
+		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
+		Payment payment2 = new Payment(PaymentType.VISA, PaymentStatus.APPROVED, null);
+		Payment payment3 = new Payment(PaymentType.MAESTRO, PaymentStatus.COMPLETED, null);
+
+		// ------------------------------------------------------------------- //
+
+		Software software1 = new Software("Windows 10 Professional", 20, new Date(System.currentTimeMillis()), "", "");
+		Software software2 = new Software("Windows 10 Home", 20, new Date(System.currentTimeMillis()), "", "");
+		Software software3 = new Software("Ubuntu", 15, new Date(System.currentTimeMillis()), "", "");
+		Software software4 = new Software("FreeDos", 100, new Date(System.currentTimeMillis()), "", "");
+
+		Hardware hardware1 = new Hardware("Motherboard: M.2 B250 mATX", 12, new Date(System.currentTimeMillis()), "");
+		Hardware hardware2 = new Hardware("CPU: Turbo Unlocked LGA1151", 16, new Date(System.currentTimeMillis()), "");
+		Hardware hardware3 = new Hardware("CPU: Turbo Unlocked LGA2000", 9, new Date(System.currentTimeMillis()), "");
+		Hardware hardware4 = new Hardware("RAM 16GB", 10, new Date(System.currentTimeMillis()), "");
+		Hardware hardware5 = new Hardware("RAM 8GB", 43, new Date(System.currentTimeMillis()), "");
+		Hardware hardware6 = new Hardware("RAM 4GB", 32, new Date(System.currentTimeMillis()), "");
+		Hardware hardware7 = new Hardware("Hard drive: Seagate SkyHawk", 32, new Date(System.currentTimeMillis()), "");
+		Hardware hardware8 = new Hardware("Power supply unit: Supermicro MBE-314E-416", 15,
+				new Date(System.currentTimeMillis()), "");
+		Hardware hardware9 = new Hardware("Video card: MSI Gaming GeForce GT 710", 12,
+				new Date(System.currentTimeMillis()), "");
+		Hardware hardware10 = new Hardware("Video card: Gigabyte Geforce GTX 1050", 31,
+				new Date(System.currentTimeMillis()), "");
+		Hardware hardware11 = new Hardware("Video card: EVGA GeForce GTX 1060", 17,
+				new Date(System.currentTimeMillis()), "");
+		Hardware hardware12 = new Hardware("Sound card: Intel G3260 3MB Haswell Dual-Core 3.3 GHz", 19,
+				new Date(System.currentTimeMillis()), "");
+		Hardware hardware13 = new Hardware("Network card: Thecus C10GTR 10GbE Network Interface Card", 12,
+				new Date(System.currentTimeMillis()), "");
+
+		Hardware hardware14 = new Hardware("Earphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
+		Hardware hardware15 = new Hardware("Earphones: Beats", 20, new Date(System.currentTimeMillis()), "");
+		Hardware hardware16 = new Hardware("Mouse: Corssair 2018", 13, new Date(System.currentTimeMillis()), "");
+		Hardware hardware17 = new Hardware("Mouse: Corssair K20", 33, new Date(System.currentTimeMillis()), "");
+		Hardware hardware18 = new Hardware("Mouse: Corssair Z92", 12, new Date(System.currentTimeMillis()), "");
+		Hardware hardware19 = new Hardware("Keyboard: Logitech K800", 51, new Date(System.currentTimeMillis()), "");
+
+		// ***** Computer ASUS 2000 ***** //
+		RecipeLine recipeLine11 = new RecipeLine(1);
+		recipeLine11.setComponent(hardware1);
+		RecipeLine recipeLine12 = new RecipeLine(1);
+		recipeLine12.setComponent(hardware3);
+		RecipeLine recipeLine13 = new RecipeLine(2);
+		recipeLine13.setComponent(hardware5);
+		RecipeLine recipeLine14 = new RecipeLine(1);
+		recipeLine14.setComponent(hardware7);
+		RecipeLine recipeLine15 = new RecipeLine(1);
+		recipeLine15.setComponent(hardware8);
+		RecipeLine recipeLine16 = new RecipeLine(1);
+		recipeLine16.setComponent(hardware10);
+		RecipeLine recipeLine17 = new RecipeLine(1);
+		recipeLine17.setComponent(hardware12);
+		RecipeLine recipeLine18 = new RecipeLine(1);
+		recipeLine18.setComponent(hardware13);
+		RecipeLine recipeLine19 = new RecipeLine(1);
+		recipeLine19.setComponent(software1);
+
+		Recipe recipe1 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		recipe1.getRecipeLines().add(recipeLine11);
+		recipe1.getRecipeLines().add(recipeLine12);
+		recipe1.getRecipeLines().add(recipeLine13);
+		recipe1.getRecipeLines().add(recipeLine14);
+		recipe1.getRecipeLines().add(recipeLine15);
+		recipe1.getRecipeLines().add(recipeLine16);
+		recipe1.getRecipeLines().add(recipeLine17);
+		recipe1.getRecipeLines().add(recipeLine18);
+		recipe1.getRecipeLines().add(recipeLine19);
+
+		// ***** Computer ASUS G1009 ***** //
+		RecipeLine recipeLine21 = new RecipeLine(1);
+		recipeLine21.setComponent(hardware1);
+		RecipeLine recipeLine22 = new RecipeLine(1);
+		recipeLine22.setComponent(hardware3);
+		RecipeLine recipeLine23 = new RecipeLine(4);
+		recipeLine23.setComponent(hardware6);
+		RecipeLine recipeLine24 = new RecipeLine(1);
+		recipeLine24.setComponent(hardware7);
+		RecipeLine recipeLine25 = new RecipeLine(1);
+		recipeLine25.setComponent(hardware8);
+		RecipeLine recipeLine26 = new RecipeLine(1);
+		recipeLine26.setComponent(hardware9);
+		RecipeLine recipeLine27 = new RecipeLine(1);
+		recipeLine27.setComponent(hardware12);
+		RecipeLine recipeLine28 = new RecipeLine(1);
+		recipeLine28.setComponent(hardware13);
+		RecipeLine recipeLine29 = new RecipeLine(1);
+		recipeLine29.setComponent(software3);
+
+		Recipe recipe2 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		recipe2.getRecipeLines().add(recipeLine21);
+		recipe2.getRecipeLines().add(recipeLine22);
+		recipe2.getRecipeLines().add(recipeLine23);
+		recipe2.getRecipeLines().add(recipeLine24);
+		recipe2.getRecipeLines().add(recipeLine25);
+		recipe2.getRecipeLines().add(recipeLine26);
+		recipe2.getRecipeLines().add(recipeLine27);
+		recipe2.getRecipeLines().add(recipeLine28);
+		recipe2.getRecipeLines().add(recipeLine29);
+
+		// ***** Package: Computer ASUS G1009 + mouse + keyboard ***** //
+		PackageLine packageLine1 = new PackageLine(1);
+		packageLine1.setProduct(recipe1);
+		PackageLine packageLine2 = new PackageLine(1);
+		packageLine2.setProduct(hardware16);
+		PackageLine packageLine3 = new PackageLine(1);
+		packageLine2.setProduct(hardware19);
+		
+		Package package1 = new Package("Computer ASUS G1009 + Mouse: Corssair 2018 + Keyboard: Logitech K800", 4,
+				new Date(System.currentTimeMillis()), "");
+		package1.getPackageLines().add(packageLine1);
+		package1.getPackageLines().add(packageLine2);
+		package1.getPackageLines().add(packageLine3);
+
+		// ------------------------------------------------------------------- //
+		// ------------------------------------------------------------------- //
+		// ------------------------------------------------------------------- //
 
 		countyService.insertCounty(county);
 
@@ -121,9 +244,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		customerService.insertCustomer(customer2);
 		customerService.insertCustomer(customer3);
 
+		// ------------------------------------------------------------------- //
+
 		paymentService.insertPayment(payment1);
 		paymentService.insertPayment(payment2);
 		paymentService.insertPayment(payment3);
+
+		// ------------------------------------------------------------------- //
 
 		displayData.printInfo("Data successfully loaded.");
 	}

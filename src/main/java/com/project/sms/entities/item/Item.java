@@ -38,7 +38,9 @@ public abstract class Item implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	protected Integer id;
 	protected String name;
+	protected Integer stockQuantity;
 	protected Date updateDate;
+	protected String description;
 	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
 	@OneToMany(mappedBy = "item")
@@ -55,10 +57,12 @@ public abstract class Item implements Serializable {
 		super();
 	}
 
-	public Item(String name, Date updateDate) {
+	public Item(String name, Integer stockQuantity, Date updateDate, String description) {
 		super();
 		this.name = name;
+		this.stockQuantity = stockQuantity;
 		this.updateDate = updateDate;
+		this.description = description;
 	}
 
 	// -----Getters and Setters-----
@@ -78,12 +82,28 @@ public abstract class Item implements Serializable {
 		this.name = name;
 	}
 
+	public Integer getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(Integer stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
 	public Date getUpdateDate() {
 		return updateDate;
 	}
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<Rating> getRatings() {

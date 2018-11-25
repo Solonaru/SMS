@@ -17,8 +17,7 @@ public class Hardware extends Component {
 		super();
 	}
 
-	public Hardware(String name, Date updateDate, Integer units) {
-		super(name, updateDate, units);
+	public Hardware(String name, Integer stockQuantity, Date updateDate, String description) {
+		super(name, stockQuantity, updateDate, description);
 	}
-
 }

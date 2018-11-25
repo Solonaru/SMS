@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.project.sms.enums.PaymentStatus;
 import com.project.sms.enums.PaymentType;
 
 @Entity
@@ -25,6 +26,7 @@ public class Payment implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 	private PaymentType type;
+	private PaymentStatus paymentStatus;
 	private Date date;
 	@OneToOne(mappedBy = "payment")
 	private Orders order;
@@ -34,9 +36,10 @@ public class Payment implements Serializable {
 		super();
 	}
 
-	public Payment(PaymentType type, Date date) {
+	public Payment(PaymentType type, PaymentStatus paymentStatus, Date date) {
 		super();
 		this.type = type;
+		this.paymentStatus = paymentStatus;
 		this.date = date;
 	}
 
@@ -73,4 +76,11 @@ public class Payment implements Serializable {
 		this.order = order;
 	}
 
+	public PaymentStatus getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(PaymentStatus paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
 }

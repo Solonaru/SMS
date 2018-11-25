@@ -19,8 +19,8 @@ public class Software extends Component {
 		super();
 	}
 
-	public Software(String name, Date updateDate, Integer units, String version) {
-		super(name, updateDate, units);
+	public Software(String name, Integer stockQuantity, Date updateDate, String description, String version) {
+		super(name, stockQuantity, updateDate, description);
 		this.version = version;
 	}
 

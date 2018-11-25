@@ -25,8 +25,8 @@ public class Package extends Item {
 		super();
 	}
 
-	public Package(String name, Date updateDate) {
-		super(name, updateDate);
+	public Package(String name, Integer stockQuantity, Date updateDate, String description) {
+		super(name, stockQuantity, updateDate, description);
 	}
 
 	// ------ Getters and Setters ------

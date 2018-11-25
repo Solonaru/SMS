@@ -25,8 +25,8 @@ public class Recipe extends Product {
 		super();
 	}
 
-	public Recipe(String name, Date updateDate) {
-		super(name, updateDate);
+	public Recipe(String name, Integer stockQuantity, Date updateDate, String description) {
+		super(name, stockQuantity, updateDate, description);
 	}
 
 	// ------- Getters and Setters --------

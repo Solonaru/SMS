@@ -9,25 +9,13 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Component.findAll", query = "SELECT c FROM Component c")
 public abstract class Component extends Product {
 	private static final long serialVersionUID = 1L;
-	
-	protected Integer units;
 
 	// ----- Constructors -----
 	public Component() {
 		super();
 	}
 
-	public Component(String name, Date updateDate, Integer units) {
-		super(name, updateDate);
-		this.units = units;
+	public Component(String name, Integer stockQuantity, Date updateDate, String description) {
+		super(name, stockQuantity, updateDate, description);
 	}
-
-	// ----- Getters and Setters -----
-	public Integer getUnits() {
-		return units;
-	}
-
-	public void setUnits(Integer unitsInStock) {
-		this.units = unitsInStock;
-	}	
 }
