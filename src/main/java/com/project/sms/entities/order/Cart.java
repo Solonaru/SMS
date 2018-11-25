@@ -9,10 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.project.sms.entities.promotion.Promotion;
 
 @Entity
 @NamedQuery(name = "Cart.findAll", query = "SELECT c FROM Cart c")
@@ -28,6 +31,8 @@ public class Cart implements Serializable {
 	private Orders order;
 	@OneToMany(mappedBy = "cart")
 	private List<CartLine> cartLines = new ArrayList<CartLine>();
+	@ManyToOne
+	private Promotion promotion;
 
 	// -----Constructors-----
 	public Cart() {
@@ -59,4 +64,11 @@ public class Cart implements Serializable {
 		this.order = order;
 	}
 
+	public Promotion getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
 }

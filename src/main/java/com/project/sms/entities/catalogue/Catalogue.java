@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.project.sms.entities.employee.Employee;
+import com.project.sms.enums.CatalogueStatus;
 import com.project.sms.enums.Month;
 
 @Entity
@@ -31,6 +32,7 @@ public class Catalogue implements Serializable {
 	private Month month;
 	private Integer year;
 	private Date updateDate;
+	private CatalogueStatus status;
 	@ManyToOne
 	private Employee employee;
 	@OneToMany(mappedBy = "catalogue")
@@ -41,10 +43,12 @@ public class Catalogue implements Serializable {
 		super();
 	}
 
-	public Catalogue(Month month, Integer year) {
+	public Catalogue(Month month, Integer year, Date updateDate, CatalogueStatus status) {
 		super();
 		this.month = month;
 		this.year = year;
+		this.updateDate = updateDate;
+		this.status = status;
 	}
 
 	// -----Getters and Setters-----
@@ -94,6 +98,14 @@ public class Catalogue implements Serializable {
 
 	public void setCatalogueItems(List<CatalogueItem> catalogueItems) {
 		this.catalogueItems = catalogueItems;
+	}
+
+	public CatalogueStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(CatalogueStatus status) {
+		this.status = status;
 	}
 
 }
