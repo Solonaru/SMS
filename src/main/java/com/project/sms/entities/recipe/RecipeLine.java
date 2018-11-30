@@ -17,7 +17,7 @@ import com.project.sms.entities.item.Component;
 @NamedQuery(name = "RecipeLine.findAll", query = "SELECT r FROM RecipeLine r")
 public class RecipeLine implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_line_generator")
 	@SequenceGenerator(name = "recipe_line_generator", sequenceName = "recipe_line_sequence", initialValue = 1, allocationSize = 1)

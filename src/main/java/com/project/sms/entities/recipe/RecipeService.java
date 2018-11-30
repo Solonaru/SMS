@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.project.sms.entities.recipe.Recipe;
 import com.project.sms.entities.recipe.IRecipeRepository;
 
-
 @Service
 public class RecipeService implements IRecipeService {
+
 	@Autowired
 	private IRecipeRepository recipeRepository;
 
@@ -34,4 +34,5 @@ public class RecipeService implements IRecipeService {
 	public void deleteRecipeById(int recipeId) {
 		recipeRepository.deleteById(recipeId);
 	}
+	
 }
