@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -21,6 +22,7 @@ public class PackageLine {
 	private Integer id;
 	private Integer quantity;
 	@ManyToOne
+	@JoinColumn(name = "package_id")
 	private Package pack;
 	@ManyToOne
 	private Product product;

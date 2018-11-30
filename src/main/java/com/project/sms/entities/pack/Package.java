@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
 
 @Entity
@@ -18,6 +19,7 @@ public class Package extends Item {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(mappedBy = "pack")
+	@JsonIgnoreProperties(value = "pack")
 	private List<PackageLine> packageLines = new ArrayList<PackageLine>();
 
 	// ------ Constructors -------
@@ -36,6 +38,12 @@ public class Package extends Item {
 
 	public void setPackageLines(List<PackageLine> packageLines) {
 		this.packageLines = packageLines;
+	}
+
+	// ----- Methods -----
+	public void addLine(PackageLine packageLine) {
+		packageLines.add(packageLine);
+		packageLine.setPack(this);
 	}
 
 }

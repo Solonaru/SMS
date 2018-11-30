@@ -8,9 +8,10 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.project.sms.entities.account.IAccountService;
 import com.project.sms.entities.customer.Customer;
-import com.project.sms.entities.customer.ICustomerService;
 import com.project.sms.entities.item.Hardware;
+import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Software;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.location.City;
@@ -20,8 +21,10 @@ import com.project.sms.entities.location.ICityService;
 import com.project.sms.entities.location.ICountyService;
 import com.project.sms.entities.order.IPaymentService;
 import com.project.sms.entities.order.Payment;
+import com.project.sms.entities.pack.IPackageLineService;
 import com.project.sms.entities.pack.Package;
 import com.project.sms.entities.pack.PackageLine;
+import com.project.sms.entities.recipe.IRecipeLineService;
 import com.project.sms.entities.recipe.Recipe;
 import com.project.sms.entities.recipe.RecipeLine;
 import com.project.sms.entities.subscription.ISubscriptionService;
@@ -43,9 +46,15 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private IPaymentService paymentService;
 	@Autowired
-	private ICustomerService customerService;
+	private IAccountService accountService;
 	@Autowired
 	private ISubscriptionService subscriptionService;
+	@Autowired
+	private IItemService itemService;
+	@Autowired
+	private IRecipeLineService recipeLineService;
+	@Autowired
+	private IPackageLineService packageLineService;
 
 	@Autowired
 	private DisplayData displayData;
@@ -164,15 +173,15 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipeLine19.setComponent(software1);
 
 		Recipe recipe1 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
-		recipe1.getRecipeLines().add(recipeLine11);
-		recipe1.getRecipeLines().add(recipeLine12);
-		recipe1.getRecipeLines().add(recipeLine13);
-		recipe1.getRecipeLines().add(recipeLine14);
-		recipe1.getRecipeLines().add(recipeLine15);
-		recipe1.getRecipeLines().add(recipeLine16);
-		recipe1.getRecipeLines().add(recipeLine17);
-		recipe1.getRecipeLines().add(recipeLine18);
-		recipe1.getRecipeLines().add(recipeLine19);
+		recipe1.addLine(recipeLine11);
+		recipe1.addLine(recipeLine12);
+		recipe1.addLine(recipeLine13);
+		recipe1.addLine(recipeLine14);
+		recipe1.addLine(recipeLine15);
+		recipe1.addLine(recipeLine16);
+		recipe1.addLine(recipeLine17);
+		recipe1.addLine(recipeLine18);
+		recipe1.addLine(recipeLine19);
 
 		// ***** Computer ASUS G1009 ***** //
 		RecipeLine recipeLine21 = new RecipeLine(1);
@@ -195,15 +204,15 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipeLine29.setComponent(software3);
 
 		Recipe recipe2 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
-		recipe2.getRecipeLines().add(recipeLine21);
-		recipe2.getRecipeLines().add(recipeLine22);
-		recipe2.getRecipeLines().add(recipeLine23);
-		recipe2.getRecipeLines().add(recipeLine24);
-		recipe2.getRecipeLines().add(recipeLine25);
-		recipe2.getRecipeLines().add(recipeLine26);
-		recipe2.getRecipeLines().add(recipeLine27);
-		recipe2.getRecipeLines().add(recipeLine28);
-		recipe2.getRecipeLines().add(recipeLine29);
+		recipe2.addLine(recipeLine21);
+		recipe2.addLine(recipeLine22);
+		recipe2.addLine(recipeLine23);
+		recipe2.addLine(recipeLine24);
+		recipe2.addLine(recipeLine25);
+		recipe2.addLine(recipeLine26);
+		recipe2.addLine(recipeLine27);
+		recipe2.addLine(recipeLine28);
+		recipe2.addLine(recipeLine29);
 
 		// ***** Package: Computer ASUS G1009 + mouse + keyboard ***** //
 		PackageLine packageLine1 = new PackageLine(1);
@@ -211,13 +220,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		PackageLine packageLine2 = new PackageLine(1);
 		packageLine2.setProduct(hardware16);
 		PackageLine packageLine3 = new PackageLine(1);
-		packageLine2.setProduct(hardware19);
-		
+		packageLine3.setProduct(hardware19);
+
 		Package package1 = new Package("Computer ASUS G1009 + Mouse: Corssair 2018 + Keyboard: Logitech K800", 4,
 				new Date(System.currentTimeMillis()), "");
-		package1.getPackageLines().add(packageLine1);
-		package1.getPackageLines().add(packageLine2);
-		package1.getPackageLines().add(packageLine3);
+		package1.addLine(packageLine1);
+		package1.addLine(packageLine2);
+		package1.addLine(packageLine3);
 
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
@@ -240,9 +249,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		subscriptionService.insertSubscription(subscription2);
 		subscriptionService.insertSubscription(subscription3);
 
-		customerService.insertCustomer(customer1);
-		customerService.insertCustomer(customer2);
-		customerService.insertCustomer(customer3);
+		accountService.insertAccount(customer1);
+		accountService.insertAccount(customer2);
+		accountService.insertAccount(customer3);
 
 		// ------------------------------------------------------------------- //
 
@@ -251,6 +260,61 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		paymentService.insertPayment(payment3);
 
 		// ------------------------------------------------------------------- //
+
+		itemService.insertItem(software1);
+		itemService.insertItem(software2);
+		itemService.insertItem(software3);
+		itemService.insertItem(software4);
+
+		itemService.insertItem(hardware1);
+		itemService.insertItem(hardware2);
+		itemService.insertItem(hardware3);
+		itemService.insertItem(hardware4);
+		itemService.insertItem(hardware5);
+		itemService.insertItem(hardware6);
+		itemService.insertItem(hardware7);
+		itemService.insertItem(hardware8);
+		itemService.insertItem(hardware9);
+		itemService.insertItem(hardware10);
+		itemService.insertItem(hardware11);
+		itemService.insertItem(hardware12);
+		itemService.insertItem(hardware13);
+		itemService.insertItem(hardware14);
+		itemService.insertItem(hardware15);
+		itemService.insertItem(hardware16);
+		itemService.insertItem(hardware17);
+		itemService.insertItem(hardware18);
+		itemService.insertItem(hardware19);
+
+		itemService.insertItem(recipe1);
+
+		recipeLineService.insertRecipeLine(recipeLine11);
+		recipeLineService.insertRecipeLine(recipeLine12);
+		recipeLineService.insertRecipeLine(recipeLine13);
+		recipeLineService.insertRecipeLine(recipeLine14);
+		recipeLineService.insertRecipeLine(recipeLine15);
+		recipeLineService.insertRecipeLine(recipeLine16);
+		recipeLineService.insertRecipeLine(recipeLine17);
+		recipeLineService.insertRecipeLine(recipeLine18);
+		recipeLineService.insertRecipeLine(recipeLine19);
+
+		itemService.insertItem(recipe2);
+
+		recipeLineService.insertRecipeLine(recipeLine21);
+		recipeLineService.insertRecipeLine(recipeLine22);
+		recipeLineService.insertRecipeLine(recipeLine23);
+		recipeLineService.insertRecipeLine(recipeLine24);
+		recipeLineService.insertRecipeLine(recipeLine25);
+		recipeLineService.insertRecipeLine(recipeLine26);
+		recipeLineService.insertRecipeLine(recipeLine27);
+		recipeLineService.insertRecipeLine(recipeLine28);
+		recipeLineService.insertRecipeLine(recipeLine29);
+
+		itemService.insertItem(package1);
+
+		packageLineService.insertPackageLine(packageLine1);
+		packageLineService.insertPackageLine(packageLine2);
+		packageLineService.insertPackageLine(packageLine3);
 
 		displayData.printInfo("Data successfully loaded.");
 	}

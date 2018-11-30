@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Product;
 
 @Entity
@@ -18,9 +19,10 @@ public class Recipe extends Product {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(mappedBy = "recipe")
+	@JsonIgnoreProperties(value = "recipe")
 	private List<RecipeLine> recipeLines = new ArrayList<RecipeLine>();
 
-	// -------- Constructors ---------
+	// ----- Constructors -----
 	public Recipe() {
 		super();
 	}
@@ -29,13 +31,19 @@ public class Recipe extends Product {
 		super(name, stockQuantity, updateDate, description);
 	}
 
-	// ------- Getters and Setters --------
+	// ----- Getters and Setters -----
 	public List<RecipeLine> getRecipeLines() {
 		return recipeLines;
 	}
 
 	public void setRecipeLines(List<RecipeLine> recipeLines) {
 		this.recipeLines = recipeLines;
+	}
+	
+	// ----- Methods -----
+	public void addLine(RecipeLine recipeLine) {
+		recipeLines.add(recipeLine);
+		recipeLine.setRecipe(this);
 	}
 
 }
