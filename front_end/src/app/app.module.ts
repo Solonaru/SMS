@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ProductsComponent } from './components/products/products.component';
+import { CategoryComponent } from './components/category/category.component';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard} from './providers/auth.guard';
 import { SessionGuard} from './providers/session.guard';
@@ -16,7 +18,9 @@ import { SessionGuard} from './providers/session.guard';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    ProductsComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +38,14 @@ import { SessionGuard} from './providers/session.guard';
         path: 'admin',
         component: AdminComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
       }
     ])
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, SessionGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

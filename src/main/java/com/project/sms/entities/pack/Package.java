@@ -19,7 +19,7 @@ public class Package extends Item {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(mappedBy = "pack")
-	@JsonIgnoreProperties(value = "pack")
+	@JsonIgnoreProperties(value = {"pack", "category"})
 	private List<PackageLine> packageLines = new ArrayList<PackageLine>();
 
 	// ------ Constructors -------

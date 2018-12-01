@@ -19,7 +19,7 @@ public class Recipe extends Product {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(mappedBy = "recipe")
-	@JsonIgnoreProperties(value = "recipe")
+	@JsonIgnoreProperties(value = {"recipe", "category"})
 	private List<RecipeLine> recipeLines = new ArrayList<RecipeLine>();
 
 	// ----- Constructors -----

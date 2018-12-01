@@ -15,11 +15,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.item.Item;
 
 @Entity
 @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,8 +35,15 @@ public class Category implements Serializable {
 	private String name;
 	private Date updateDate;
 	@ManyToOne
+	@JsonIgnoreProperties(value = { "childCategories", "parentCategory" })
+	private Category parentCategory;
+	@OneToMany(mappedBy = "parentCategory")
+	@JsonIgnoreProperties(value = { "childCategories", "parentCategory" })
+	private List<Category> childCategories = new ArrayList<Category>();
+	@ManyToOne
 	private Employee employee;
 	@OneToMany(mappedBy = "category")
+	@JsonIgnoreProperties(value = "category")
 	private List<Item> items = new ArrayList<Item>();
 
 	// ----- Constructors -----
@@ -40,9 +51,10 @@ public class Category implements Serializable {
 		super();
 	}
 
-	public Category(String name) {
+	public Category(String name, Date updateDate) {
 		super();
 		this.name = name;
+		this.updateDate = updateDate;
 	}
 
 	// ----- Getters and Setters -----
@@ -68,6 +80,22 @@ public class Category implements Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public Category getParentCategory() {
+		return parentCategory;
+	}
+
+	public void setParentCategory(Category parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
+	public List<Category> getChildCategories() {
+		return childCategories;
+	}
+
+	public void setChildCategories(List<Category> childCategories) {
+		this.childCategories = childCategories;
 	}
 
 	public Employee getEmployee() {

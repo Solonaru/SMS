@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.account.Account;
 import com.project.sms.entities.location.Address;
@@ -23,6 +25,7 @@ import com.project.sms.enums.AccountStatus;
 @Entity
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 @DiscriminatorValue("Customer")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Customer extends Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 

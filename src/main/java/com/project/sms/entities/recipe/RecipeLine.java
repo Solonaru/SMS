@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Component;
 
 @Entity
@@ -27,8 +28,10 @@ public class RecipeLine implements Serializable {
 	private Integer quantity;
 	@ManyToOne
 	@JoinColumn(name = "recipe_id")
+	@JsonIgnoreProperties(value = "category")
 	private Recipe recipe;
 	@ManyToOne
+	@JsonIgnoreProperties(value = "category")
 	private Component component;
 
 	// ------- Constructors ------

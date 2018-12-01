@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Product;
 
 @Entity
@@ -23,8 +24,10 @@ public class PackageLine {
 	private Integer quantity;
 	@ManyToOne
 	@JoinColumn(name = "package_id")
+	@JsonIgnoreProperties(value = "category")
 	private Package pack;
 	@ManyToOne
+	@JsonIgnoreProperties(value = "category")
 	private Product product;
 
 	// ----- Constructors -----

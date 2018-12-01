@@ -4,14 +4,14 @@ import { HttpClient } from '@angular/common/http'
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { User } from '../user';
+import { User } from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private BASE_URL: string = "http://localhost:8080/customer/";
+  private BASE_URL: string = "http://localhost:8090/customer/";
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn' || 'false'));
 
   constructor(private http: HttpClient) { }

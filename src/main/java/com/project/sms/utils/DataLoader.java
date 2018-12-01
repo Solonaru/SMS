@@ -9,6 +9,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.project.sms.entities.account.IAccountService;
+import com.project.sms.entities.category.Category;
+import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
@@ -55,6 +57,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private IRecipeLineService recipeLineService;
 	@Autowired
 	private IPackageLineService packageLineService;
+	@Autowired
+	private ICategoryService categoryService;
 
 	@Autowired
 	private DisplayData displayData;
@@ -119,38 +123,94 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Payment payment3 = new Payment(PaymentType.MAESTRO, PaymentStatus.COMPLETED, null);
 
 		// ------------------------------------------------------------------- //
+		
+		Category category1 = new Category("Laptops", new Date(System.currentTimeMillis()));
+		Category category2 = new Category("Software", new Date(System.currentTimeMillis()));
+		
+		Category category3 = new Category("Components", new Date(System.currentTimeMillis()));
+		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()));
+		category301.setParentCategory(category3);
+		Category category302 = new Category("CPUs", new Date(System.currentTimeMillis()));
+		category302.setParentCategory(category3);
+		Category category303 = new Category("RAMs", new Date(System.currentTimeMillis()));
+		category303.setParentCategory(category3);
+		Category category304 = new Category("Hard drives", new Date(System.currentTimeMillis()));
+		category304.setParentCategory(category3);
+		Category category305 = new Category("Power supply units", new Date(System.currentTimeMillis()));
+		category305.setParentCategory(category3);
+		Category category306 = new Category("Video cards", new Date(System.currentTimeMillis()));
+		category306.setParentCategory(category3);
+		Category category307 = new Category("Sound cards", new Date(System.currentTimeMillis()));
+		category307.setParentCategory(category3);
+		Category category308 = new Category("Network cards", new Date(System.currentTimeMillis()));
+		category308.setParentCategory(category3);
+		
+		Category category4 = new Category("Accessories", new Date(System.currentTimeMillis()));
+		Category category401 = new Category("Headphones", new Date(System.currentTimeMillis()));
+		category401.setParentCategory(category4);
+		Category category402 = new Category("Mouses", new Date(System.currentTimeMillis()));
+		category402.setParentCategory(category4);
+		Category category403 = new Category("Keyboards", new Date(System.currentTimeMillis()));
+		category403.setParentCategory(category4);
+		
+		Category category5 = new Category("Packages", new Date(System.currentTimeMillis()));
+		
+		// ------------------------------------------------------------------- //
 
 		Software software1 = new Software("Windows 10 Professional", 20, new Date(System.currentTimeMillis()), "", "");
+		software1.setCategory(category2);
 		Software software2 = new Software("Windows 10 Home", 20, new Date(System.currentTimeMillis()), "", "");
+		software2.setCategory(category2);
 		Software software3 = new Software("Ubuntu", 15, new Date(System.currentTimeMillis()), "", "");
+		software3.setCategory(category2);
 		Software software4 = new Software("FreeDos", 100, new Date(System.currentTimeMillis()), "", "");
+		software4.setCategory(category2);
 
 		Hardware hardware1 = new Hardware("Motherboard: M.2 B250 mATX", 12, new Date(System.currentTimeMillis()), "");
+		hardware1.setCategory(category301);
 		Hardware hardware2 = new Hardware("CPU: Turbo Unlocked LGA1151", 16, new Date(System.currentTimeMillis()), "");
+		hardware2.setCategory(category302);
 		Hardware hardware3 = new Hardware("CPU: Turbo Unlocked LGA2000", 9, new Date(System.currentTimeMillis()), "");
+		hardware3.setCategory(category302);
 		Hardware hardware4 = new Hardware("RAM 16GB", 10, new Date(System.currentTimeMillis()), "");
+		hardware4.setCategory(category303);
 		Hardware hardware5 = new Hardware("RAM 8GB", 43, new Date(System.currentTimeMillis()), "");
+		hardware5.setCategory(category303);
 		Hardware hardware6 = new Hardware("RAM 4GB", 32, new Date(System.currentTimeMillis()), "");
+		hardware6.setCategory(category303);
 		Hardware hardware7 = new Hardware("Hard drive: Seagate SkyHawk", 32, new Date(System.currentTimeMillis()), "");
+		hardware7.setCategory(category304);
 		Hardware hardware8 = new Hardware("Power supply unit: Supermicro MBE-314E-416", 15,
 				new Date(System.currentTimeMillis()), "");
+		hardware8.setCategory(category305);
 		Hardware hardware9 = new Hardware("Video card: MSI Gaming GeForce GT 710", 12,
 				new Date(System.currentTimeMillis()), "");
+		hardware9.setCategory(category306);
 		Hardware hardware10 = new Hardware("Video card: Gigabyte Geforce GTX 1050", 31,
 				new Date(System.currentTimeMillis()), "");
+		hardware10.setCategory(category306);
 		Hardware hardware11 = new Hardware("Video card: EVGA GeForce GTX 1060", 17,
 				new Date(System.currentTimeMillis()), "");
+		hardware11.setCategory(category306);
 		Hardware hardware12 = new Hardware("Sound card: Intel G3260 3MB Haswell Dual-Core 3.3 GHz", 19,
 				new Date(System.currentTimeMillis()), "");
+		hardware12.setCategory(category307);
 		Hardware hardware13 = new Hardware("Network card: Thecus C10GTR 10GbE Network Interface Card", 12,
 				new Date(System.currentTimeMillis()), "");
+		hardware13.setCategory(category308);
 
-		Hardware hardware14 = new Hardware("Earphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
-		Hardware hardware15 = new Hardware("Earphones: Beats", 20, new Date(System.currentTimeMillis()), "");
+		Hardware hardware14 = new Hardware("Headphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
+		hardware14.setCategory(category401);
+		Hardware hardware15 = new Hardware("Headphones: Beats", 20, new Date(System.currentTimeMillis()), "");
+		hardware15.setCategory(category401);
 		Hardware hardware16 = new Hardware("Mouse: Corssair 2018", 13, new Date(System.currentTimeMillis()), "");
+		hardware16.setCategory(category402);
 		Hardware hardware17 = new Hardware("Mouse: Corssair K20", 33, new Date(System.currentTimeMillis()), "");
+		hardware17.setCategory(category402);
 		Hardware hardware18 = new Hardware("Mouse: Corssair Z92", 12, new Date(System.currentTimeMillis()), "");
+		hardware18.setCategory(category402);
 		Hardware hardware19 = new Hardware("Keyboard: Logitech K800", 51, new Date(System.currentTimeMillis()), "");
+		hardware19.setCategory(category403);
 
 		// ***** Computer ASUS 2000 ***** //
 		RecipeLine recipeLine11 = new RecipeLine(1);
@@ -173,6 +233,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipeLine19.setComponent(software1);
 
 		Recipe recipe1 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		recipe1.setCategory(category1);
 		recipe1.addLine(recipeLine11);
 		recipe1.addLine(recipeLine12);
 		recipe1.addLine(recipeLine13);
@@ -204,6 +265,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipeLine29.setComponent(software3);
 
 		Recipe recipe2 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		recipe2.setCategory(category1);
 		recipe2.addLine(recipeLine21);
 		recipe2.addLine(recipeLine22);
 		recipe2.addLine(recipeLine23);
@@ -224,6 +286,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Package package1 = new Package("Computer ASUS G1009 + Mouse: Corssair 2018 + Keyboard: Logitech K800", 4,
 				new Date(System.currentTimeMillis()), "");
+		package1.setCategory(category5);
 		package1.addLine(packageLine1);
 		package1.addLine(packageLine2);
 		package1.addLine(packageLine3);
@@ -259,6 +322,29 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		paymentService.insertPayment(payment2);
 		paymentService.insertPayment(payment3);
 
+		// ------------------------------------------------------------------- //
+		
+		categoryService.insertCategory(category1);
+		categoryService.insertCategory(category2);
+		
+		categoryService.insertCategory(category3);
+		categoryService.insertCategory(category301);
+		categoryService.insertCategory(category302);
+		categoryService.insertCategory(category303);
+		categoryService.insertCategory(category304);
+		categoryService.insertCategory(category305);
+		categoryService.insertCategory(category306);
+		categoryService.insertCategory(category307);
+		categoryService.insertCategory(category308);
+		
+		categoryService.insertCategory(category4);
+		categoryService.insertCategory(category401);
+		categoryService.insertCategory(category402);
+		categoryService.insertCategory(category403);
+		
+		categoryService.insertCategory(category5);
+		
+		
 		// ------------------------------------------------------------------- //
 
 		itemService.insertItem(software1);
