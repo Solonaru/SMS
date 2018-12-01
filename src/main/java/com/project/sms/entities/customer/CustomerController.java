@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.sms.utils.DisplayData;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/customer")
@@ -19,34 +21,43 @@ public class CustomerController {
 
 	@Autowired
 	private ICustomerService customerService;
+	
+	@Autowired
+	private DisplayData dataDisplay;
 
 	@RequestMapping(value = "/{customerId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Optional<Customer> findCustomerById(@PathVariable("customerId") int customerId) {
+		dataDisplay.printCrudInfo(customerId); 
 		return customerService.findCustomerById(customerId);
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Customer> getCustomers() {
+		dataDisplay.printCrudInfo(); 
 		return customerService.findAllCustomers();
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void insertCustomer(@RequestBody Customer customer) {
+		dataDisplay.printCrudInfo(); 
 		customerService.insertCustomer(customer);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateCustomer(@RequestBody Customer customer) {
+		dataDisplay.printCrudInfo(); 
 		customerService.updateCustomer(customer);
 	}
 
 	@RequestMapping(value = "/delete/{customerId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteCustomer(@PathVariable("customerId") int customerId) {
+		dataDisplay.printCrudInfo(customerId); 
 		customerService.deleteCustomerById(customerId);
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Customer findCustomerByUsernameAndPassword(@RequestBody Customer customer) {
+		dataDisplay.printCrudInfo(); 
 		return customerService.findCustomerByUsernameAndPassword(customer.getUsername(), customer.getPassword());
 	}
 }
