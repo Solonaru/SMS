@@ -17,26 +17,26 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    
+
   }
 
-  loginUser(event){
+  loginUser(event) {
     this.user = new User();
 
-  	event.preventDefault();
+    event.preventDefault();
     const target = event.target;
     this.user.username = target.querySelector('#username').value;
     this.user.password = target.querySelector('#password').value;
 
-  	this.auth.login(this.user).subscribe(data =>{this.foundUser=data;console.log(data);this.loginCheck();});	
+    this.auth.login(this.user).subscribe(data => { this.foundUser = data; console.log(data); this.loginCheck(); });
   }
 
-  loginCheck(){
-  	if(this.foundUser!=null){
+  loginCheck() {
+    if (this.foundUser != null) {
       this.router.navigate(['admin']);
-      this.auth.setLoggedIn(true);	
-  	}else{
-  		window.alert("No user found!!");
-  	}
+      this.auth.setLoggedIn(true);
+    } else {
+      window.alert("No user found!!");
+    }
   }
 }

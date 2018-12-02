@@ -1,1 +1,7 @@
-<app-category></app-category>
+<div>
+    <ul *ngIf="items">
+        <ng-container *ngFor="let item of items">
+            <li>{{ item.name }}</li>
+        </ng-container>
+    </ul>
+</div>

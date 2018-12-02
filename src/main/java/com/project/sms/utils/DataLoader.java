@@ -232,7 +232,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		RecipeLine recipeLine19 = new RecipeLine(1);
 		recipeLine19.setComponent(software1);
 
-		Recipe recipe1 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		Recipe recipe1 = new Recipe("Computer: ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
 		recipe1.setCategory(category1);
 		recipe1.addLine(recipeLine11);
 		recipe1.addLine(recipeLine12);
@@ -264,7 +264,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		RecipeLine recipeLine29 = new RecipeLine(1);
 		recipeLine29.setComponent(software3);
 
-		Recipe recipe2 = new Recipe("Computer ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		Recipe recipe2 = new Recipe("Computer: ASUS LK40", 10, new Date(System.currentTimeMillis()), "");
 		recipe2.setCategory(category1);
 		recipe2.addLine(recipeLine21);
 		recipe2.addLine(recipeLine22);

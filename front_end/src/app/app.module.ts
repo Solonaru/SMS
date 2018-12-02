@@ -10,8 +10,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AuthService } from './providers/auth.service';
-import { AuthGuard} from './providers/auth.guard';
-import { SessionGuard} from './providers/session.guard';
+import { DataService } from './providers/data.service';
+import { AuthGuard } from './providers/auth.guard';
+import { SessionGuard } from './providers/session.guard';
 
 @NgModule({
   declarations: [
@@ -42,10 +43,14 @@ import { SessionGuard} from './providers/session.guard';
       {
         path: 'products',
         component: ProductsComponent
+      },
+      {
+        path: 'category',
+        component: CategoryComponent
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, SessionGuard],
+  providers: [AuthService, DataService, AuthGuard, SessionGuard, CategoryComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

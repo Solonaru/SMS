@@ -32,10 +32,10 @@ public class Category implements Serializable {
 	private String name;
 	private Date updateDate;
 	@ManyToOne
-	@JsonIgnoreProperties(value = { "childCategories", "parentCategory" })
+	@JsonIgnoreProperties(value = "childCategories")
 	private Category parentCategory;
 	@OneToMany(mappedBy = "parentCategory")
-	@JsonIgnoreProperties(value = { "childCategories", "parentCategory" })
+	@JsonIgnoreProperties(value = "parentCategory")
 	private List<Category> childCategories = new ArrayList<Category>();
 	@ManyToOne
 	private Employee employee;

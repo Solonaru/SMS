@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Item } from '../../entities/item';
+import { DataService } from '../../providers/data.service';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  items: Item[];
+
+  constructor(public dataService: DataService) { 
+    
+  }
 
   ngOnInit() {
+    this.dataService.currentMessage.subscribe(items => this.items = items);
   }
 
 }
