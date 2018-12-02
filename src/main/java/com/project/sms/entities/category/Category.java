@@ -15,15 +15,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.item.Item;
 
 @Entity
 @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
-@CrossOrigin(origins = "http://localhost:4200")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 

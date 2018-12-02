@@ -3,4 +3,5 @@ export class Category {
     name: String;
     updateDate: Date;
     parentCategory: Category;
+    childCategories: Category[];
 }
