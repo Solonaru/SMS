@@ -15,6 +15,7 @@ import { AuthGuard } from './providers/auth.guard';
 import { SessionGuard } from './providers/session.guard';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
+// import { AgmCoreModule } from '@agm/core'
 
 @NgModule({
   declarations: [
@@ -52,8 +53,19 @@ import { ContactComponent } from './components/contact/contact.component';
       {
         path: 'category',
         component: CategoryComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+      {
+        path: 'aboutus',
+        component: AboutusComponent
       }
-    ])
+    ]),
+    // AgmCoreModule.forRoot({
+    //     apiKey:
+    // })
   ],
   providers: [AuthService, DataService, AuthGuard, SessionGuard, CategoryComponent],
   bootstrap: [AppComponent]
