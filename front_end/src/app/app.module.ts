@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,6 +13,8 @@ import { AuthService } from './providers/auth.service';
 import { DataService } from './providers/data.service';
 import { AuthGuard } from './providers/auth.guard';
 import { SessionGuard } from './providers/session.guard';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,12 @@ import { SessionGuard } from './providers/session.guard';
     HomeComponent,
     AdminComponent,
     ProductsComponent,
-    CategoryComponent
+    CategoryComponent,
+    AboutusComponent,
+    ContactComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
