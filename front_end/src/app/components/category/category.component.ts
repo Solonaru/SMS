@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
 
   onClick(category: Category) {
     /* Empty array */
-    this.items.length = 0;
+    this.items = [];
     /* Check if the selected category has childCategories */
     if (category.childCategories.length != 0) {
       /* Loop childCategories and concat items to the items list */
