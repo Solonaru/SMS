@@ -15,6 +15,7 @@ import { SessionGuard } from './providers/guards/session.guard';
 import { AboutusComponent } from './components/front-office/aboutus/aboutus.component';
 import { ContactComponent } from './components/front-office/contact/contact.component';
 import { BoProductsComponent } from './components/back-office/bo-products/bo-products.component';
+import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-employees.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BoProductsComponent } from './components/back-office/bo-products/bo-pro
     CategoryComponent,
     AboutusComponent,
     ContactComponent,
-    BoProductsComponent
+    BoProductsComponent,
+    BoEmployeesComponent
   ],
   imports: [
     FormsModule,
@@ -64,6 +66,10 @@ import { BoProductsComponent } from './components/back-office/bo-products/bo-pro
       {
         path: 'bo_products',
         component: BoProductsComponent
+      },
+      {
+        path: 'bo_employees',
+        component: BoEmployeesComponent
       }
     ]),
   ],

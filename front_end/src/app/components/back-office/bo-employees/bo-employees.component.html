@@ -1,0 +1,7 @@
+<div>
+  <ul *ngIf="employees">
+      <ng-container *ngFor="let employee of employees">
+          <li>{{ employee.name }}</li>
+      </ng-container>
+  </ul>
+</div>

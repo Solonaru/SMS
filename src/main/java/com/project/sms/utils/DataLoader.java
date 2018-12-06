@@ -12,6 +12,7 @@ import com.project.sms.entities.account.IAccountService;
 import com.project.sms.entities.category.Category;
 import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
+import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Software;
@@ -32,6 +33,7 @@ import com.project.sms.entities.recipe.RecipeLine;
 import com.project.sms.entities.subscription.ISubscriptionService;
 import com.project.sms.entities.subscription.Subscription;
 import com.project.sms.enums.AccountStatus;
+import com.project.sms.enums.EmployeeStatus;
 import com.project.sms.enums.PaymentStatus;
 import com.project.sms.enums.PaymentType;
 import com.project.sms.enums.SubscriptionType;
@@ -115,7 +117,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		customer3.getSubscriptions().add(subscription1);
 		customer3.getSubscriptions().add(subscription2);
 		customer3.getSubscriptions().add(subscription3);
-
+		
+		// ------------------------------------------------------------------- //
+		
+		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417", new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR);
+		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417", new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
+		
 		// ------------------------------------------------------------------- //
 
 		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
@@ -316,6 +323,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		accountService.insertAccount(customer2);
 		accountService.insertAccount(customer3);
 
+		// ------------------------------------------------------------------- //
+		
+		accountService.insertAccount(employee1);
+		accountService.insertAccount(employee2);
+		
 		// ------------------------------------------------------------------- //
 
 		paymentService.insertPayment(payment1);
