@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../entities/item';
-import { BehaviorSubject } from '../../../node_modules/rxjs';
+import { Item } from '../../entities/item';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataService {
 
-  items: Item[] = [];
+  items: Item[];
   private messageSource = new BehaviorSubject<Item[]>(this.items);
   currentMessage = this.messageSource.asObservable();
 

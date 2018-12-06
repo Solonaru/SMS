@@ -4,29 +4,28 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { ProductsComponent } from './components/products/products.component';
-import { CategoryComponent } from './components/category/category.component';
-import { AuthService } from './providers/auth.service';
-import { DataService } from './providers/data.service';
-import { AuthGuard } from './providers/auth.guard';
-import { SessionGuard } from './providers/session.guard';
-import { AboutusComponent } from './components/aboutus/aboutus.component';
-import { ContactComponent } from './components/contact/contact.component';
-// import { AgmCoreModule } from '@agm/core'
+import { LoginComponent } from './components/front-office/login/login.component';
+import { AdminComponent } from './components/front-office/admin/admin.component';
+import { ProductsComponent } from './components/front-office/products/products.component';
+import { CategoryComponent } from './components/front-office/category/category.component';
+import { AuthService } from './providers/services/auth.service';
+import { DataService } from './providers/services/data.service';
+import { AuthGuard } from './providers/guards/auth.guard';
+import { SessionGuard } from './providers/guards/session.guard';
+import { AboutusComponent } from './components/front-office/aboutus/aboutus.component';
+import { ContactComponent } from './components/front-office/contact/contact.component';
+import { BoProductsComponent } from './components/back-office/bo-products/bo-products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     AdminComponent,
     ProductsComponent,
     CategoryComponent,
     AboutusComponent,
-    ContactComponent
+    ContactComponent,
+    BoProductsComponent
   ],
   imports: [
     FormsModule,
@@ -61,13 +60,14 @@ import { ContactComponent } from './components/contact/contact.component';
       {
         path: 'aboutus',
         component: AboutusComponent
+      },
+      {
+        path: 'bo_products',
+        component: BoProductsComponent
       }
     ]),
-    // AgmCoreModule.forRoot({
-    //     apiKey:
-    // })
   ],
-  providers: [AuthService, DataService, AuthGuard, SessionGuard, CategoryComponent],
+  providers: [AuthService, DataService, AuthGuard, SessionGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

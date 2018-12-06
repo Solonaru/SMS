@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CategoryService } from '../../providers/category.service';
-import { DataService } from '../../providers/data.service';
-import { Category } from '../../entities/category';
-import { Item } from '../../entities/item';
-import { Router } from '../../../../node_modules/@angular/router';
+import { CategoryService } from '../../../providers/services/category.service';
+import { DataService } from '../../../providers/services/data.service';
+import { Category } from '../../../entities/category';
+import { Item } from '../../../entities/item';
+import { Router } from '@angular/router';
 
 //import fontawesome from '@fortawesome/angular-fontawesome';
 //import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';

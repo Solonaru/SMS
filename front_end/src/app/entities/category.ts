@@ -1,4 +1,4 @@
-import { Item } from '../entities/item';
+import { Item } from './item';
 
 export class Category {
     id: Number;
