@@ -117,12 +117,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		customer3.getSubscriptions().add(subscription1);
 		customer3.getSubscriptions().add(subscription2);
 		customer3.getSubscriptions().add(subscription3);
-		
+
 		// ------------------------------------------------------------------- //
-		
-		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417", new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR);
-		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417", new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
-		
+
+		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417",
+				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR);
+		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417",
+				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
+
 		// ------------------------------------------------------------------- //
 
 		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
@@ -130,10 +132,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Payment payment3 = new Payment(PaymentType.MAESTRO, PaymentStatus.COMPLETED, null);
 
 		// ------------------------------------------------------------------- //
-		
+
 		Category category1 = new Category("Laptops", new Date(System.currentTimeMillis()));
 		Category category2 = new Category("Software", new Date(System.currentTimeMillis()));
-		
+
 		Category category3 = new Category("Components", new Date(System.currentTimeMillis()));
 		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()));
 		category301.setParentCategory(category3);
@@ -151,7 +153,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		category307.setParentCategory(category3);
 		Category category308 = new Category("Network cards", new Date(System.currentTimeMillis()));
 		category308.setParentCategory(category3);
-		
+
 		Category category4 = new Category("Accessories", new Date(System.currentTimeMillis()));
 		Category category401 = new Category("Headphones", new Date(System.currentTimeMillis()));
 		category401.setParentCategory(category4);
@@ -159,9 +161,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		category402.setParentCategory(category4);
 		Category category403 = new Category("Keyboards", new Date(System.currentTimeMillis()));
 		category403.setParentCategory(category4);
-		
+
 		Category category5 = new Category("Packages", new Date(System.currentTimeMillis()));
-		
+
 		// ------------------------------------------------------------------- //
 
 		Software software1 = new Software("Windows 10 Professional", 20, new Date(System.currentTimeMillis()), "", "");
@@ -208,16 +210,22 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Hardware hardware14 = new Hardware("Headphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
 		hardware14.setCategory(category401);
+		hardware14.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware14.jpg");
 		Hardware hardware15 = new Hardware("Headphones: Beats", 20, new Date(System.currentTimeMillis()), "");
 		hardware15.setCategory(category401);
+		hardware15.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware15.jpg");
 		Hardware hardware16 = new Hardware("Mouse: Corssair 2018", 13, new Date(System.currentTimeMillis()), "");
 		hardware16.setCategory(category402);
+		hardware16.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware16.jpg");
 		Hardware hardware17 = new Hardware("Mouse: Corssair K20", 33, new Date(System.currentTimeMillis()), "");
 		hardware17.setCategory(category402);
+		hardware17.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware17.jpg");
 		Hardware hardware18 = new Hardware("Mouse: Corssair Z92", 12, new Date(System.currentTimeMillis()), "");
 		hardware18.setCategory(category402);
+		hardware18.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware18.jpg");
 		Hardware hardware19 = new Hardware("Keyboard: Logitech K800", 51, new Date(System.currentTimeMillis()), "");
 		hardware19.setCategory(category403);
+		hardware19.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware19.jpg");
 
 		// ***** Computer ASUS 2000 ***** //
 		RecipeLine recipeLine11 = new RecipeLine(1);
@@ -324,10 +332,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		accountService.insertAccount(customer3);
 
 		// ------------------------------------------------------------------- //
-		
+
 		accountService.insertAccount(employee1);
 		accountService.insertAccount(employee2);
-		
+
 		// ------------------------------------------------------------------- //
 
 		paymentService.insertPayment(payment1);
@@ -335,10 +343,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		paymentService.insertPayment(payment3);
 
 		// ------------------------------------------------------------------- //
-		
+
 		categoryService.insertCategory(category1);
 		categoryService.insertCategory(category2);
-		
+
 		categoryService.insertCategory(category3);
 		categoryService.insertCategory(category301);
 		categoryService.insertCategory(category302);
@@ -348,15 +356,14 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		categoryService.insertCategory(category306);
 		categoryService.insertCategory(category307);
 		categoryService.insertCategory(category308);
-		
+
 		categoryService.insertCategory(category4);
 		categoryService.insertCategory(category401);
 		categoryService.insertCategory(category402);
 		categoryService.insertCategory(category403);
-		
+
 		categoryService.insertCategory(category5);
-		
-		
+
 		// ------------------------------------------------------------------- //
 
 		itemService.insertItem(software1);
