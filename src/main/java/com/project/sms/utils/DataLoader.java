@@ -95,6 +95,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		address5.setCity(city1);
 		Address address6 = new Address("Cosmopolitan", 129, 270123);
 		address6.setCity(city1);
+		Address address7 = new Address("Bacau", 12, 607648);
+		address7.setCity(city1);
+		Address address8 = new Address("Timisoara", 30, 509832);
+		address8.setCity(city1);
 
 		Subscription subscription1 = new Subscription(SubscriptionType.DISCOUNTS);
 		Subscription subscription2 = new Subscription(SubscriptionType.NEW_PRODUCTS);
@@ -122,9 +126,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417",
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR);
+		employee1.setAddress(address7);
 		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417",
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
-
+		employee2.setAddress(address8);
 		// ------------------------------------------------------------------- //
 
 		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
@@ -322,6 +327,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		addressService.insertAddress(address4);
 		addressService.insertAddress(address5);
 		addressService.insertAddress(address6);
+		addressService.insertAddress(address7);
+		addressService.insertAddress(address8);
+
 
 		subscriptionService.insertSubscription(subscription1);
 		subscriptionService.insertSubscription(subscription2);
