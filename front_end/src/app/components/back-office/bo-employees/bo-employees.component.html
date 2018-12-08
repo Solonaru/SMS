@@ -1,7 +1,55 @@
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+</head>
+<section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <p class="title">This is the complete list of the TechNique employees</p>
+            <p class="subtitle">TechNique Employee Management</p>
+          </div>
+        </div>
+</section>
+<br>                        
+    
 <div>
-  <ul *ngIf="employees">
-      <ng-container *ngFor="let employee of employees">
-          <li>{{ employee.name }}</li>
-      </ng-container>
-  </ul>
-</div>
+<section class="section">
+    <p class="control level">
+        <a class="button is-success">Add Employee</a>
+    </p>
+    <br>
+    <div class="columns is-centered">
+    <div class="column is-narrow">
+        <table class="table is-responsive is-mobile is-centered" >
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Creation Date</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.address.street}}</td>
+                        <td>{{employee.email}}</td>
+                        <td>{{employee.phoneNumber}}</td>
+                        <td>{{employee.creationDate}}</td>
+                        <td><a class="button is-warning is-small">Update Employee</a></td>
+                        <td><a class="button is-danger is-small">Delete Employee</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
