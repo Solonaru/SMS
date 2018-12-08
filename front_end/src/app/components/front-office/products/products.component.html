@@ -32,29 +32,31 @@
 
 
         <section *ngIf="items" class="container">
-            <ng-container *ngFor="let item of items">
-                <div *ngIf="items.indexOf(item) % 5 === 0" class="columns features">
-                    <ng-container *ngFor="let item of items">
+            <div *ngFor="let i of counter()" class="columns features">
+                <ng-container *ngFor="let item of items">
 
-                            <div class="column is-one-fifth">
-                                <div class="card is-shady has-border has-padding-top standard-height">
-                                    <div class="card-image">
-                                        <figure class="image is-4by3">
-                                            <img [src]="item.imageUrl" alt="Placeholder image">
-                                        </figure>
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="content has-text-centered">
-                                            <h4> {{ item.name }}</h4>
-                                            <p class="to-bottom"> {{ item.updateDate }} </p>
-                                        </div>
+                    <ng-container *ngIf="( (items.indexOf(item) >= (i * 5)) && (items.indexOf(item) < ((i + 1) * 5)) )">
+
+                        <div class="column is-one-fifth">
+                            <div class="card is-shady has-border has-padding-top standard-height">
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img [src]="item.imageUrl" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="content has-text-centered">
+                                        <h4> {{ item.name }}</h4>
+                                        <p class="to-bottom"> {{ item.updateDate }} </p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                     </ng-container>
-                </div>
-            </ng-container>
+
+                </ng-container>
+            </div>
         </section>
 
     </main>

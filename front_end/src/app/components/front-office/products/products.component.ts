@@ -14,9 +14,6 @@ export class ProductsComponent implements OnInit {
   category: Category;
   items: Item[] = [];
 
-  itemsCount: Number;
-  currentCount: any = -1;
-
   constructor(public dataService: DataService) {
 
   }
@@ -36,6 +33,10 @@ export class ProductsComponent implements OnInit {
     } else {
       this.items = this.items.concat(this.category.items);
     }
+  }
+
+  counter() {
+    return new Array(Math.ceil(this.items.length / 5)).fill(0).map((x, i) => i);
   }
 
 }
