@@ -1,54 +1,90 @@
-<form (ngSubmit)="processForm()">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- name -->
-  <div class="field">
-    <input 
-      type="text" 
-      name="name" 
-      class="input" 
-      placeholder="Your Name" 
-      [(ngModel)]="name"
-      required
-      minlength="3"
-      #nameInput="ngModel">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+</head>
 
-    <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
-      Name is required and needs to be at least 3 characters long.
+<div class="card is-mobile">
+    <div class="card-content">
+        <p class="title">
+            Do you have message for us?
+        </p>
+        <p class="subtitle">
+            Complete this form
+        </p>
+        <form (ngSubmit)="processForm()">
+
+            <!-- name -->
+            <div class="field">
+              <input 
+                type="text" 
+                name="name" 
+                class="input" 
+                placeholder="Your Name" 
+                [(ngModel)]="name"
+                required
+                minlength="3"
+                #nameInput="ngModel">
+          
+              <div class="notification is-error" *ngIf="nameInput.invalid && nameInput.dirty">
+                Name is required and needs to be at least 3 characters long.
+              </div>
+            </div>
+          
+            <!-- email -->
+            <div class="field">          
+              <input 
+                type="email" 
+                name="email" 
+                class="input" 
+                placeholder="Your Email" 
+                [(ngModel)]="email"
+                required
+                email
+                #emailInput="ngModel">
+          
+              <div class="notification is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+                Needs to be a valid email.
+              </div>
+            </div>
+          
+            <!-- message -->
+            <div class="field">
+              <textarea 
+                class="textarea" 
+                name="message" 
+                placeholder="What's on your mind?" 
+                [(ngModel)]="message"
+                required
+                #messageInput="ngModel"></textarea>
+          
+                <div class="notification is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+                  Your message is required!
+                </div>
+            </div>
+          
+            <button type="submit" class="button is-primary is-large">Submit</button>
+          
+          </form>
+          <h6 class="title is-6 has-text-centered">Or you can find us on Social Media</h6>
+          <div class="has-text-centered">
+              <a class="button is-link" href="https://www.facebook.com/thenique/">
+                  <span class="icon">
+                    <i class="fa fa-facebook"></i>
+                  </span>
+                  <span>Facebook</span>
+                </a>
+              <a class="button is-primary" href="https://twitter.com/TheTechMuseum">
+                  <span class="icon">
+                    <i class="fa fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+          </div>
     </div>
-  </div>
+</div>
 
-  <!-- email -->
-  <div class="field">          
-    <input 
-      type="email" 
-      name="email" 
-      class="input" 
-      placeholder="Your Email" 
-      [(ngModel)]="email"
-      required
-      email
-      #emailInput="ngModel">
-
-    <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
-      Needs to be a valid email.
-    </div>
-  </div>
-
-  <!-- message -->
-  <div class="field">
-    <textarea 
-      class="textarea" 
-      name="message" 
-      placeholder="What's on your mind?" 
-      [(ngModel)]="message"
-      required
-      #messageInput="ngModel"></textarea>
-
-      <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
-        Your message is required!
-      </div>
-  </div>
-
-  <button type="submit" class="button is-danger is-large">Submit</button>
-
-</form>
