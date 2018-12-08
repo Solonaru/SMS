@@ -1,0 +1,13 @@
+.button {
+    border-radius: 0;
+    border: none;
+  }
+  
+  .input{
+    border-width:1px;
+    border-radius:15px;
+  }
+  
+  .label {
+    font-weight: lighter;
+  }
