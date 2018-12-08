@@ -1,7 +1,112 @@
-<div>
-    <ul *ngIf="items">
-        <ng-container *ngFor="let item of items">
-            <li>{{ item.name }}</li>
-        </ng-container>
-    </ul>
-</div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+</head>
+
+<body>
+
+    <main>
+
+        <section class="hero is-info is-small">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <p class="title">
+                        {{ category.name }}
+                    </p>
+                    <p class="subtitle">
+                        Subtitle
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="box cta">
+            <p class="has-text-centered">
+                <span class="tag is-primary">New</span> Here we have modal cards. When you click on them they will open functional modal examples.
+            </p>
+        </div>
+
+
+        <section *ngIf="items" class="container">
+            <ng-container *ngFor="let item of items">
+                <div *ngIf="items.indexOf(item) % 5 === 0" class="columns features">
+                    <ng-container *ngFor="let item of items">
+
+                            <div class="column is-one-fifth">
+                                <div class="card is-shady has-border has-padding-top standard-height">
+                                    <div class="card-image">
+                                        <figure class="image is-4by3">
+                                            <img [src]="item.imageUrl" alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="content has-text-centered">
+                                            <h4> {{ item.name }}</h4>
+                                            <p class="to-bottom"> {{ item.updateDate }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </ng-container>
+                </div>
+            </ng-container>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <section class="section">
+            <div class="container">
+
+            </div>
+        </section>
+    </footer>
+
+</body>
+
+
+
+<!-- <div class="column is-one-fifth">
+                <div class="card-flip">
+                    <div class="flip">
+                        <div class="front">
+                            <div class="card is-shady has-border">
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="https://source.unsplash.com/6Ticnhs1AG0" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="content">
+                                        <h4>Tempor orci dapibus ultrices in.</h4>
+                                        <p>Ut venenatis tellus in metus vulputate.</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="card is-shady has-border">
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="https://source.unsplash.com/6Ticnhs1AG0" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="content">
+                                        <h4>Tempor orci dapibus ultrices in.</h4>
+                                        <p>Ut venenatis tellus in metus vulputate.</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->

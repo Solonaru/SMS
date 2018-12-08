@@ -1,0 +1,52 @@
+.card-flip {
+  perspective: 1000px;
+}
+.card-flip:hover .flip {
+  transform: rotateY(180deg);
+}
+
+.card-flip,
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+}
+
+.flip {
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.has-border {
+  border: 5px solid rgba(189, 195, 199, 0.05)
+}
+
+.has-padding-top {
+  padding-top: 1rem;
+}
+
+.standard-height {
+  height: 100%;
+}
+
+.to-bottom {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}

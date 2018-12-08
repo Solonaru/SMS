@@ -130,6 +130,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417",
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
 		employee2.setAddress(address8);
+		
 		// ------------------------------------------------------------------- //
 
 		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
@@ -216,7 +217,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware14 = new Hardware("Headphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
 		hardware14.setCategory(category401);
 		hardware14.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware14.jpg");
-		Hardware hardware15 = new Hardware("Headphones: Beats", 20, new Date(System.currentTimeMillis()), "");
+		Hardware hardware15 = new Hardware("Headphones: Philips", 20, new Date(System.currentTimeMillis()), "");
 		hardware15.setCategory(category401);
 		hardware15.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware15.jpg");
 		Hardware hardware16 = new Hardware("Mouse: Corssair 2018", 13, new Date(System.currentTimeMillis()), "");

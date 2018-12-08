@@ -7,4 +7,5 @@ export class Item {
     updateDate: Date;
     description: Date;
     category: Category;
+    imageUrl: String;
 }
