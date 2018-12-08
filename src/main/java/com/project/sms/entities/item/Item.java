@@ -41,6 +41,7 @@ public abstract class Item implements Serializable {
 	protected Integer stockQuantity;
 	protected Date updateDate;
 	protected String description;
+	protected String imageUrl;
 	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
 	@OneToMany(mappedBy = "item")
@@ -104,6 +105,14 @@ public abstract class Item implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public List<Rating> getRatings() {

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.sms.utils.DisplayData;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
 
 	@Autowired
