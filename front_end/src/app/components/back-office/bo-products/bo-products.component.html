@@ -1,7 +1,61 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+</head>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <p class="title">A complete list of products available</p>
+      <p class="subtitle">TechNique Product Management</p>
+    </div>
+  </div>
+</section>
+
+<br>
+
 <div>
-  <ul *ngIf="items">
+  <section class="section">
+    <p class="control level">
+      <a class="button is-success">Add Product</a>
+    </p>
+    <br>
+    <div class="columns is-centered">
+      <div class="column is-narrow">
+        <table class="table is-responsive is-mobile is-centered" >
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>StockQuantity</th>
+            <th>Update Date</th>
+            <th>Category</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.stockQuantity}}</td>
+            <td>{{item.updateDate}}</td>
+            <td>{{item.category.name}}</td>
+            <td><a class="button is-warning is-small">Update Product</a></td>
+            <td><a class="button is-danger is-small">Delete Product</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!--<ul *ngIf="items">
       <ng-container *ngFor="let item of items">
           <li>{{ item.name }} {{ item.updateDate }}</li>
       </ng-container>
   </ul>
-</div>
+</div>-->
