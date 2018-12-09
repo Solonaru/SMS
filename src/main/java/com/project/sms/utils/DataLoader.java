@@ -174,45 +174,62 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Software software1 = new Software("Windows 10 Professional", 20, new Date(System.currentTimeMillis()), "", "");
 		software1.setCategory(category2);
+		software1.setImageUrl("../../../../assets/images/items/products/components/softwares/software1.jpg");
 		Software software2 = new Software("Windows 10 Home", 20, new Date(System.currentTimeMillis()), "", "");
 		software2.setCategory(category2);
-		Software software3 = new Software("Ubuntu", 15, new Date(System.currentTimeMillis()), "", "");
+		software2.setImageUrl("../../../../assets/images/items/products/components/softwares/software2.jpg");
+		Software software3 = new Software("Windows 7 Professional", 15, new Date(System.currentTimeMillis()), "", "");
 		software3.setCategory(category2);
-		Software software4 = new Software("FreeDos", 100, new Date(System.currentTimeMillis()), "", "");
+		software3.setImageUrl("../../../../assets/images/items/products/components/softwares/software3.jpg");
+		Software software4 = new Software("Windows 8 ProPack", 100, new Date(System.currentTimeMillis()), "", "");
 		software4.setCategory(category2);
+		software4.setImageUrl("../../../../assets/images/items/products/components/softwares/software4.jpg");
 
 		Hardware hardware1 = new Hardware("Motherboard: M.2 B250 mATX", 12, new Date(System.currentTimeMillis()), "");
 		hardware1.setCategory(category301);
-		Hardware hardware2 = new Hardware("CPU: Turbo Unlocked LGA1151", 16, new Date(System.currentTimeMillis()), "");
+		hardware1.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware1.jpg");
+		Hardware hardware2 = new Hardware("CPU: Intel Core i7-8700K", 16, new Date(System.currentTimeMillis()), "");
 		hardware2.setCategory(category302);
-		Hardware hardware3 = new Hardware("CPU: Turbo Unlocked LGA2000", 9, new Date(System.currentTimeMillis()), "");
+		hardware2.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware2.jpg");
+		Hardware hardware3 = new Hardware("CPU: AMD Ryzen 7", 9, new Date(System.currentTimeMillis()), "");
 		hardware3.setCategory(category302);
+		hardware3.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware3.jpg");
 		Hardware hardware4 = new Hardware("RAM 16GB", 10, new Date(System.currentTimeMillis()), "");
 		hardware4.setCategory(category303);
+		hardware4.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware4.jpg");
 		Hardware hardware5 = new Hardware("RAM 8GB", 43, new Date(System.currentTimeMillis()), "");
 		hardware5.setCategory(category303);
+		hardware5.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware5.jpg");
 		Hardware hardware6 = new Hardware("RAM 4GB", 32, new Date(System.currentTimeMillis()), "");
 		hardware6.setCategory(category303);
-		Hardware hardware7 = new Hardware("Hard drive: Seagate SkyHawk", 32, new Date(System.currentTimeMillis()), "");
+		hardware6.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware6.jpg");
+		Hardware hardware7 = new Hardware("Hard drive: Seagate Barracuda", 32, new Date(System.currentTimeMillis()), "");
 		hardware7.setCategory(category304);
-		Hardware hardware8 = new Hardware("Power supply unit: Supermicro MBE-314E-416", 15,
+		hardware7.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware7.jpg");
+		Hardware hardware8 = new Hardware("Power supply unit: Seasonic Focus", 15,
 				new Date(System.currentTimeMillis()), "");
 		hardware8.setCategory(category305);
-		Hardware hardware9 = new Hardware("Video card: MSI Gaming GeForce GT 710", 12,
+		hardware8.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware8.jpg");
+		Hardware hardware9 = new Hardware("Video card: MSI GeForce GTX 1070", 12,
 				new Date(System.currentTimeMillis()), "");
 		hardware9.setCategory(category306);
+		hardware9.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware9.jpg");
 		Hardware hardware10 = new Hardware("Video card: Gigabyte Geforce GTX 1050", 31,
 				new Date(System.currentTimeMillis()), "");
 		hardware10.setCategory(category306);
+		hardware10.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware10.jpg");
 		Hardware hardware11 = new Hardware("Video card: EVGA GeForce GTX 1060", 17,
 				new Date(System.currentTimeMillis()), "");
 		hardware11.setCategory(category306);
+		hardware11.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware11.jpg");
 		Hardware hardware12 = new Hardware("Sound card: Intel G3260 3MB Haswell Dual-Core 3.3 GHz", 19,
 				new Date(System.currentTimeMillis()), "");
 		hardware12.setCategory(category307);
+		hardware12.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware12.jpg");
 		Hardware hardware13 = new Hardware("Network card: Thecus C10GTR 10GbE Network Interface Card", 12,
 				new Date(System.currentTimeMillis()), "");
 		hardware13.setCategory(category308);
+		hardware13.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware13.jpg");
 
 		Hardware hardware14 = new Hardware("Headphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
 		hardware14.setCategory(category401);
@@ -255,6 +272,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Recipe recipe1 = new Recipe("Computer: ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
 		recipe1.setCategory(category1);
+		recipe1.setImageUrl("../../../../assets/images/items/products/recipes/recipe1.jpg");
 		recipe1.addLine(recipeLine11);
 		recipe1.addLine(recipeLine12);
 		recipe1.addLine(recipeLine13);
@@ -287,6 +305,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Recipe recipe2 = new Recipe("Computer: ASUS LK40", 10, new Date(System.currentTimeMillis()), "");
 		recipe2.setCategory(category1);
+		recipe2.setImageUrl("../../../../assets/images/items/products/recipes/recipe2.jpg");
 		recipe2.addLine(recipeLine21);
 		recipe2.addLine(recipeLine22);
 		recipe2.addLine(recipeLine23);
@@ -308,6 +327,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Package package1 = new Package("Computer ASUS G1009 + Mouse: Corssair 2018 + Keyboard: Logitech K800", 4,
 				new Date(System.currentTimeMillis()), "");
 		package1.setCategory(category5);
+		package1.setImageUrl("../../../../assets/images/items/packages/package1.jpg");
 		package1.addLine(packageLine1);
 		package1.addLine(packageLine2);
 		package1.addLine(packageLine3);
