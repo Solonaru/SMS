@@ -358,6 +358,54 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		catalogueLine3.setItem(software4);
 		CatalogueItem catalogueLine4 = new CatalogueItem(320.0);
 		catalogueLine4.setItem(software4);
+		
+		CatalogueItem catalogueLine5 = new CatalogueItem(1500.0);
+		catalogueLine5.setItem(hardware1);
+		CatalogueItem catalogueLine6 = new CatalogueItem(950.0);
+		catalogueLine6.setItem(hardware2);
+		CatalogueItem catalogueLine7 = new CatalogueItem(620.0);
+		catalogueLine7.setItem(hardware3);
+		CatalogueItem catalogueLine8 = new CatalogueItem(200.0);
+		catalogueLine8.setItem(hardware4);
+		CatalogueItem catalogueLine9 = new CatalogueItem(120.0);
+		catalogueLine9.setItem(hardware5);
+		CatalogueItem catalogueLine10 = new CatalogueItem(70.0);
+		catalogueLine10.setItem(hardware6);
+		CatalogueItem catalogueLine11 = new CatalogueItem(700.0);
+		catalogueLine11.setItem(hardware7);
+		CatalogueItem catalogueLine12 = new CatalogueItem(280.0);
+		catalogueLine12.setItem(hardware8);
+		CatalogueItem catalogueLine13 = new CatalogueItem(1280.0);
+		catalogueLine13.setItem(hardware9);
+		CatalogueItem catalogueLine14 = new CatalogueItem(1120.0);
+		catalogueLine14.setItem(hardware10);
+		CatalogueItem catalogueLine15 = new CatalogueItem(1200.0);
+		catalogueLine15.setItem(hardware11);
+		CatalogueItem catalogueLine16 = new CatalogueItem(180.0);
+		catalogueLine16.setItem(hardware12);
+		CatalogueItem catalogueLine17 = new CatalogueItem(310.0);
+		catalogueLine17.setItem(hardware13);
+
+		CatalogueItem catalogueLine18 = new CatalogueItem(260.0);
+		catalogueLine18.setItem(hardware14);
+		CatalogueItem catalogueLine19 = new CatalogueItem(210.0);
+		catalogueLine19.setItem(hardware15);
+		CatalogueItem catalogueLine20 = new CatalogueItem(200.0);
+		catalogueLine20.setItem(hardware16);
+		CatalogueItem catalogueLine21 = new CatalogueItem(120.0);
+		catalogueLine21.setItem(hardware17);
+		CatalogueItem catalogueLine22 = new CatalogueItem(100.0);
+		catalogueLine22.setItem(hardware18);
+		CatalogueItem catalogueLine23 = new CatalogueItem(120.0);
+		catalogueLine23.setItem(hardware19);
+
+		CatalogueItem catalogueLine24 = new CatalogueItem(7400.0);
+		catalogueLine24.setItem(recipe1);
+		CatalogueItem catalogueLine25 = new CatalogueItem(5200.0);
+		catalogueLine25.setItem(recipe2);
+
+		CatalogueItem catalogueLine26 = new CatalogueItem(7500.0);
+		catalogueLine26.setItem(package1);
 
 		Catalogue catalogue = new Catalogue(Month.DECEMBER, 2018, new Date(System.currentTimeMillis()),
 				CatalogueStatus.ACTIVE);
@@ -365,6 +413,28 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		catalogue.addLine(catalogueLine2);
 		catalogue.addLine(catalogueLine3);
 		catalogue.addLine(catalogueLine4);
+		catalogue.addLine(catalogueLine5);
+		catalogue.addLine(catalogueLine6);
+		catalogue.addLine(catalogueLine7);
+		catalogue.addLine(catalogueLine8);
+		catalogue.addLine(catalogueLine9);
+		catalogue.addLine(catalogueLine10);
+		catalogue.addLine(catalogueLine11);
+		catalogue.addLine(catalogueLine12);
+		catalogue.addLine(catalogueLine13);
+		catalogue.addLine(catalogueLine14);
+		catalogue.addLine(catalogueLine15);
+		catalogue.addLine(catalogueLine16);
+		catalogue.addLine(catalogueLine17);
+		catalogue.addLine(catalogueLine18);
+		catalogue.addLine(catalogueLine19);
+		catalogue.addLine(catalogueLine20);
+		catalogue.addLine(catalogueLine21);
+		catalogue.addLine(catalogueLine22);
+		catalogue.addLine(catalogueLine23);
+		catalogue.addLine(catalogueLine24);
+		catalogue.addLine(catalogueLine25);
+		catalogue.addLine(catalogueLine26);
 
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
@@ -488,6 +558,29 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		catalogueItemService.insertCatalogueItem(catalogueLine1);
 		catalogueItemService.insertCatalogueItem(catalogueLine2);
 		catalogueItemService.insertCatalogueItem(catalogueLine3);
+		catalogueItemService.insertCatalogueItem(catalogueLine4);
+		catalogueItemService.insertCatalogueItem(catalogueLine5);
+		catalogueItemService.insertCatalogueItem(catalogueLine6);
+		catalogueItemService.insertCatalogueItem(catalogueLine7);
+		catalogueItemService.insertCatalogueItem(catalogueLine8);
+		catalogueItemService.insertCatalogueItem(catalogueLine9);
+		catalogueItemService.insertCatalogueItem(catalogueLine10);
+		catalogueItemService.insertCatalogueItem(catalogueLine11);
+		catalogueItemService.insertCatalogueItem(catalogueLine12);
+		catalogueItemService.insertCatalogueItem(catalogueLine13);
+		catalogueItemService.insertCatalogueItem(catalogueLine14);
+		catalogueItemService.insertCatalogueItem(catalogueLine15);
+		catalogueItemService.insertCatalogueItem(catalogueLine16);
+		catalogueItemService.insertCatalogueItem(catalogueLine17);
+		catalogueItemService.insertCatalogueItem(catalogueLine18);
+		catalogueItemService.insertCatalogueItem(catalogueLine19);
+		catalogueItemService.insertCatalogueItem(catalogueLine20);
+		catalogueItemService.insertCatalogueItem(catalogueLine21);
+		catalogueItemService.insertCatalogueItem(catalogueLine22);
+		catalogueItemService.insertCatalogueItem(catalogueLine23);
+		catalogueItemService.insertCatalogueItem(catalogueLine24);
+		catalogueItemService.insertCatalogueItem(catalogueLine25);
+		catalogueItemService.insertCatalogueItem(catalogueLine26);
 
 		displayData.printInfo("Data successfully loaded.");
 	}
