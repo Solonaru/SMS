@@ -3,12 +3,14 @@ package com.project.sms.entities.item;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ import com.project.sms.entities.category.Category;
 import com.project.sms.entities.customer.Comment;
 import com.project.sms.entities.customer.Rating;
 import com.project.sms.entities.employee.Employee;
+import com.project.sms.enums.Month;
 
 @Entity
 @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
@@ -44,7 +47,7 @@ public abstract class Item implements Serializable {
 	protected String imageUrl;
 	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
-	@OneToMany(mappedBy = "item")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
 	protected List<CatalogueItem> catalogueItems = new ArrayList<CatalogueItem>();
 	@ManyToOne
 	protected Category category;
@@ -156,6 +159,25 @@ public abstract class Item implements Serializable {
 	}
 
 	// -----Methods-----
+	public Boolean isListed() {
+		for (CatalogueItem catalogueItem : this.getCatalogueItems()) {
+			if (this.getMonthFromInt(Calendar.getInstance().get(Calendar.MONTH))
+					.equals(catalogueItem.getCatalogue().getMonth())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	// TODO: Move this method inside a utilities class
+	private Month getMonthFromInt(int num) {
+		Month[] months = { Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY,
+				Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER };
+
+		return months[num];
+	}
+
 	public String toString() {
 		return "Name: " + name;
 	}

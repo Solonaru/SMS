@@ -9,12 +9,17 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.project.sms.entities.account.IAccountService;
+import com.project.sms.entities.catalogue.Catalogue;
+import com.project.sms.entities.catalogue.CatalogueItem;
+import com.project.sms.entities.catalogue.ICatalogueItemService;
+import com.project.sms.entities.catalogue.ICatalogueService;
 import com.project.sms.entities.category.Category;
 import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
+import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.location.City;
@@ -33,7 +38,9 @@ import com.project.sms.entities.recipe.RecipeLine;
 import com.project.sms.entities.subscription.ISubscriptionService;
 import com.project.sms.entities.subscription.Subscription;
 import com.project.sms.enums.AccountStatus;
+import com.project.sms.enums.CatalogueStatus;
 import com.project.sms.enums.EmployeeStatus;
+import com.project.sms.enums.Month;
 import com.project.sms.enums.PaymentStatus;
 import com.project.sms.enums.PaymentType;
 import com.project.sms.enums.SubscriptionType;
@@ -61,6 +68,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private IPackageLineService packageLineService;
 	@Autowired
 	private ICategoryService categoryService;
+	@Autowired
+	private ICatalogueService catalogueService;
+	@Autowired
+	private ICatalogueItemService catalogueItemService;
 
 	@Autowired
 	private DisplayData displayData;
@@ -69,6 +80,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		if (isDBEmpty()) {
 			loadData();
 		}
+
+		Item item = itemService.findItemById(4).get();
+		System.out.println("Is the item listed: " + item.isListed());
 	}
 
 	private void loadData() {
@@ -130,7 +144,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417",
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
 		employee2.setAddress(address8);
-		
+
 		// ------------------------------------------------------------------- //
 
 		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
@@ -203,15 +217,16 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware6 = new Hardware("RAM 4GB", 32, new Date(System.currentTimeMillis()), "");
 		hardware6.setCategory(category303);
 		hardware6.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware6.jpg");
-		Hardware hardware7 = new Hardware("Hard drive: Seagate Barracuda", 32, new Date(System.currentTimeMillis()), "");
+		Hardware hardware7 = new Hardware("Hard drive: Seagate Barracuda", 32, new Date(System.currentTimeMillis()),
+				"");
 		hardware7.setCategory(category304);
 		hardware7.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware7.jpg");
-		Hardware hardware8 = new Hardware("Power supply unit: Seasonic Focus", 15,
-				new Date(System.currentTimeMillis()), "");
+		Hardware hardware8 = new Hardware("Power supply unit: Seasonic Focus", 15, new Date(System.currentTimeMillis()),
+				"");
 		hardware8.setCategory(category305);
 		hardware8.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware8.jpg");
-		Hardware hardware9 = new Hardware("Video card: MSI GeForce GTX 1070", 12,
-				new Date(System.currentTimeMillis()), "");
+		Hardware hardware9 = new Hardware("Video card: MSI GeForce GTX 1070", 12, new Date(System.currentTimeMillis()),
+				"");
 		hardware9.setCategory(category306);
 		hardware9.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware9.jpg");
 		Hardware hardware10 = new Hardware("Video card: Gigabyte Geforce GTX 1050", 31,
@@ -333,6 +348,24 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		package1.addLine(packageLine3);
 
 		// ------------------------------------------------------------------- //
+
+		CatalogueItem catalogueLine1 = new CatalogueItem(500.0);
+		catalogueLine1.setItem(software1);
+		CatalogueItem catalogueLine2 = new CatalogueItem(420.0);
+		catalogueLine2.setItem(software2);
+		CatalogueItem catalogueLine3 = new CatalogueItem(275.0);
+		catalogueLine3.setItem(software4);
+		CatalogueItem catalogueLine4 = new CatalogueItem(320.0);
+		catalogueLine4.setItem(software4);
+
+		Catalogue catalogue = new Catalogue(Month.DECEMBER, 2018, new Date(System.currentTimeMillis()),
+				CatalogueStatus.ACTIVE);
+		catalogue.addLine(catalogueLine1);
+		catalogue.addLine(catalogueLine2);
+		catalogue.addLine(catalogueLine3);
+		catalogue.addLine(catalogueLine4);
+
+		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
 
@@ -350,7 +383,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		addressService.insertAddress(address6);
 		addressService.insertAddress(address7);
 		addressService.insertAddress(address8);
-
 
 		subscriptionService.insertSubscription(subscription1);
 		subscriptionService.insertSubscription(subscription2);
@@ -449,6 +481,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		packageLineService.insertPackageLine(packageLine1);
 		packageLineService.insertPackageLine(packageLine2);
 		packageLineService.insertPackageLine(packageLine3);
+
+		catalogueService.insertCatalogue(catalogue);
+
+		catalogueItemService.insertCatalogueItem(catalogueLine1);
+		catalogueItemService.insertCatalogueItem(catalogueLine2);
+		catalogueItemService.insertCatalogueItem(catalogueLine3);
 
 		displayData.printInfo("Data successfully loaded.");
 	}

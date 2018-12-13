@@ -9,11 +9,15 @@ public class DisplayData {
 	private static final Logger LOGGER = Logger.getLogger(DisplayData.class.getName());
 
 	public DisplayData() {
-
+		
 	}
 
 	public void printInfo(String messagge) {
 		LOGGER.info(messagge);
+	}
+	
+	public void printWarning(String messagge) {
+		LOGGER.warning(messagge);
 	}
 
 	public void printError(String messagge) {

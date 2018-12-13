@@ -108,4 +108,10 @@ public class Catalogue implements Serializable {
 		this.status = status;
 	}
 
+	// ----- Methods -----
+	public void addLine(CatalogueItem catalogueLine) {
+		catalogueItems.add(catalogueLine);
+		catalogueLine.setCatalogue(this);
+	}
+
 }
