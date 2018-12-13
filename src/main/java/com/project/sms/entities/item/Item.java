@@ -170,6 +170,16 @@ public abstract class Item implements Serializable {
 		return false;
 	}
 
+	public Double getPrice(Month month) {
+		for (CatalogueItem catalogueItem : this.getCatalogueItems()) {
+			if (month.equals(catalogueItem.getCatalogue().getMonth())) {
+				return catalogueItem.getPrice();
+			}
+		}
+
+		return -1.0;
+	}
+
 	// TODO: Move this method inside a utilities class
 	private Month getMonthFromInt(int num) {
 		Month[] months = { Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY,

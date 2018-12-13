@@ -83,6 +83,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Item item = itemService.findItemById(4).get();
 		System.out.println("Is the item listed: " + item.isListed());
+		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
 	}
 
 	private void loadData() {
