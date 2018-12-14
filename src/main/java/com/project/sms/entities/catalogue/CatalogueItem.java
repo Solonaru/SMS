@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
 
 @Entity
@@ -21,8 +22,10 @@ public class CatalogueItem {
 	private Integer id;
 	private Double price;
 	@ManyToOne
+	@JsonIgnoreProperties(value = "catalogueItems")
 	private Catalogue catalogue;
 	@ManyToOne
+	@JsonIgnoreProperties(value = { "catalogueItems", "category" })
 	private Item item;
 
 	// ----- Constructors -----

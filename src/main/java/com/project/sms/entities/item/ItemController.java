@@ -1,5 +1,6 @@
 package com.project.sms.entities.item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,32 @@ public class ItemController {
 	public List<Item> getItems() {
 		dataDisplay.printCrudInfo(); 
 		return itemService.findAllItems();
+	}
+	
+	@RequestMapping(value = "/all/listed", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Item> getListedItems() {
+		dataDisplay.printCrudInfo();
+		List<Item> listedItems = new ArrayList<Item>();
+		for (Item item: itemService.findAllItems()) {
+			if (item.isListed()) {
+				listedItems.add(item);
+			}
+		}
+		
+		return listedItems;
+	}
+	
+	@RequestMapping(value = "/all/listed/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Item> getListedItemsByCategoryId(@PathVariable("categoryId") int categoryId) {
+		dataDisplay.printCrudInfo();
+		List<Item> listedItems = new ArrayList<Item>();
+		for (Item item: itemService.findAllItems()) {
+			if (item.isListed() && item.getCategory().getId().equals(categoryId)) {
+				listedItems.add(item);
+			}
+		}
+		
+		return listedItems;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

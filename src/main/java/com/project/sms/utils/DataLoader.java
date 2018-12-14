@@ -355,7 +355,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		CatalogueItem catalogueLine2 = new CatalogueItem(420.0);
 		catalogueLine2.setItem(software2);
 		CatalogueItem catalogueLine3 = new CatalogueItem(275.0);
-		catalogueLine3.setItem(software4);
+		catalogueLine3.setItem(software3);
 		CatalogueItem catalogueLine4 = new CatalogueItem(320.0);
 		catalogueLine4.setItem(software4);
 		

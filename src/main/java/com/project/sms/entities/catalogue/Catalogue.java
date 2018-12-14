@@ -15,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.enums.CatalogueStatus;
 import com.project.sms.enums.Month;
@@ -36,6 +37,7 @@ public class Catalogue implements Serializable {
 	@ManyToOne
 	private Employee employee;
 	@OneToMany(mappedBy = "catalogue")
+	@JsonIgnoreProperties(value = "catalogue")
 	private List<CatalogueItem> catalogueItems = new ArrayList<CatalogueItem>();
 
 	// -----Constructors-----
