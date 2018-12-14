@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../../../entities/item';
-import { DataService } from '../../../providers/services/data.service';
-import { Category } from '../../../entities/category';
+import { ItemService } from '../../../providers/services/item.service';
+import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -11,28 +11,21 @@ import { Category } from '../../../entities/category';
 })
 export class ProductsComponent implements OnInit {
 
-  category: Category;
+  categoryId: string;
   items: Item[] = [];
 
-  constructor(public dataService: DataService) {
+  constructor(private itemService: ItemService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(category => this.category = category);
+    this.categoryId = this.route.snapshot.paramMap.get('cat');
+    
     this.populateItems();
   }
 
   populateItems() {
-    /* Check if the selected category has childCategories */
-    if (this.category.childCategories.length != 0) {
-      /* Loop childCategories and concat items to the items list */
-      this.category.childCategories.forEach(function (value, key) {
-        this.items = this.items.concat(value.items);
-      }, this);
-    } else {
-      this.items = this.items.concat(this.category.items);
-    }
+    this.itemService.getListedItemsByCategoryId(this.categoryId).subscribe(data => { this.items = data; console.log(this.items); });
   }
 
   counter() {

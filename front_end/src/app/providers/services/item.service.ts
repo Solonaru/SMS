@@ -16,4 +16,9 @@ export class ItemService {
   getItems() {
     return this.http.get(this.BASE_URL + 'all').pipe(map((res: Item[]) => { return res }));
   }
+
+  getListedItemsByCategoryId(categoryId: string) {
+    return this.http.get(this.BASE_URL + 'all/listed/' + categoryId)
+      .pipe(map((res: Item[]) => { return res }));
+  }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CategoryService } from '../../../providers/services/category.service';
-import { DataService } from '../../../providers/services/data.service';
 import { Category } from '../../../entities/category';
 import { Router } from '@angular/router';
 
@@ -14,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   categories: Category[];
 
-  constructor(private categoryService: CategoryService, private dataService: DataService, private router: Router) { }
+  constructor(private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit() {
     this.populateCategories();
@@ -25,9 +24,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onClick(category: Category) {
-    this.dataService.changeMessage(category);
     /* Load the products page */
-    this.router.navigate(['products']);
+    this.router.navigate(['products/', { cat: category.id }]);
   }
 
   toggleMenu() {
