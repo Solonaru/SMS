@@ -16,6 +16,7 @@ import { AboutusComponent } from './components/front-office/aboutus/aboutus.comp
 import { ContactComponent } from './components/front-office/contact/contact.component';
 import { BoProductsComponent } from './components/back-office/bo-products/bo-products.component';
 import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-employees.component';
+import { HeaderComponent } from './components/front-office/header/header.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-e
     AboutusComponent,
     ContactComponent,
     BoProductsComponent,
-    BoEmployeesComponent
+    BoEmployeesComponent,
+    HeaderComponent
   ],
   imports: [
     FormsModule,
@@ -70,6 +72,10 @@ import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-e
       {
         path: 'bo_employees',
         component: BoEmployeesComponent
+      },
+      {
+        path: 'header',
+        component: HeaderComponent
       }
     ]),
   ],
