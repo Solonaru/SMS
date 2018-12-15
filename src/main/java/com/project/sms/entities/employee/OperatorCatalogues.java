@@ -1,8 +1,12 @@
 package com.project.sms.entities.employee;
 
-public class OperatorCategory implements IRight {
+import javax.persistence.Entity;
 
-	public OperatorCategory() {
+@Entity
+public class OperatorCatalogues extends Right {
+	private static final long serialVersionUID = 1L;
+
+	public OperatorCatalogues() {
 
 	}
 
@@ -19,27 +23,27 @@ public class OperatorCategory implements IRight {
 	}
 
 	public boolean canCreateCategory() {
-		return true;
+		return false;
 	}
 
 	public boolean canEditCategory() {
-		return true;
+		return false;
 	}
 
 	public boolean canRemoveCategory() {
-		return true;
+		return false;
 	}
 
 	public boolean canCreateCatalogue() {
-		return false;
+		return true;
 	}
 
 	public boolean canEditCatalogue() {
-		return false;
+		return true;
 	}
 
 	public boolean canRemoveCatalogue() {
-		return false;
+		return true;
 	}
 
 	public boolean canCreateEmployee() {

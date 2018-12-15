@@ -18,6 +18,9 @@ import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.employee.Admin;
 import com.project.sms.entities.employee.Employee;
+import com.project.sms.entities.employee.IRightService;
+import com.project.sms.entities.employee.OperatorProducts;
+import com.project.sms.entities.employee.Right;
 import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
@@ -58,6 +61,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private IPaymentService paymentService;
 	@Autowired
+	private IRightService rightService;
+	@Autowired
 	private IAccountService accountService;
 	@Autowired
 	private ISubscriptionService subscriptionService;
@@ -85,6 +90,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Item item = itemService.findItemById(4).get();
 		System.out.println("Is the item listed: " + item.isListed());
 		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
+
+		Right right = rightService.findRightById(1).get();
+		System.out.println("HAS RIGHTS: " + right.canCreateProduct());
+
+		Employee employee = (Employee) accountService.findAccountById(400000005).get();
+		System.out.println("EMPLOYEE HAS RIGHTS: " + employee.getRightType().canCreateCategory());
 	}
 
 	private void loadData() {
@@ -140,11 +151,15 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// ------------------------------------------------------------------- //
 
+		Right admin = new Admin();
+		Right operatorProducts = new OperatorProducts();
+
 		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417",
-				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR, new Admin());
+				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR, admin);
 		employee1.setAddress(address7);
 		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417",
-				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP, new Admin());
+				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP,
+				operatorProducts);
 		employee2.setAddress(address8);
 
 		// ------------------------------------------------------------------- //
@@ -359,7 +374,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		catalogueLine3.setItem(software3);
 		CatalogueItem catalogueLine4 = new CatalogueItem(320.0);
 		catalogueLine4.setItem(software4);
-		
+
 		CatalogueItem catalogueLine5 = new CatalogueItem(1500.0);
 		catalogueLine5.setItem(hardware1);
 		CatalogueItem catalogueLine6 = new CatalogueItem(950.0);
@@ -465,6 +480,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		accountService.insertAccount(customer3);
 
 		// ------------------------------------------------------------------- //
+
+		rightService.insertRight(admin);
+		rightService.insertRight(operatorProducts);
 
 		accountService.insertAccount(employee1);
 		accountService.insertAccount(employee2);

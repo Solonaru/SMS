@@ -1,9 +1,13 @@
 package com.project.sms.entities.employee;
 
-public class Admin implements IRight {
+import javax.persistence.Entity;
+
+@Entity
+public class Admin extends Right {
+	private static final long serialVersionUID = 1L;
 
 	public Admin() {
-
+		
 	}
 
 	public boolean canCreateProduct() {

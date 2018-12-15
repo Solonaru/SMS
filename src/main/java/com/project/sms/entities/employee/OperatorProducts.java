@@ -1,6 +1,10 @@
 package com.project.sms.entities.employee;
 
-public class OperatorProducts implements IRight {
+import javax.persistence.Entity;
+
+@Entity
+public class OperatorProducts extends Right {
+	private static final long serialVersionUID = 1L;
 
 	public OperatorProducts() {
 

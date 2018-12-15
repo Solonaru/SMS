@@ -1,15 +1,11 @@
 package com.project.sms.entities.employee;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 import com.project.sms.entities.account.Account;
 import com.project.sms.enums.AccountStatus;
@@ -22,14 +18,11 @@ public class Employee extends Account {
 	private static final long serialVersionUID = 1L;
 
 	private EmployeeStatus employeeStatus;
+
+	@OneToOne(targetEntity = Right.class)
 	private IRight rightType;
 
-	@ManyToMany
-	@JoinTable(name = "employee_permissions", joinColumns = {
-			@JoinColumn(name = "employee_id") }, inverseJoinColumns = { @JoinColumn(name = "permission_id") })
-	private List<Permission> permissions = new ArrayList<Permission>();
-
-	// -----Constructors-----
+	// ----- Constructors -----
 	public Employee() {
 		super();
 	}
@@ -48,14 +41,6 @@ public class Employee extends Account {
 
 	public void setEmployeeStatus(EmployeeStatus employeeStatus) {
 		this.employeeStatus = employeeStatus;
-	}
-
-	public List<Permission> getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(List<Permission> permissions) {
-		this.permissions = permissions;
 	}
 
 	public IRight getRightType() {
