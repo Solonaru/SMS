@@ -98,21 +98,21 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		City city3 = new City("Targu Frumos");
 		city3.setCounty(county);
 
-		Address address1 = new Address("Alexandru cel Bun", 51, 270123);
+		Address address1 = new Address("Alexandru cel Bun", 51, "", "", "", 0, 270123);
 		address1.setCity(city1);
-		Address address2 = new Address("Marinelor", 11, 280129);
+		Address address2 = new Address("Marinelor", 11, "", "", "", 0, 280129);
 		address2.setCity(city2);
-		Address address3 = new Address("Marinelor", 27, 280129);
+		Address address3 = new Address("Marinelor", 27, "", "", "", 0, 280129);
 		address3.setCity(city2);
-		Address address4 = new Address("Marin Cordoba", 100, 290111);
+		Address address4 = new Address("Marin Cordoba", 100, "", "", "", 0, 290111);
 		address4.setCity(city3);
-		Address address5 = new Address("Cosmopolitan", 127, 270123);
+		Address address5 = new Address("Cosmopolitan", 127, "", "", "", 0, 270123);
 		address5.setCity(city1);
-		Address address6 = new Address("Cosmopolitan", 129, 270123);
+		Address address6 = new Address("Cosmopolitan", 129, "", "", "", 0, 270123);
 		address6.setCity(city1);
-		Address address7 = new Address("Bacau", 12, 607648);
+		Address address7 = new Address("Bacau", 12, "", "", "", 0, 607648);
 		address7.setCity(city1);
-		Address address8 = new Address("Timisoara", 30, 509832);
+		Address address8 = new Address("Timisoara", 30, "", "", "", 0, 509832);
 		address8.setCity(city1);
 
 		Subscription subscription1 = new Subscription(SubscriptionType.DISCOUNTS);

@@ -22,7 +22,11 @@ public class Address implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 	private String street;
-	private Integer nr;
+	private Integer streetNr;
+	private String buildingNr;
+	private String entranceNr;
+	private String floorNr;
+	private Integer apartamentNr;
 	private Integer zipCode;
 	@ManyToOne
 	private City city;
@@ -32,10 +36,15 @@ public class Address implements Serializable {
 		super();
 	}
 
-	public Address(String street, Integer nr, Integer zipCode) {
+	public Address(String street, Integer streetNr, String buildingNr, String entranceNr, String floorNr,
+			Integer apartamentNr, Integer zipCode) {
 		super();
 		this.street = street;
-		this.nr = nr;
+		this.streetNr = streetNr;
+		this.buildingNr = buildingNr;
+		this.entranceNr = entranceNr;
+		this.floorNr = floorNr;
+		this.apartamentNr = apartamentNr;
 		this.zipCode = zipCode;
 	}
 
@@ -56,12 +65,44 @@ public class Address implements Serializable {
 		this.street = street;
 	}
 
-	public Integer getNr() {
-		return nr;
+	public Integer getStreetNr() {
+		return streetNr;
 	}
 
-	public void setNr(Integer nr) {
-		this.nr = nr;
+	public void setStreetNr(Integer nr) {
+		this.streetNr = nr;
+	}
+
+	public String getBuildingNr() {
+		return buildingNr;
+	}
+
+	public void setBuildingNr(String buildingNr) {
+		this.buildingNr = buildingNr;
+	}
+
+	public String getEntranceNr() {
+		return entranceNr;
+	}
+
+	public void setEntranceNr(String entranceNr) {
+		this.entranceNr = entranceNr;
+	}
+
+	public String getFloorNr() {
+		return floorNr;
+	}
+
+	public void setFloorNr(String floorNr) {
+		this.floorNr = floorNr;
+	}
+
+	public Integer getApartamentNr() {
+		return apartamentNr;
+	}
+
+	public void setApartamentNr(Integer apartamentNr) {
+		this.apartamentNr = apartamentNr;
 	}
 
 	public Integer getZipCode() {
@@ -82,6 +123,6 @@ public class Address implements Serializable {
 
 	// -----Methods-----
 	public String toString() {
-		return "St. " + street + nr + ", " + city + ", " + zipCode;
+		return "St. " + street + streetNr + ", " + city + ", " + zipCode;
 	}
 }
