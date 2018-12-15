@@ -13,14 +13,16 @@ export class HeaderComponent implements OnInit {
 
   categories: Category[];
 
-  constructor(private categoryService: CategoryService, private router: Router) { }
+  constructor(private categoryService: CategoryService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit() {
     this.populateCategories();
   }
 
   populateCategories() {
-    this.categoryService.getCategories().subscribe(data => { this.categories = data; console.log(this.categories); });
+    this.categoryService.getCategories().subscribe(data => { this.categories = data; console.log('getCategories: ' + this.categories); });
   }
 
   onClick(category: Category) {

@@ -18,4 +18,10 @@ export class CategoryService {
         return this.http.get(this.BASE_URL + 'all').pipe(map((res: Category[]) => { return res }));
     }
 
+    getCategoryById(categoryId: string) {
+        return this.http.get(this.BASE_URL + categoryId)
+            .pipe(map((res: Category) => { return res }));
+    }
+
+
 }

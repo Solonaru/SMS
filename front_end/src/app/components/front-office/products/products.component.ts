@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../../../entities/item';
 import { ItemService } from '../../../providers/services/item.service';
 import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
+import { Category } from '../../../entities/category';
+import { CategoryService } from '../../../providers/services/category.service';
 
 @Component({
   selector: 'app-products',
@@ -12,20 +14,25 @@ import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
 export class ProductsComponent implements OnInit {
 
   categoryId: string;
+  category: Category;
   items: Item[] = [];
 
-  constructor(private itemService: ItemService, private route: ActivatedRoute) {
+  constructor(private itemService: ItemService, private categoryService: CategoryService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
     this.categoryId = this.route.snapshot.paramMap.get('cat');
-    
+    this.populateCategory();
     this.populateItems();
   }
 
+  populateCategory() {
+    this.categoryService.getCategoryById(this.categoryId).subscribe(data => { this.category = data; console.log('getCategoryById: ' + this.category); });
+  }
+
   populateItems() {
-    this.itemService.getListedItemsByCategoryId(this.categoryId).subscribe(data => { this.items = data; console.log(this.items); });
+    this.itemService.getListedItemsByCategoryId(this.categoryId).subscribe(data => { this.items = data; console.log('getListedItemsByCategoryId: ' + this.items); });
   }
 
   counter() {
