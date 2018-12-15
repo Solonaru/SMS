@@ -16,6 +16,7 @@ import com.project.sms.entities.catalogue.ICatalogueService;
 import com.project.sms.entities.category.Category;
 import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
+import com.project.sms.entities.employee.Admin;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
@@ -140,10 +141,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		// ------------------------------------------------------------------- //
 
 		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417",
-				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR);
+				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.SENIOR, new Admin());
 		employee1.setAddress(address7);
 		Employee employee2 = new Employee("andrei", "andrei123", "Andrei", "andreihumulescu@gmail.com", "0721314417",
-				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP);
+				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP, new Admin());
 		employee2.setAddress(address8);
 
 		// ------------------------------------------------------------------- //

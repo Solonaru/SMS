@@ -1,22 +1,57 @@
 package com.project.sms.entities.employee;
 
-public class OperatorProducts implements IRight{
+public class OperatorProducts implements IRight {
 
 	public OperatorProducts() {
-		// TODO Auto-generated constructor stub
+
 	}
-	/// Product rights
-	
-	public static boolean canEditProduct()
-	{
+
+	public boolean canCreateProduct() {
 		return true;
 	}
-	public static boolean canCreateProduct()
-	{
+
+	public boolean canEditProduct() {
 		return true;
 	}
-	public static boolean canRemoveProduct()
-	{
+
+	public boolean canRemoveProduct() {
 		return true;
 	}
+
+	public boolean canCreateCategory() {
+		return false;
+	}
+
+	public boolean canEditCategory() {
+		return false;
+	}
+
+	public boolean canRemoveCategory() {
+		return false;
+	}
+
+	public boolean canCreateCatalogue() {
+		return false;
+	}
+
+	public boolean canEditCatalogue() {
+		return false;
+	}
+
+	public boolean canRemoveCatalogue() {
+		return false;
+	}
+
+	public boolean canCreateEmployee() {
+		return false;
+	}
+
+	public boolean canEditEmployee() {
+		return false;
+	}
+
+	public boolean canRemoveEmployee() {
+		return false;
+	}
+
 }
