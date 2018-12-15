@@ -1,6 +1,7 @@
 package com.project.sms.entities.employee;
 
 import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import javax.persistence.NamedQuery;
 import com.project.sms.entities.account.Account;
 import com.project.sms.enums.AccountStatus;
 import com.project.sms.enums.EmployeeStatus;
+import com.project.sms.entities.employee.IRight;
 
 @Entity
 @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")
@@ -22,6 +24,7 @@ public class Employee extends Account {
 	private static final long serialVersionUID = 1L;
 	
 	private EmployeeStatus employeeStatus;
+	 private IRight rightType;
 
 	@ManyToMany
 	@JoinTable(name = "employee_permissions", joinColumns = {
@@ -34,7 +37,7 @@ public class Employee extends Account {
 	}
 	
 	public Employee(String username, String password, String name, String email, String phoneNumber, Date creationDate,
-			AccountStatus status, EmployeeStatus employeeStatus) {
+			AccountStatus status, EmployeeStatus employeeStatus, IRight rightType) {
 		super(username, password, name, email, phoneNumber, creationDate, status);
 		this.employeeStatus = employeeStatus;
 	}
@@ -54,6 +57,14 @@ public class Employee extends Account {
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+	
+	public IRight getRightType() {
+		return rightType;
+	}
+
+	public void setRightType(IRight rightType) {
+		this.rightType = rightType;
 	}
 
 	// ----- Methods -----
