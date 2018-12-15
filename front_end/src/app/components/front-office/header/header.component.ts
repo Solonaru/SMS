@@ -30,6 +30,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['products/', { cat: category.id }]);
   }
 
+  onLogout() {
+    localStorage.removeItem('loggedIn');
+    this.router.navigate(['login']);
+  }
+
   toggleMenu() {
     document.querySelector(".sidebar-list").classList.toggle("show");
   }

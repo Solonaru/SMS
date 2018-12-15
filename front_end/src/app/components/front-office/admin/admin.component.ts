@@ -10,10 +10,7 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onLogout() {
-    localStorage.removeItem('loggedIn');
+    
   }
 
 }

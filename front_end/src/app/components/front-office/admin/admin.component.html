@@ -7,43 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 </head>
 
-<nav class="navbar ">
-  <div class="navbar-brand">
-    <div class="navbar-burger burger" data-target="navMenubd-example">
-    </div>
-  </div>
-  
-  <a class="button is-danger"(click)="onLogout()" routerLink="">Logout</a>
-  <div id="navMenubd-example" class="navbar-menu">
-    <div class="navbar-start">
-    <div class="navbar-item is-hoverable">
-        <a class="navbar-link  is-active" routerLink="/aboutus">
-          About Us
-        </a>
-    </div>
-    <div class="navbar-item is-hoverable">
-        <a class="navbar-link  is-active" routerLink="/contact">
-        Contact Us
-        </a>
-    </div>
-    <div class="navbar-item is-hoverable">
-        <a class="navbar-link  is-active" routerLink="/category">
-          Products
-        </a>
-    </div>
-    <div class="navbar-item is-hoverable">
-        <a class="navbar-link  is-active" routerLink="/bo_products">
-            Back Office Products
-        </a>
-    </div>
-    <div class="navbar-item is-hoverable">
-        <a class="navbar-link  is-active" routerLink="/bo_employees">
-            Back Office Employees
-        </a>
-    </div>
-</div>
-</div>
-</nav>
+<app-header></app-header>
+
 <section class="hero is-primary">
   <div class="hero-body">
     <div class="container">
