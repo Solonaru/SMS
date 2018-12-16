@@ -31,6 +31,7 @@ public class Category implements Serializable {
 	private Integer id;
 	private String name;
 	private Date updateDate;
+	private String description;
 	@ManyToOne
 	@JsonIgnoreProperties(value = "childCategories")
 	private Category parentCategory;
@@ -48,10 +49,11 @@ public class Category implements Serializable {
 		super();
 	}
 
-	public Category(String name, Date updateDate) {
+	public Category(String name, Date updateDate, String description) {
 		super();
 		this.name = name;
 		this.updateDate = updateDate;
+		this.description = description;
 	}
 
 	// ----- Getters and Setters -----
@@ -77,6 +79,14 @@ public class Category implements Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Category getParentCategory() {

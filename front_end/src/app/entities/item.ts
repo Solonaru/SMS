@@ -8,4 +8,6 @@ export class Item {
     description: Date;
     category: Category;
     imageUrl: String;
+    listed: Boolean;
+    price: Number;
 }

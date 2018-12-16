@@ -50,3 +50,10 @@
   left: 0;
   bottom: 0;
 }
+
+.is-price {
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgba(189, 195, 199, 0.2);
+  color: darkslateblue;
+}

@@ -178,36 +178,37 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// ------------------------------------------------------------------- //
 
-		Category category1 = new Category("Laptops", new Date(System.currentTimeMillis()));
-		Category category2 = new Category("Software", new Date(System.currentTimeMillis()));
+		Category category1 = new Category("Laptops", new Date(System.currentTimeMillis()),
+				"We provide a wide range of laptops, starting from small-sized laptops to gaming ones.");
+		Category category2 = new Category("Software", new Date(System.currentTimeMillis()), "");
 
-		Category category3 = new Category("Components", new Date(System.currentTimeMillis()));
-		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()));
+		Category category3 = new Category("Components", new Date(System.currentTimeMillis()), "");
+		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()), "");
 		category301.setParentCategory(category3);
-		Category category302 = new Category("CPUs", new Date(System.currentTimeMillis()));
+		Category category302 = new Category("CPUs", new Date(System.currentTimeMillis()), "");
 		category302.setParentCategory(category3);
-		Category category303 = new Category("RAMs", new Date(System.currentTimeMillis()));
+		Category category303 = new Category("RAMs", new Date(System.currentTimeMillis()), "");
 		category303.setParentCategory(category3);
-		Category category304 = new Category("Hard drives", new Date(System.currentTimeMillis()));
+		Category category304 = new Category("Hard drives", new Date(System.currentTimeMillis()), "");
 		category304.setParentCategory(category3);
-		Category category305 = new Category("Power supply units", new Date(System.currentTimeMillis()));
+		Category category305 = new Category("Power supply units", new Date(System.currentTimeMillis()), "");
 		category305.setParentCategory(category3);
-		Category category306 = new Category("Video cards", new Date(System.currentTimeMillis()));
+		Category category306 = new Category("Video cards", new Date(System.currentTimeMillis()), "");
 		category306.setParentCategory(category3);
-		Category category307 = new Category("Sound cards", new Date(System.currentTimeMillis()));
+		Category category307 = new Category("Sound cards", new Date(System.currentTimeMillis()), "");
 		category307.setParentCategory(category3);
-		Category category308 = new Category("Network cards", new Date(System.currentTimeMillis()));
+		Category category308 = new Category("Network cards", new Date(System.currentTimeMillis()), "");
 		category308.setParentCategory(category3);
 
-		Category category4 = new Category("Accessories", new Date(System.currentTimeMillis()));
-		Category category401 = new Category("Headphones", new Date(System.currentTimeMillis()));
+		Category category4 = new Category("Accessories", new Date(System.currentTimeMillis()), "");
+		Category category401 = new Category("Headphones", new Date(System.currentTimeMillis()), "");
 		category401.setParentCategory(category4);
-		Category category402 = new Category("Mouses", new Date(System.currentTimeMillis()));
+		Category category402 = new Category("Mouses", new Date(System.currentTimeMillis()), "");
 		category402.setParentCategory(category4);
-		Category category403 = new Category("Keyboards", new Date(System.currentTimeMillis()));
+		Category category403 = new Category("Keyboards", new Date(System.currentTimeMillis()), "");
 		category403.setParentCategory(category4);
 
-		Category category5 = new Category("Packages", new Date(System.currentTimeMillis()));
+		Category category5 = new Category("Packages", new Date(System.currentTimeMillis()), "");
 
 		// ------------------------------------------------------------------- //
 
