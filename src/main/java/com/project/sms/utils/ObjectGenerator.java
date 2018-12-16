@@ -97,7 +97,7 @@ public class ObjectGenerator {
 
 			Orders order = null;
 			try {
-				order = new Orders(genRandDate(sdf.parse("01/07/2018"), sdf.parse("16/12/2018")),
+				order = new Orders(genRandDate(sdf.parse("01/07/2018"), sdf.parse("30/11/2018")),
 						OrderStatus.COMPLETED);
 				order.setCart(cart);
 				order.setCustomer(customers.get(genRandNum(0, customers.size() - 1)));

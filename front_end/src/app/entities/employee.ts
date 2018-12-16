@@ -1,6 +1,6 @@
 import { Address } from "./address";
 
-export class Employee {
+export interface Employee {
     id: Number;
     username: String;
     password: String;

@@ -23,5 +23,4 @@ export class CategoryService {
             .pipe(map((res: Category) => { return res }));
     }
 
-
 }

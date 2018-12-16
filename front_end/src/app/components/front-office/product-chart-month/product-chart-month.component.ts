@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as CanvasJS from './canvasjs.min';
+import * as CanvasJS from '../product-chart/canvasjs.min';
 
 import { ItemService } from '../../../providers/services/item.service';
 import { Item } from '../../../entities/item';
@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
 import { CartLineService } from '../../../providers/services/cartline.service';
 
 @Component({
-  selector: 'app-product-chart',
-  templateUrl: './product-chart.component.html',
-  styleUrls: ['./product-chart.component.css']
+  selector: 'app-product-chart-month',
+  templateUrl: './product-chart-month.component.html',
+  styleUrls: ['./product-chart-month.component.css']
 })
-export class ProductChartComponent implements OnInit {
+export class ProductChartMonthComponent implements OnInit {
 
   items: Item[];
-  productsStatisticData: Map<Date, Number>;
+  productsStatisticDataMonth: Map<Number, Number>;
 
   item: Item;
   private selectedValue;
@@ -31,10 +31,7 @@ export class ProductChartComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Product Sales by Day"
-      },
-      axisX: {
-        valueFormatString: "MMM YYYY"
+        text: "Product Sales by Month"
       },
       subtitles: [{
         text: "Try Zooming and Panning"
@@ -42,10 +39,6 @@ export class ProductChartComponent implements OnInit {
       data: [
         {
           type: "spline",
-          name: "Product",
-          showInLegend: true,
-          markerSize: 0,
-          yValueFormatString: "#,### lei",
           dataPoints: dataPoints
         }]
     });
@@ -58,25 +51,25 @@ export class ProductChartComponent implements OnInit {
     this.itemService.getItems().subscribe(data => { this.items = data; console.log(this.items); });
   }
 
-  populateProductsStatisticData(productId: Number) {
-    this.cartLineService.getProductsStatisticData(productId).subscribe(data => { this.productsStatisticData = data; console.log(this.productsStatisticData); })
+  populateProductsStatisticDataMonth(productId: Number) {
+    this.cartLineService.getProductsStatisticDataMonth(productId).subscribe(data => { this.productsStatisticDataMonth = data; console.log(this.productsStatisticDataMonth); })
   }
 
   changeItem() {
     let dataPoints = [];
     let y = 0;
-    let x = null;
+    let x = 0;
 
     this.itemService.getItemById(this.selectedValue).subscribe(data => { this.item = data });
 
-    this.populateProductsStatisticData(this.item.id);
+    this.populateProductsStatisticDataMonth(this.item.id);
 
-    for (var key in this.productsStatisticData) {
-      if (this.productsStatisticData.hasOwnProperty(key)) {
-        console.log(key + " -> " + this.productsStatisticData[key]);
-        y = <any> this.productsStatisticData[key];
-        x = new Date(<any>key);
-        dataPoints.push({ x: x, y: y });
+    for (var key in this.productsStatisticDataMonth) {
+      if (this.productsStatisticDataMonth.hasOwnProperty(key)) {
+        console.log(key + " -> " + this.productsStatisticDataMonth[key]);
+        y = <any> this.productsStatisticDataMonth[key];
+        x = <any> key;
+        dataPoints.push({ x: x*10, y: y });
       }
     }
 
@@ -85,10 +78,7 @@ export class ProductChartComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Product Sales by Day"
-      },
-      axisX: {
-        valueFormatString: "MMM YYYY"
+        text: "Product Sales by Month"
       },
       subtitles: [{
         text: "Try Zooming and Panning"
@@ -96,10 +86,6 @@ export class ProductChartComponent implements OnInit {
       data: [
         {
           type: "spline",
-          name: "Product",
-          showInLegend: true,
-          markerSize: 0,
-          yValueFormatString: "#,### lei",
           dataPoints: dataPoints
         }]
     });

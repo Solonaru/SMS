@@ -1,6 +1,6 @@
 import { Item } from './item';
 
-export class Category {
+export interface Category {
     id: Number;
     name: String;
     updateDate: Date;

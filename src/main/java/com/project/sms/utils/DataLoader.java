@@ -418,7 +418,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		// ***** Packages *****
 		items.add(package1);
 
-		List<CartLine> cartLines = objectGenerator.genCartLines(items, 100);
+		List<CartLine> cartLines = objectGenerator.genCartLines(items, 1000);
 		Object[] completeOrders = objectGenerator.genCompleteOrders(cartLines, customers);
 		List<Cart> carts = (List<Cart>) completeOrders[0];
 		List<Orders> orders = (List<Orders>) completeOrders[1];

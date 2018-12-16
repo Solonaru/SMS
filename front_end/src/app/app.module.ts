@@ -19,6 +19,7 @@ import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-e
 import { HeaderComponent } from './components/front-office/header/header.component';
 import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.component';
 import { ProductChartComponent } from './components/front-office/product-chart/product-chart.component';
+import { ProductChartMonthComponent } from './components/front-office/product-chart-month/product-chart-month.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProductChartComponent } from './components/front-office/product-chart/p
     BoEmployeesComponent,
     HeaderComponent,
     AdmHomeComponent,
-    ProductChartComponent
+    ProductChartComponent,
+    ProductChartMonthComponent
   ],
   imports: [
     FormsModule,
@@ -88,6 +90,10 @@ import { ProductChartComponent } from './components/front-office/product-chart/p
       {
         path: 'product-chart',
         component: ProductChartComponent
+      },
+      {
+        path: 'product-chart-month',
+        component: ProductChartMonthComponent
       }
     ]),
   ],
