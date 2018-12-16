@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
 
 @Entity
@@ -25,6 +26,8 @@ public class CartLine implements Serializable {
 	private Integer id;
 	private Integer quantity;
 	@ManyToOne
+	@JsonIgnoreProperties(value = { "category", "catalogueItems", "imageUrl", "updateDate", "employee", "comments",
+			"ratings" })
 	private Item item;
 	@ManyToOne
 	private Cart cart;

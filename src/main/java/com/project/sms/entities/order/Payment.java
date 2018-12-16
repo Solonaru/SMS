@@ -1,7 +1,7 @@
 package com.project.sms.entities.order;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.enums.PaymentStatus;
 import com.project.sms.enums.PaymentType;
 
@@ -28,8 +29,8 @@ public class Payment implements Serializable {
 	private PaymentType type;
 	private PaymentStatus paymentStatus;
 	private Date date;
-	@OneToOne(mappedBy = "payment")
-	private Orders order;
+	@OneToOne
+	private Orders orderz;
 
 	// -----Constructors-----
 	public Payment() {
@@ -68,12 +69,13 @@ public class Payment implements Serializable {
 		this.date = date;
 	}
 
+	@JsonIgnoreProperties(value = "payment")
 	public Orders getOrder() {
-		return order;
+		return orderz;
 	}
 
 	public void setOrder(Orders order) {
-		this.order = order;
+		this.orderz = order;
 	}
 
 	public PaymentStatus getPaymentStatus() {

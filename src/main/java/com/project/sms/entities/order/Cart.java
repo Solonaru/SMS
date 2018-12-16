@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.promotion.Promotion;
 
 @Entity
@@ -28,8 +29,10 @@ public class Cart implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 	@OneToOne(mappedBy = "cart")
+	@JsonIgnoreProperties(value = "cart")
 	private Orders order;
 	@OneToMany(mappedBy = "cart")
+	@JsonIgnoreProperties(value = "cart")
 	private List<CartLine> cartLines = new ArrayList<CartLine>();
 	@ManyToOne
 	private Promotion promotion;
@@ -71,4 +74,11 @@ public class Cart implements Serializable {
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
 	}
+
+	// ----- Methods -----
+	public void addLine(CartLine cartLine) {
+		cartLines.add(cartLine);
+		cartLine.setCart(this);
+	}
+
 }

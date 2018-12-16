@@ -1,6 +1,7 @@
 package com.project.sms.utils;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,13 @@ import com.project.sms.entities.location.County;
 import com.project.sms.entities.location.IAddressService;
 import com.project.sms.entities.location.ICityService;
 import com.project.sms.entities.location.ICountyService;
+import com.project.sms.entities.order.Cart;
+import com.project.sms.entities.order.CartLine;
+import com.project.sms.entities.order.ICartLineService;
+import com.project.sms.entities.order.ICartService;
+import com.project.sms.entities.order.IOrderService;
 import com.project.sms.entities.order.IPaymentService;
+import com.project.sms.entities.order.Orders;
 import com.project.sms.entities.order.Payment;
 import com.project.sms.entities.pack.IPackageLineService;
 import com.project.sms.entities.pack.Package;
@@ -45,8 +52,6 @@ import com.project.sms.enums.AccountStatus;
 import com.project.sms.enums.CatalogueStatus;
 import com.project.sms.enums.EmployeeStatus;
 import com.project.sms.enums.Month;
-import com.project.sms.enums.PaymentStatus;
-import com.project.sms.enums.PaymentType;
 import com.project.sms.enums.SubscriptionType;
 
 @Component
@@ -58,8 +63,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private ICityService cityService;
 	@Autowired
 	private IAddressService addressService;
-	@Autowired
-	private IPaymentService paymentService;
 	@Autowired
 	private IRightService rightService;
 	@Autowired
@@ -78,9 +81,19 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private ICatalogueService catalogueService;
 	@Autowired
 	private ICatalogueItemService catalogueItemService;
+	@Autowired
+	private ICartLineService cartLineService;
+	@Autowired
+	private ICartService cartService;
+	@Autowired
+	private IOrderService orderService;
+	@Autowired
+	private IPaymentService paymentService;
 
 	@Autowired
 	private DisplayData displayData;
+	@Autowired
+	private ObjectGenerator objectGenerator;
 
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		if (isDBEmpty()) {
@@ -98,6 +111,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		System.out.println("EMPLOYEE HAS RIGHTS: " + employee.getRightType().canCreateCategory());
 	}
 
+	@SuppressWarnings("unchecked")
 	private void loadData() {
 		displayData.printInfo("Starting data loading...");
 
@@ -161,12 +175,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 				new Date(System.currentTimeMillis()), AccountStatus.ACTIVE, EmployeeStatus.INTERNSHIP,
 				operatorProducts);
 		employee2.setAddress(address8);
-
-		// ------------------------------------------------------------------- //
-
-		Payment payment1 = new Payment(PaymentType.MAESTRO, PaymentStatus.APPROVED, null);
-		Payment payment2 = new Payment(PaymentType.VISA, PaymentStatus.APPROVED, null);
-		Payment payment3 = new Payment(PaymentType.MAESTRO, PaymentStatus.COMPLETED, null);
 
 		// ------------------------------------------------------------------- //
 
@@ -454,6 +462,48 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
+
+		List<Customer> customers = new ArrayList<Customer>();
+		customers.add(customer1);
+		customers.add(customer2);
+		customers.add(customer3);
+
+		List<Item> items = new ArrayList<Item>();
+		items.add(software1);
+		items.add(software2);
+		items.add(software3);
+		items.add(software4);
+		items.add(hardware1);
+		items.add(hardware2);
+		items.add(hardware3);
+		items.add(hardware4);
+		items.add(hardware5);
+		items.add(hardware6);
+		items.add(hardware7);
+		items.add(hardware8);
+		items.add(hardware9);
+		items.add(hardware10);
+		items.add(hardware11);
+		items.add(hardware12);
+		items.add(hardware13);
+		items.add(hardware14);
+		items.add(hardware15);
+		items.add(hardware16);
+		items.add(hardware17);
+		items.add(hardware18);
+		items.add(hardware19);
+		items.add(recipe1);
+		items.add(recipe2);
+		items.add(package1);
+
+		List<CartLine> cartLines = objectGenerator.genCartLines(items, 100);
+		Object[] completeOrders = objectGenerator.genCompleteOrders(cartLines, customers);
+		List<Cart> carts = (List<Cart>) completeOrders[0];
+		List<Orders> orders = (List<Orders>) completeOrders[1];
+		List<Payment> payments = (List<Payment>) completeOrders[2];
+
+		// ------------------------------------------------------------------- //
+		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
 
 		countyService.insertCounty(county);
@@ -486,12 +536,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		accountService.insertAccount(employee1);
 		accountService.insertAccount(employee2);
-
-		// ------------------------------------------------------------------- //
-
-		paymentService.insertPayment(payment1);
-		paymentService.insertPayment(payment2);
-		paymentService.insertPayment(payment3);
 
 		// ------------------------------------------------------------------- //
 
@@ -600,6 +644,22 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		catalogueItemService.insertCatalogueItem(catalogueLine24);
 		catalogueItemService.insertCatalogueItem(catalogueLine25);
 		catalogueItemService.insertCatalogueItem(catalogueLine26);
+
+		for (Cart cart : carts) {
+			cartService.insertCart(cart);
+		}
+
+		for (CartLine cartLine : cartLines) {
+			cartLineService.insertCartLine(cartLine);
+		}
+
+		for (Orders order : orders) {
+			orderService.insertOrder(order);
+		}
+
+		for (Payment payment : payments) {
+			paymentService.insertPayment(payment);
+		}
 
 		displayData.printInfo("Data successfully loaded.");
 	}

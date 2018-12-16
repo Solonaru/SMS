@@ -169,6 +169,10 @@ public abstract class Item implements Serializable {
 
 		return false;
 	}
+	
+	public Double getPrice() {
+		return this.getPrice(getMonthFromInt(Calendar.getInstance().get(Calendar.MONTH)));
+	}
 
 	public Double getPrice(Month month) {
 		for (CatalogueItem catalogueItem : this.getCatalogueItems()) {

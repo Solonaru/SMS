@@ -1,7 +1,7 @@
 package com.project.sms.entities.order;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.enums.OrderStatus;
 
@@ -29,10 +30,13 @@ public class Orders implements Serializable {
 	private Date date;
 	private OrderStatus status;
 	@OneToOne
+	@JsonIgnoreProperties(value = "order")
 	private Cart cart;
-	@OneToOne
+	@OneToOne(mappedBy = "orderz")
+	@JsonIgnoreProperties(value = "order")
 	private Payment payment;
 	@ManyToOne
+	@JsonIgnoreProperties(value = "orders")
 	private Customer customer;
 
 	// -----Constructors-----
