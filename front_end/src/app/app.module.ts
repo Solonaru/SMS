@@ -17,6 +17,7 @@ import { ContactComponent } from './components/front-office/contact/contact.comp
 import { BoProductsComponent } from './components/back-office/bo-products/bo-products.component';
 import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-employees.component';
 import { HeaderComponent } from './components/front-office/header/header.component';
+import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HeaderComponent } from './components/front-office/header/header.compone
     ContactComponent,
     BoProductsComponent,
     BoEmployeesComponent,
-    HeaderComponent
+    HeaderComponent,
+    AdmHomeComponent
   ],
   imports: [
     FormsModule,
@@ -76,6 +78,10 @@ import { HeaderComponent } from './components/front-office/header/header.compone
       {
         path: 'header',
         component: HeaderComponent
+      },
+      {
+        path: 'adm',
+        component: AdmHomeComponent
       }
     ]),
   ],

@@ -28,11 +28,11 @@ export class ProductsComponent implements OnInit {
   }
 
   populateCategory() {
-    this.categoryService.getCategoryById(this.categoryId).subscribe(data => { this.category = data; console.log('getCategoryById: ' + this.category); });
+    this.categoryService.getCategoryById(this.categoryId).subscribe(data => { this.category = data });
   }
 
   populateItems() {
-    this.itemService.getListedItemsByCategoryId(this.categoryId).subscribe(data => { this.items = data; console.log('getListedItemsByCategoryId: ' + this.items); });
+    this.itemService.getListedItemsByCategoryId(this.categoryId).subscribe(data => { this.items = data });
   }
 
   counter() {
