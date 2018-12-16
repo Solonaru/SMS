@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
+import com.project.sms.utils.UtilMethods;
 
 @Entity
 @NamedQuery(name = "CartLine.findAll", query = "SELECT cl FROM CartLine cl")
@@ -78,6 +79,10 @@ public class CartLine implements Serializable {
 	// -----Methods-----
 	public String toString() {
 		return "Product: " + item + ". Quantity: " + quantity;
+	}
+
+	public Double getValue() {
+		return this.getItem().getPrice(UtilMethods.getMonthFromDate(this.getCart().getOrder().getDate()));
 	}
 
 }

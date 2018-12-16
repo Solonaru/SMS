@@ -10,12 +10,15 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Component;
 
+import com.project.sms.entities.catalogue.Catalogue;
+import com.project.sms.entities.catalogue.CatalogueItem;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.order.Cart;
 import com.project.sms.entities.order.CartLine;
 import com.project.sms.entities.order.Orders;
 import com.project.sms.entities.order.Payment;
+import com.project.sms.enums.CatalogueStatus;
 import com.project.sms.enums.OrderStatus;
 import com.project.sms.enums.PaymentStatus;
 import com.project.sms.enums.PaymentType;
@@ -30,7 +33,7 @@ public class ObjectGenerator {
 		sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
-	// ----- Methods ------
+	// ----- Public methods -----
 	public List<CartLine> genCartLines(List<Item> items, Integer amount) {
 		List<CartLine> generatedCartLines = new ArrayList<CartLine>();
 
@@ -94,7 +97,7 @@ public class ObjectGenerator {
 
 			Orders order = null;
 			try {
-				order = new Orders(genRandDate(sdf.parse("01/01/2018"), sdf.parse("30/11/2018")),
+				order = new Orders(genRandDate(sdf.parse("01/07/2018"), sdf.parse("16/12/2018")),
 						OrderStatus.COMPLETED);
 				order.setCart(cart);
 				order.setCustomer(customers.get(genRandNum(0, customers.size() - 1)));
@@ -117,6 +120,39 @@ public class ObjectGenerator {
 		return array;
 	}
 
+	public List<CatalogueItem> genCatalogueLines(List<Item> items, List<Double> prices) {
+		List<CatalogueItem> generatedCatalogueLines = new ArrayList<CatalogueItem>();
+
+		for (int i = 0; i < items.size(); i++) {
+			CatalogueItem catalogueItem = new CatalogueItem(
+					prices.get(i) + genRandNum((int) (0 - (prices.get(i) * 0.05)), (int) (prices.get(i) * 0.05)));
+			catalogueItem.setItem(items.get(i));
+
+			generatedCatalogueLines.add(catalogueItem);
+		}
+
+		return generatedCatalogueLines;
+	}
+
+	public Catalogue genCatalogue(List<CatalogueItem> catalogueLines, int month) {
+
+		Date date = null;
+		try {
+			date = sdf.parse("01/" + month + "/2018");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Catalogue catalogue = new Catalogue(UtilMethods.getMonthFromDate(date), 2018, date, CatalogueStatus.ACTIVE);
+
+		for (CatalogueItem catalogueLine : catalogueLines) {
+			catalogue.addLine(catalogueLine);
+		}
+
+		return catalogue;
+	}
+
+	// ----- Private methods -----
 	private Integer genRandNum(Integer min, Integer max) {
 		Random random = new Random();
 		return random.nextInt(max - min + 1) + min;

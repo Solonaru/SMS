@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-chart.component.css']
 })
 export class ProductChartComponent implements OnInit {
+
   items: Item[];
 
   constructor(private itemService: ItemService, private router: Router) { }
 
   ngOnInit() {
+
     this.populateItems();
 
     let dataPoints = [];
@@ -26,17 +28,18 @@ export class ProductChartComponent implements OnInit {
       title: {
         text: "Products Chart"
       },
-      subtitles:[{
+      subtitles: [{
         text: "Try Zooming and Panning"
       }],
       data: [
-      {
-        type: "line",
-        dataPoints: dataPoints
-      }]
+        {
+          type: "line",
+          dataPoints: dataPoints
+        }]
     });
 
     chart.render();
+
   }
 
   populateItems() {
@@ -46,11 +49,12 @@ export class ProductChartComponent implements OnInit {
   changeItem() {
     let dataPoints = [];
     let y = 0;
-    for ( var i = 1; i <= 11; i++ ) {
+    
+    for (var i = 1; i <= 11; i++) {
       y += Math.round(5 + Math.random() * (-5 - 5));
-      dataPoints.push({ y: y});
-
+      dataPoints.push({ y: y });
     }
+
     let chart = new CanvasJS.Chart("chartContainer", {
       zoomEnabled: true,
       animationEnabled: true,
@@ -58,14 +62,14 @@ export class ProductChartComponent implements OnInit {
       title: {
         text: "Product Chart"
       },
-      subtitles:[{
+      subtitles: [{
         text: "Try Zooming and Panning"
       }],
       data: [
-      {
-        type: "line",
-        dataPoints: dataPoints
-      }]
+        {
+          type: "line",
+          dataPoints: dataPoints
+        }]
     });
 
     chart.render();

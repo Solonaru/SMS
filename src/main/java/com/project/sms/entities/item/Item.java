@@ -27,6 +27,7 @@ import com.project.sms.entities.customer.Comment;
 import com.project.sms.entities.customer.Rating;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.enums.Month;
+import com.project.sms.utils.UtilMethods;
 
 @Entity
 @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
@@ -161,7 +162,7 @@ public abstract class Item implements Serializable {
 	// -----Methods-----
 	public Boolean isListed() {
 		for (CatalogueItem catalogueItem : this.getCatalogueItems()) {
-			if (this.getMonthFromInt(Calendar.getInstance().get(Calendar.MONTH))
+			if (UtilMethods.getMonthFromDate(Calendar.getInstance().getTime())
 					.equals(catalogueItem.getCatalogue().getMonth())) {
 				return true;
 			}
@@ -169,9 +170,9 @@ public abstract class Item implements Serializable {
 
 		return false;
 	}
-	
+
 	public Double getPrice() {
-		return this.getPrice(getMonthFromInt(Calendar.getInstance().get(Calendar.MONTH)));
+		return this.getPrice(UtilMethods.getMonthFromDate(Calendar.getInstance().getTime()));
 	}
 
 	public Double getPrice(Month month) {
@@ -182,14 +183,6 @@ public abstract class Item implements Serializable {
 		}
 
 		return -1.0;
-	}
-
-	// TODO: Move this method inside a utilities class
-	private Month getMonthFromInt(int num) {
-		Month[] months = { Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY,
-				Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER };
-
-		return months[num];
 	}
 
 	public String toString() {

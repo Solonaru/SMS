@@ -81,4 +81,14 @@ public class Cart implements Serializable {
 		cartLine.setCart(this);
 	}
 
+	public Double getTotalValue() {
+		Double total = 0.0;
+
+		for (CartLine cartLine : this.cartLines) {
+			total += cartLine.getValue();
+		}
+
+		return total;
+	}
+
 }

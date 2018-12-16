@@ -99,4 +99,9 @@ public class Orders implements Serializable {
 		this.customer = customer;
 	}
 
+	// ----- Methods -----
+	public Double getTotalValue() {
+		return this.cart.getTotalValue();
+	}
+
 }
