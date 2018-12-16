@@ -1,0 +1,16 @@
+<section class="chart">
+    <div class="controls">
+        <form action="#" class="controls__form">
+              <label for="product" class="control__label">Select a product:</label>
+              <select (change)="changeItem()" name="product" id="product" class="controls__product">
+                  <option value="-1">--- Select a product ---</option>
+                  <ng-container *ngFor="let item of items">
+                          <option value="{{item.name}}">
+                            {{item.name}}
+                          </option>
+                      </ng-container>
+              </select>
+        </form>
+    </div>
+    <div id="chartContainer"></div>
+</section>

@@ -18,6 +18,7 @@ import { BoProductsComponent } from './components/back-office/bo-products/bo-pro
 import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-employees.component';
 import { HeaderComponent } from './components/front-office/header/header.component';
 import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.component';
+import { ProductChartComponent } from './components/front-office/product-chart/product-chart.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.com
     BoProductsComponent,
     BoEmployeesComponent,
     HeaderComponent,
-    AdmHomeComponent
+    AdmHomeComponent,
+    ProductChartComponent
   ],
   imports: [
     FormsModule,
@@ -82,6 +84,10 @@ import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.com
       {
         path: 'adm',
         component: AdmHomeComponent
+      },
+      {
+        path: 'product-chart',
+        component: ProductChartComponent
       }
     ]),
   ],
