@@ -1,0 +1,20 @@
+.chart {
+  width: 100%;
+  padding: 10px;
+}
+
+.controls__form {
+  margin: auto;
+  width: 50%;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.controls__product {
+  text-align: center;
+}
+
+.controls__label {
+  font-size: 18px;
+  margin-right: 5px;
+}

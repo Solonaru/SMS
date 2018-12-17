@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/front-office/login/login.component';
 import { AdminComponent } from './components/front-office/admin/admin.component';
@@ -20,6 +21,7 @@ import { HeaderComponent } from './components/front-office/header/header.compone
 import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.component';
 import { ProductChartComponent } from './components/front-office/product-chart/product-chart.component';
 import { ProductChartMonthComponent } from './components/front-office/product-chart-month/product-chart-month.component';
+import { ProdChartComponent } from './components/front-office/prod-chart/prod-chart.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { ProductChartMonthComponent } from './components/front-office/product-ch
     HeaderComponent,
     AdmHomeComponent,
     ProductChartComponent,
-    ProductChartMonthComponent
+    ProductChartMonthComponent,
+    ProdChartComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    ChartsModule,
     RouterModule.forRoot([
       {
         path: '', redirectTo: '/login', pathMatch: 'full'
@@ -94,6 +98,10 @@ import { ProductChartMonthComponent } from './components/front-office/product-ch
       {
         path: 'product-chart-month',
         component: ProductChartMonthComponent
+      },
+      {
+        path: 'prod-chart',
+        component: ProdChartComponent
       }
     ]),
   ],
