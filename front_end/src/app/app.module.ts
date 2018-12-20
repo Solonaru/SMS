@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { AgmCoreModule } from "@agm/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.com
 import { ProductChartComponent } from './components/front-office/product-chart/product-chart.component';
 import { ProductChartMonthComponent } from './components/front-office/product-chart-month/product-chart-month.component';
 import { ProdChartComponent } from './components/front-office/prod-chart/prod-chart.component';
+import { ProdChartYearsComponent } from './components/front-office/prod-chart-years/prod-chart-years.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +40,16 @@ import { ProdChartComponent } from './components/front-office/prod-chart/prod-ch
     AdmHomeComponent,
     ProductChartComponent,
     ProductChartMonthComponent,
-    ProdChartComponent
+    ProdChartComponent,
+    ProdChartYearsComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDry7EiIG3ytckPPkpRCV4HrxNz180q2JU'
+    }),
     ChartsModule,
     RouterModule.forRoot([
       {
@@ -102,9 +108,14 @@ import { ProdChartComponent } from './components/front-office/prod-chart/prod-ch
       {
         path: 'prod-chart',
         component: ProdChartComponent
+      },
+      {
+        path: 'prod-chart-years',
+        component: ProdChartYearsComponent
       }
     ]),
   ],
+  schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [AuthService, DataService, AuthGuard, SessionGuard],
   bootstrap: [AppComponent]
 })

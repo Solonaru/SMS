@@ -21,4 +21,8 @@ export class CartLineService {
         return this.http.get(this.BASE_URL + 'statisticDataMonth/' + productId)
             .pipe(map((res: Map<Number, Number>) => { return res }));
     }
+    getProductsStatisticDataYear(productId: Number) {
+        return this.http.get(this.BASE_URL + 'statisticDataYear/' + productId)
+            .pipe(map((res: Map<Number, Number>) => { return res }));
+    }
 }
