@@ -4,7 +4,7 @@ export interface Category {
     id: Number;
     name: String;
     updateDate: Date;
-    description: String;
+    description: Blob;
     parentCategory: Category;
     childCategories: Category[];
     items: Item[];

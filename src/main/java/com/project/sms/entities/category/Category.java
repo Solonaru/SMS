@@ -31,6 +31,7 @@ public class Category implements Serializable {
 	private Integer id;
 	private String name;
 	private Date updateDate;
+	@Column(columnDefinition="TEXT")
 	private String description;
 	@ManyToOne
 	@JsonIgnoreProperties(value = "childCategories")

@@ -185,7 +185,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Category category3 = new Category("Components", new Date(System.currentTimeMillis()), 
 				"Because every detail counts when it comes to computer hardware components,"
 				+ " we offer you teh opportunity to choose the tools you need. "
-				+ "In this category you can fin the best CPUs, mothrboards, external memory,"
+				+ "In this category you can find the best CPUs, mothrboards, external memory,"
 				+ " ports, expansion softs, secondary storage, input-output devices, "
 				+ "communication devices etc. taht would best suit your needs. ");
 		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()), 
