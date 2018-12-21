@@ -179,35 +179,85 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		Category category1 = new Category("Laptops", new Date(System.currentTimeMillis()),
 				"We provide a wide range of laptops, starting from small-sized laptops to gaming ones.");
-		Category category2 = new Category("Software", new Date(System.currentTimeMillis()), "");
-
-		Category category3 = new Category("Components", new Date(System.currentTimeMillis()), "");
-		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()), "");
+		Category category2 = new Category("Software", new Date(System.currentTimeMillis()), 
+				"Here at TECHnique, you can find a variety of software tools, such as business softwares, "
+				+ "security softwares, development and testing softwares and many many more you can choose from!");
+		Category category3 = new Category("Components", new Date(System.currentTimeMillis()), 
+				"Because every detail counts when it comes to computer hardware components,"
+				+ " we offer you teh opportunity to choose the tools you need. "
+				+ "In this category you can fin the best CPUs, mothrboards, external memory,"
+				+ " ports, expansion softs, secondary storage, input-output devices, "
+				+ "communication devices etc. taht would best suit your needs. ");
+		Category category301 = new Category("Motherboards", new Date(System.currentTimeMillis()), 
+				"Motherboards come in different sizes, known as form factors, such as ATX, "
+				+ "micro-ATX FlexATX,  EATX, nano-ATX, mobile-ATX, ITX aka mini-ATX/nano-ATX/pico-ATX, NLX, LPX. "
+				+ "You can find on our store every kind of motherboard is best for you.");
 		category301.setParentCategory(category3);
-		Category category302 = new Category("CPUs", new Date(System.currentTimeMillis()), "");
+		Category category302 = new Category("CPUs", new Date(System.currentTimeMillis()), 
+				"There are many types of CPUs on the market, but there are only a few that you should consider purchasing. "
+				+ "Reason for, our store is selling only high-quality products. "
+				+"Single Core CPUs, Dual Core CPUs, Quad Core CPUs from prestigious brands like Intel or AMD");
 		category302.setParentCategory(category3);
-		Category category303 = new Category("RAMs", new Date(System.currentTimeMillis()), "");
+		Category category303 = new Category("RAMs", new Date(System.currentTimeMillis()), 
+				"RAM comes in a variety of shapes, capacities (measured in MB or GB),"
+				+ " speeds (measured in MHx or GHz), and architectures. "
+				+ "TECHnique is offering you 7 types of RAM: Static RAM (SRAM), Dynamic RAM (DRAM), "
+				+ "Synchronous Dynamic RAM (SDRAM), Single Data Synchronous Dynamic RAM (SDR SDRAM),"
+				+ "Double Data Synchronous Dynamic RAM (DDR SDRAM), Graphics Double Data Synchronous Dynamic RAM "
+				+ "(GDDR SDRAM, GDDR2, GDDR3, GDDR4, GDDR5), "
+				+ "Flash Memory");
 		category303.setParentCategory(category3);
-		Category category304 = new Category("Hard drives", new Date(System.currentTimeMillis()), "");
+		Category category304 = new Category("Hard drives", new Date(System.currentTimeMillis()), 
+				"HDDs are different in terms of capacity, size, shape, internal structure, "
+				+ "performance, interface and modes of storing data. "
+				+ "We provide a large range of HDDs of four major types: Parallel Advanced Technology Attatchment (PATA), "
+				+ "Serial ATA (SATA), Small Computer System Interface (SCSI), "
+				+ "Solid State Drivers (SSD).");
 		category304.setParentCategory(category3);
-		Category category305 = new Category("Power supply units", new Date(System.currentTimeMillis()), "");
+		Category category305 = new Category("Power supply units", new Date(System.currentTimeMillis()),
+				"Since a computer is full of different types of electronic circuits, though, several"
+				+ " of which operate at different voltages, a simple connection to a wall wil not cover "
+				+ "its needs. TECHnique privides an impressive range of PC Power Supply Units, such as"
+				+ " Desktop Power Supplies, Laptop Power Supplies, Power Saving Modes, ATX Power Supplies,"
+				+ " ATX Supported Voltages. ");
 		category305.setParentCategory(category3);
-		Category category306 = new Category("Video cards", new Date(System.currentTimeMillis()), "");
+		Category category306 = new Category("Video cards", new Date(System.currentTimeMillis()), 
+				"Many computers come wit on-board, buid-in or graphics cards. ann additional video card will "
+				+ "improve the quality of video games or video, but it is important to know which type of "
+				+ "graphics card is the most suitable for your computer (On-Board, PCI Express,"
+				+ " AGP, External Graphics Cards, Legacy Graphics Cards. ) "
+				+ "TECHnique offers you the latest GPUs from prestigious brands like NVidia, MSI, Zotac, AMD, XFX. ");
 		category306.setParentCategory(category3);
-		Category category307 = new Category("Sound cards", new Date(System.currentTimeMillis()), "");
+		Category category307 = new Category("Sound cards", new Date(System.currentTimeMillis()), 
+				"Looking to upgrade you Pc/laptop? "
+				+ "Shop a wide selection of Sound Cards from brands like Asus, Creative Labs, StarTech and mode!");
 		category307.setParentCategory(category3);
-		Category category308 = new Category("Network cards", new Date(System.currentTimeMillis()), "");
+		Category category308 = new Category("Network cards", new Date(System.currentTimeMillis()),
+				"Shop  a wide selection of PCI and PCI Express Network Adapter Cards from known privides like TP-Link, Intel and more. ");
 		category308.setParentCategory(category3);
 
-		Category category4 = new Category("Accessories", new Date(System.currentTimeMillis()), "");
-		Category category401 = new Category("Headphones", new Date(System.currentTimeMillis()), "");
+		Category category4 = new Category("Accessories", new Date(System.currentTimeMillis()), 
+				"Deiscover the perfect tech accesoories for you and your friends at TECHnique. "
+				+ "Add some glitz and glamour to your lives with our impressive collection of accesories (headphones, mouses, keyboards). ");
+		Category category401 = new Category("Headphones", new Date(System.currentTimeMillis()), 
+				"Trolling the internet to find teh best headphones at the best price is a real struggle. "
+				+ "TECHnique eases your work and presents you the newest models with the newest features to keep you up to date with the new technologies."
+				+ " PUSH YOUR LIMITS WITH HEADPHONES THAT HAVE NONE!");
 		category401.setParentCategory(category4);
-		Category category402 = new Category("Mouses", new Date(System.currentTimeMillis()), "");
+		Category category402 = new Category("Mouses", new Date(System.currentTimeMillis()), 
+				"Browse through a wide range of computer mouses online from brands such as HP, Ligitech, iBall, "
+				+ "Targus, Serioux, Hama and many many more. "
+				+ "Cable mouses, wireless mouses, mechanical mouses, optical mouses, IR mouses, mouses with buttons, "
+				+ "trackball mouses, stylus mouses and cordless 3D mouses... all available on TECHnique. ");
 		category402.setParentCategory(category4);
-		Category category403 = new Category("Keyboards", new Date(System.currentTimeMillis()), "");
+		Category category403 = new Category("Keyboards", new Date(System.currentTimeMillis()),
+				"Buy normal or wireless keyboards online from TECHnique. Shop from brands like  Microsoft,"
+				+ " Samsung, iBall, Srioux, Dell and many more. ");
 		category403.setParentCategory(category4);
 
-		Category category5 = new Category("Packages", new Date(System.currentTimeMillis()), "");
+		Category category5 = new Category("Packages", new Date(System.currentTimeMillis()), 
+				"This is a special category of products taht TECHnique offers. You have the opportunity to make your own computer, "
+				+ "being able to chose the components that you wish your computer to have. Give it a try and start building your own personal PC. ");
 
 		// ------------------------------------------------------------------- //
 
