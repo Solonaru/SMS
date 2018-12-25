@@ -21,4 +21,8 @@ export class BoEmployeesComponent implements OnInit {
     this.employeeService.getEmployees().subscribe(data => { this.employees = data; console.log(this.employees); });
   }
 
+  onDelete(employee: Employee) {
+    this.employeeService.deleteEmployee(employee).subscribe(data => { console.log(data); location.reload(); });
+  }
+
 }

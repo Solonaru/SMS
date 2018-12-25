@@ -1,14 +1,19 @@
 .button {
-    border-radius: 0;
-    border: none;
-  }
-  
-  .input{
-    border-width:1px;
-    border-radius:15px;
-  }
-  
-  .label {
-    font-weight: lighter;
-  }
+  border-radius: 0;
+  border: none;
+}
+
+.input{
+  border-width:1px;
+  border-radius:15px;
+}
+
+.label {
+  font-weight: lighter;
+}
+
+:host /deep/ ng-sidebar {
+  background-color: black;
+  display: none;
+}
  
