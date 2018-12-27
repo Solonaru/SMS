@@ -17,14 +17,22 @@ export class EmployeeService {
     return this.http.get(this.BASE_URL + 'all').pipe(map((res: Employee[]) => { return res }));
   }
 
+  updateEmployee(employee: Employee) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.put<Employee>(this.BASE_URL + 'update', JSON.stringify(employee), httpOptions)
+      .pipe(map((resp: any) => { return resp }));
+  }
+
   deleteEmployee(employee: Employee) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    console.log(this.BASE_URL + 'delete/' + employee.id);
     return this.http.delete(this.BASE_URL + 'delete/' + employee.id, httpOptions)
-      .pipe(map((resp : any)=> {return resp}));
+      .pipe(map((resp: any) => { return resp }));
   }
 
 }

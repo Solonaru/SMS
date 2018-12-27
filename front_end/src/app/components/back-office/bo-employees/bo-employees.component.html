@@ -3,13 +3,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 </head>
 
 <body>
+
     <app-header></app-header>
+
     <main>
 
         <section class="hero is-primary">
@@ -25,7 +28,7 @@
         <div>
             <section class="section">
                 <p class="control level">
-                    <a class="button is-success">Add Employee</a>
+                    <a class="button is-success" (click)="onAdd()">Add Employee</a>
                 </p>
                 <br>
                 <div class="columns is-centered">
@@ -50,7 +53,7 @@
                                     <td>{{employee.phoneNumber}}</td>
                                     <td>{{employee.creationDate}}</td>
                                     <td>
-                                        <a class="button is-warning is-small">Update Employee</a>
+                                        <a class="button is-warning is-small" (click)="onUpdate(employee)">Update Employee</a>
                                     </td>
                                     <td>
                                         <a class="button is-danger is-small" (click)="onDelete(employee)">Delete Employee</a>
@@ -63,5 +66,136 @@
             </section>
         </div>
 
+        <!-- ***** Modal ***** -->
+        <div *ngIf="employee" [ngClass]="{'is-active': shouldShow}" class="modal">
+            <div (click)="onCloseModel()" class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-container">
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="column is-5">
+                                <label class="label">Name</label>
+                                <p class="control has-icons-left">
+                                    <input [(ngModel)]="employee.name" class="input" type="text">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="column">
+                                <label class="label">Email</label>
+                                <p class="control has-icons-left has-icons-right">
+                                    <input [(ngModel)]="employee.email" class="input" type="email">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="column is-5">
+                                <label class="label">Phone Number</label>
+                                <p class="control has-icons-left">
+                                    <input [(ngModel)]="employee.phoneNumber" class="input has-text-centered" type="text">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-phone"></i>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="column is-5">
+                                <label class="label">Street</label>
+                                <p class="control has-icons-left">
+                                    <input [(ngModel)]="employee.address.street" class="input" type="text">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-road"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="column is-3">
+                                <label class="label">Street Nr.</label>
+                                <p class="control">
+                                    <input [(ngModel)]="employee.address.streetNr" class="input has-text-centered" type="text">
+                                </p>
+                            </div>
+
+                            <div class="column is-2">
+                                <label class="label">Bld. Nr.</label>
+                                <p class="control">
+                                    <input [(ngModel)]="employee.address.buildingNr" class="input has-text-centered" type="text">
+                                </p>
+                            </div>
+
+                            <div class="column is-2">
+                                <label class="label">Ent. Nr.</label>
+                                <p class="control">
+                                    <input [(ngModel)]="employee.address.entranceNr" class="input has-text-centered" type="text">
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="column is-3">
+                                <label class="label">Floor Nr.</label>
+                                <p class="control">
+                                    <input [(ngModel)]="employee.address.floorNr" class="input has-text-centered" type="text">
+                                </p>
+                            </div>
+
+                            <div class="column is-3">
+                                <label class="label">Ap. Nr.</label>
+                                <p class="control">
+                                    <input [(ngModel)]="employee.address.apartamentNr" class="input has-text-centered" type="text">
+                                </p>
+                            </div>
+
+                            <div class="column is-6">
+                                <label class="label">Zip code</label>
+                                <p class="control has-icons-left">
+                                    <input [(ngModel)]="employee.address.zipCode" class="input has-text-centered" type="text">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-file-archive"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                            <a (click)="onSubmit()" class="button is-primary">
+                                Submit
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a (click)="onCloseModel()" class="button is-light">
+                                Cancel
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button (click)="onCloseModel()" class="modal-close is-large" aria-label="close"></button>
+        </div>
+
     </main>
+
 </body>

@@ -5,7 +5,6 @@ import java.sql.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 
 import com.project.sms.entities.account.Account;
 import com.project.sms.enums.AccountStatus;
@@ -19,8 +18,10 @@ public class Employee extends Account {
 
 	private EmployeeStatus employeeStatus;
 
-	@OneToOne(targetEntity = Right.class)
-	private IRight rightType;
+//	@OneToOne(targetEntity = Right.class)
+//	private IRight rightType;
+
+	private Right rightType;
 
 	// ----- Constructors -----
 	public Employee() {
@@ -28,7 +29,7 @@ public class Employee extends Account {
 	}
 
 	public Employee(String username, String password, String name, String email, String phoneNumber, Date creationDate,
-			AccountStatus status, EmployeeStatus employeeStatus, IRight rightType) {
+			AccountStatus status, EmployeeStatus employeeStatus, Right rightType) {
 		super(username, password, name, email, phoneNumber, creationDate, status);
 		this.employeeStatus = employeeStatus;
 		this.rightType = rightType;
@@ -43,11 +44,11 @@ public class Employee extends Account {
 		this.employeeStatus = employeeStatus;
 	}
 
-	public IRight getRightType() {
+	public Right getRightType() {
 		return rightType;
 	}
 
-	public void setRightType(IRight rightType) {
+	public void setRightType(Right rightType) {
 		this.rightType = rightType;
 	}
 

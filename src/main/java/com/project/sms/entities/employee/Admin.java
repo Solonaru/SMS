@@ -2,7 +2,10 @@ package com.project.sms.entities.employee;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 @Entity
+@JsonDeserialize(as = Admin.class)
 public class Admin extends Right {
 	private static final long serialVersionUID = 1L;
 

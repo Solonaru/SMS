@@ -1,0 +1,10 @@
+.modal-container {
+    background: white;
+    border: 1px solid #000;
+    position: fixed;
+    max-width: 640px;
+    width: 100%;
+    top: 20%;
+    padding: 20px;
+    border-radius: 15px;
+}
