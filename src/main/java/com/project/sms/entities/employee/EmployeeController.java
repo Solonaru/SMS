@@ -21,37 +21,37 @@ public class EmployeeController {
 
 	@Autowired
 	private IEmployeeService employeeService;
-	
+
 	@Autowired
 	private DisplayData dataDisplay;
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Optional<Employee> findEmployeeById(@PathVariable("employeeId") int employeeId) {
-		dataDisplay.printCrudInfo(employeeId); 
+		dataDisplay.printCrudInfo(employeeId);
 		return employeeService.findEmployeeById(employeeId);
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Employee> getEmployees() {
-		dataDisplay.printCrudInfo(); 
+		dataDisplay.printCrudInfo();
 		return employeeService.findAllEmployees();
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertEmployee(@RequestBody Employee employee) {
-		dataDisplay.printCrudInfo(); 
-		employeeService.insertEmployee(employee);
+	public Employee insertEmployee(@RequestBody Employee employee) {
+		dataDisplay.printCrudInfo();
+		return employeeService.insertEmployee(employee);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateEmployee(@RequestBody Employee employee) {
-		dataDisplay.printCrudInfo(); 
+		dataDisplay.printCrudInfo();
 		employeeService.updateEmployee(employee);
 	}
 
 	@RequestMapping(value = "/delete/{employeeId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteEmployee(@PathVariable("employeeId") int employeeId) {
-		dataDisplay.printCrudInfo(employeeId); 
+		dataDisplay.printCrudInfo(employeeId);
 		employeeService.deleteEmployeeById(employeeId);
 	}
 }

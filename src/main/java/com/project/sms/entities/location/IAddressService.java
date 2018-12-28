@@ -8,7 +8,7 @@ public Optional<Address> findAddressById(int addressId);
 	
 	public List<Address> findAllAddresses();
 
-	public void insertAddress(Address address);
+	public Address insertAddress(Address address);
 
 	public void updateAddress(Address address);
 

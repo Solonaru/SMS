@@ -20,8 +20,8 @@ public class EmployeeService implements IEmployeeService {
 		return (List<Employee>) employeeRepository.findAll();
 	}
 
-	public void insertEmployee(Employee employee) {
-		employeeRepository.save(employee);
+	public Employee insertEmployee(Employee employee) {
+		return employeeRepository.save(employee);
 	}
 
 	public void updateEmployee(Employee employee) {

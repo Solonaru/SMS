@@ -40,12 +40,14 @@ public class Customer extends Account implements Serializable {
 
 	// -----Constructors-----
 	public Customer() {
-		super();
+		super.creationDate = new Date(System.currentTimeMillis());
+		super.status = AccountStatus.ACTIVE;
 	}
 
-	public Customer(String username, String password, String name, String email, String phoneNumber, Date creationDate,
-			AccountStatus status) {
-		super(username, password, name, email, phoneNumber, creationDate, status);
+	public Customer(String username, String password, String name, String email, String phoneNumber) {
+		super(username, password, name, email, phoneNumber);
+		super.creationDate = new Date(System.currentTimeMillis());
+		super.status = AccountStatus.ACTIVE;
 	}
 
 	// -----Getters and Setters-----

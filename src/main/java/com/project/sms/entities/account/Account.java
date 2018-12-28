@@ -46,16 +46,13 @@ public abstract class Account implements Serializable {
 		super();
 	}
 
-	public Account(String username, String password, String name, String email, String phoneNumber, Date creationDate,
-			AccountStatus status) {
+	public Account(String username, String password, String name, String email, String phoneNumber) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.creationDate = creationDate;
-		this.status = status;
 	}
 
 	// -----Getters and Setters-----

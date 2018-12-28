@@ -9,7 +9,7 @@ public interface IEmployeeService {
 
 	public List<Employee> findAllEmployees();
 
-	public void insertEmployee(Employee employee);
+	public Employee insertEmployee(Employee employee);
 
 	public void updateEmployee(Employee employee);
 

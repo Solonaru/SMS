@@ -25,12 +25,17 @@ public class Employee extends Account {
 
 	// ----- Constructors -----
 	public Employee() {
-		super();
+		super.creationDate = new Date(System.currentTimeMillis());
+		super.status = AccountStatus.ACTIVE;
+		this.employeeStatus = EmployeeStatus.INTERNSHIP;
+		this.rightType = new NoRight();
 	}
 
-	public Employee(String username, String password, String name, String email, String phoneNumber, Date creationDate,
-			AccountStatus status, EmployeeStatus employeeStatus, Right rightType) {
-		super(username, password, name, email, phoneNumber, creationDate, status);
+	public Employee(String username, String password, String name, String email, String phoneNumber,
+			EmployeeStatus employeeStatus, Right rightType) {
+		super(username, password, name, email, phoneNumber);
+		super.creationDate = new Date(System.currentTimeMillis());
+		super.status = AccountStatus.ACTIVE;
 		this.employeeStatus = employeeStatus;
 		this.rightType = rightType;
 	}

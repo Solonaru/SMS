@@ -10,6 +10,9 @@ import { map } from 'rxjs/operators';
 export class EmployeeService {
 
   private BASE_URL: string = "http://localhost:8090/employee/";
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -17,21 +20,18 @@ export class EmployeeService {
     return this.http.get(this.BASE_URL + 'all').pipe(map((res: Employee[]) => { return res }));
   }
 
-  updateEmployee(employee: Employee) {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
+  insertEmployee(employee: Employee) {
+    return this.http.post<Employee>(this.BASE_URL + 'add', JSON.stringify(employee), this.httpOptions)
+      .pipe(map((resp: any) => { return resp }));
+  }
 
-    return this.http.put<Employee>(this.BASE_URL + 'update', JSON.stringify(employee), httpOptions)
+  updateEmployee(employee: Employee) {
+    return this.http.put<Employee>(this.BASE_URL + 'update', JSON.stringify(employee), this.httpOptions)
       .pipe(map((resp: any) => { return resp }));
   }
 
   deleteEmployee(employee: Employee) {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-
-    return this.http.delete(this.BASE_URL + 'delete/' + employee.id, httpOptions)
+    return this.http.delete(this.BASE_URL + 'delete/' + employee.id, this.httpOptions)
       .pipe(map((resp: any) => { return resp }));
   }
 

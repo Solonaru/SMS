@@ -38,9 +38,9 @@ public class AddressController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertAddress(@RequestBody Address address) {
+	public Address insertAddress(@RequestBody Address address) {
 		dataDisplay.printCrudInfo();
-		addressService.insertAddress(address);
+		return addressService.insertAddress(address);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -20,8 +20,8 @@ public class AddressService implements IAddressService {
 		return (List<Address>) addressRepository.findAll();
 	}
 
-	public void insertAddress(Address address) {
-		addressRepository.save(address);
+	public Address insertAddress(Address address) {
+		return addressRepository.save(address);
 	}
 
 	public void updateAddress(Address address) {

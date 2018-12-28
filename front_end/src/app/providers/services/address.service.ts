@@ -10,15 +10,19 @@ import { map } from 'rxjs/operators';
 export class AddressService {
 
     private BASE_URL: string = "http://localhost:8090/address/";
+    private httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
     constructor(private http: HttpClient) { }
 
-    updateAddress(address: Address) {
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
+    insertAddress(address: Address) {
+        return this.http.post<Address>(this.BASE_URL + 'add', JSON.stringify(address), this.httpOptions)
+            .pipe(map((resp: Address) => { return resp }));
+    }
 
-        return this.http.put<Address>(this.BASE_URL + 'update', JSON.stringify(address), httpOptions)
+    updateAddress(address: Address) {
+        return this.http.put<Address>(this.BASE_URL + 'update', JSON.stringify(address), this.httpOptions)
             .pipe(map((resp: any) => { return resp }));
     }
 
