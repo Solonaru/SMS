@@ -16,6 +16,7 @@ import { ProductChartComponent } from './components/front-office/product-chart/p
 import { ProductChartMonthComponent } from './components/front-office/product-chart-month/product-chart-month.component';
 import { ProdChartComponent } from './components/front-office/prod-chart/prod-chart.component';
 import { ProdChartYearsComponent } from './components/front-office/prod-chart-years/prod-chart-years.component';
+import { FooterComponent } from './components/front-office/footer/footer.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,7 +33,8 @@ const routes: Routes = [
     { path: 'product-chart', component: ProductChartComponent },
     { path: 'product-chart-month', component: ProductChartMonthComponent },
     { path: 'prod-chart', component: ProdChartComponent },
-    { path: 'prod-chart-years', component: ProdChartYearsComponent }
+    { path: 'prod-chart-years', component: ProdChartYearsComponent },
+    { path: 'footer', component: FooterComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,48 @@
+html {
+  overflow: inherit;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.footer {
+  width: 100%;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.social {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.social__icon:not(:last-child) {
+  margin-right: 1.2rem;
+}
+
+.icon {
+  color: #0142a8;
+  font-size: 21px;
+}
+
+.fa-facebook-f:hover {
+  color: darkblue;
+}
+
+.fa-twitter:hover {
+  color: #0259e2;
+}
+
+.fa-instagram:hover {
+  color: red;
+}
+
+.info {
+  margin: 0 auto;
+  margin-top: .8rem;
+  text-align: center;
+  font-size: 17px;
+}

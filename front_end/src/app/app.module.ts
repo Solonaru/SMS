@@ -20,6 +20,7 @@ import { ProductChartMonthComponent } from './components/front-office/product-ch
 import { ProdChartComponent } from './components/front-office/prod-chart/prod-chart.component';
 import { ProdChartYearsComponent } from './components/front-office/prod-chart-years/prod-chart-years.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FooterComponent } from './components/front-office/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
     ProductChartMonthComponent,
     ProdChartComponent,
     ProdChartYearsComponent,
+    FooterComponent,
   ],
 
   imports: [
