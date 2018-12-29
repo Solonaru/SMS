@@ -57,3 +57,33 @@
   background-color: rgba(189, 195, 199, 0.2);
   color: darkslateblue;
 }
+
+.modal-container {
+    background: white;
+    border: 1px solid #000;
+    position: fixed;
+    max-width: 640px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.div-center {
+  text-align: center;
+}
+
+.heading__primary {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.heading__secondary {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.btn__info {
+  margin-top: 10px;
+}

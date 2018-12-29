@@ -48,8 +48,9 @@
                                 <div class="card-content">
                                     <div class="content has-text-centered">
                                         <h4> {{ item.name }}</h4>
-                                        <span class="tag is-price to-bottom"> {{ item.price }} lei </span>
+                                        <span class="tag is-price"> {{ item.price }} lei </span>
                                         <!-- <p class="to-bottom"> {{ item.price }} lei </p> -->
+                                        <div><a (click)="onClick(item)" class="button is-info is-fullwidth btn__info">More</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -61,16 +62,47 @@
             </div>
         </section>
 
+        <!-- ***** Modal ***** -->
+        <div *ngIf="item" [ngClass]="{'is-active': shouldShow}" class="modal">
+            <div (click)="onCloseModel()" class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-container">
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="column div-center">
+                                <h1 class="heading__primary"> {{ item.name }} </h1>
+                                <h1 class="heading__primary"> {{ item.price }} lei</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="column div-center">
+                                <h1 class="heading__primary"> {{ item.description === "" ? "Description to be added." : item.description }} </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                            <a class="button is-primary">
+                                Add to cart
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a (click)="onCloseModel()" class="button is-light">
+                                Close
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button (click)="onCloseModel()" class="modal-close is-large" aria-label="close"></button>
+        </div>
+
     </main>
 
 
-    <footer>
-        <section class="section">
-            <div class="container">
-
-            </div>
-        </section>
-    </footer>
+    <app-footer></app-footer>
 
 </body>
 
@@ -90,7 +122,7 @@
                                     <div class="content">
                                         <h4>Tempor orci dapibus ultrices in.</h4>
                                         <p>Ut venenatis tellus in metus vulputate.</p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +138,7 @@
                                     <div class="content">
                                         <h4>Tempor orci dapibus ultrices in.</h4>
                                         <p>Ut venenatis tellus in metus vulputate.</p>
-                                        
+
                                     </div>
                                 </div>
                             </div>

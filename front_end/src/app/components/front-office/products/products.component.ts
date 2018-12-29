@@ -16,6 +16,8 @@ export class ProductsComponent implements OnInit {
   categoryId: string;
   category: Category;
   items: Item[] = [];
+  shouldShow: boolean;
+  item: Item;
 
   constructor(private itemService: ItemService, private categoryService: CategoryService, private route: ActivatedRoute) {
 
@@ -37,6 +39,15 @@ export class ProductsComponent implements OnInit {
 
   counter() {
     return new Array(Math.ceil(this.items.length / 5)).fill(0).map((x, i) => i);
+  }
+
+  onClick(item: Item) {
+    this.item = item;
+    this.shouldShow = true;
+  }
+
+  onCloseModel() {
+    this.shouldShow = false;
   }
 
 }
