@@ -5,7 +5,7 @@ export class Category {
     name: String;
     updateDate: Date;
     description: Blob;
-    /*parentCategory: Category;
+    parentCategory: Category;
     childCategories: Category[];
-    items: Item[];*/
+    items: Item[];
 }
