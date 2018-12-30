@@ -1,6 +1,6 @@
 import { Category } from './category';
 
-export interface Item {
+export class Item {
     id: Number;
     name: String;
     stockQuantity: Number;

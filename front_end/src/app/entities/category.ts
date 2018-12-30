@@ -1,11 +1,11 @@
 import { Item } from './item';
 
-export interface Category {
+export class Category {
     id: Number;
     name: String;
     updateDate: Date;
     description: Blob;
-    parentCategory: Category;
+    /*parentCategory: Category;
     childCategories: Category[];
-    items: Item[];
+    items: Item[];*/
 }

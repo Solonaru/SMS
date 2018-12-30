@@ -3,7 +3,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 </head>
@@ -26,7 +27,7 @@
     <div>
       <section class="section">
         <p class="control level">
-          <a class="button is-success">Add Product</a>
+          <a class="button is-success" (click)="onAdd()">Add Product</a>
         </p>
         <br>
         <div class="columns is-centered">
@@ -62,6 +63,90 @@
           </div>
         </div>
       </section>
+    </div>
+    <!-- ***** Modal ***** -->
+    <div *ngIf="item" [ngClass]="{'is-active': shouldShow}" class="modal">
+      <div (click)="onCloseModel()" class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modal-container">
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+
+              <div class="column is-5">
+                <label class="label">Product name</label>
+                <p class="control has-icons-left">
+                  <input [(ngModel)]="item.name" class="input" type="text">
+                  <span class="icon is-small is-left">
+                                    <i class="fas fa-cross"></i>
+                                </span>
+                </p>
+              </div>
+
+              <div class="column">
+                <label class="label">Product type</label>
+                <p class="control has-icons-left has-icons-right">
+                  <input [(ngModel)]="item.item_type" class="input" type="text">
+                  <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="column is-5">
+                <label class="label">Description</label>
+                <p class="control has-icons-left">
+                  <input [(ngModel)]="item.description" class="input has-text-centered" type="text">
+                  <span class="icon is-small is-left">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-body">
+
+              <div class="column is-5">
+                <label class="label">Quantity</label>
+                <p class="control has-icons-left">
+                  <input [(ngModel)]="item.stockQuantity" class="input" type="text">
+                  <span class="icon is-small is-left">
+                                    <i class="fas fa-road"></i>
+                                </span>
+                </p>
+              </div>
+
+              <div class="column is-3">
+                <label class="label">Category</label>
+                <p class="control">
+                  <input [(ngModel)]="item.category.name" class="input has-text-centered" type="text">
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <a (click)="onSubmit()" class="button is-primary">
+                Submit
+              </a>
+            </p>
+            <p class="control">
+              <a (click)="onCloseModel()" class="button is-light">
+                Cancel
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <button (click)="onCloseModel()" class="modal-close is-large" aria-label="close"></button>
     </div>
 
   </main>
