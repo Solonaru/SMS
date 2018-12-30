@@ -1,6 +1,7 @@
 .card-flip {
   perspective: 1000px;
 }
+
 .card-flip:hover .flip {
   transform: rotateY(180deg);
 }
@@ -33,7 +34,15 @@
 }
 
 .has-border {
-  border: 5px solid rgba(189, 195, 199, 0.05)
+  border: 5px solid rgba(189, 195, 199, 0.05);
+}
+
+#main-div :hover {
+  border: 7px solid lightblue;
+}
+
+.no-pointer-events {
+  pointer-events: none;
 }
 
 .has-padding-top {
