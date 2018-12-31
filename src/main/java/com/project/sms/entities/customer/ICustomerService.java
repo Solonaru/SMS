@@ -15,5 +15,4 @@ public interface ICustomerService {
 
 	public void deleteCustomerById(int customerId);
 	
-	public Customer findCustomerByUsernameAndPassword(String username, String password);
 }

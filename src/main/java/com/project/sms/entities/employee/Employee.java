@@ -6,6 +6,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.project.sms.entities.account.Account;
 import com.project.sms.enums.AccountStatus;
 import com.project.sms.enums.EmployeeStatus;
@@ -13,6 +14,7 @@ import com.project.sms.enums.EmployeeStatus;
 @Entity
 @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")
 @DiscriminatorValue("Employee")
+@JsonDeserialize(as = Employee.class)
 public class Employee extends Account {
 	private static final long serialVersionUID = 1L;
 

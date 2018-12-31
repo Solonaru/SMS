@@ -54,10 +54,5 @@ public class CustomerController {
 		dataDisplay.printCrudInfo(customerId); 
 		customerService.deleteCustomerById(customerId);
 	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Customer findCustomerByUsernameAndPassword(@RequestBody Customer customer) {
-		dataDisplay.printCrudInfo(); 
-		return customerService.findCustomerByUsernameAndPassword(customer.getUsername(), customer.getPassword());
-	}
+	
 }

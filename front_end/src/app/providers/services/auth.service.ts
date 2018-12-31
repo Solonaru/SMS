@@ -11,7 +11,7 @@ import { User } from '../../entities/user';
 })
 export class AuthService {
 
-  private BASE_URL: string = "http://localhost:8090/customer/";
+  private BASE_URL: string = "http://localhost:8090/account/";
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn' || 'false'));
 
   constructor(private http: HttpClient) { }

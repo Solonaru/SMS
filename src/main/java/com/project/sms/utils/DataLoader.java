@@ -27,6 +27,7 @@ import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
 import com.project.sms.entities.location.Address;
+import com.project.sms.entities.location.AddressBuilder;
 import com.project.sms.entities.location.City;
 import com.project.sms.entities.location.County;
 import com.project.sms.entities.location.IAddressService;
@@ -122,21 +123,24 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		City city3 = new City("Targu Frumos");
 		city3.setCounty(county);
 
-		Address address1 = new Address("Alexandru cel Bun", 51, "", "", "", 0, 270123);
+		Address address1 = new AddressBuilder("Alexandru cel Bun", 51).setApartamentNr(15).setZipCode(270123)
+				.getAddress();
 		address1.setCity(city1);
-		Address address2 = new Address("Marinelor", 11, "", "", "", 0, 280129);
+		Address address2 = new AddressBuilder("Marinelor", 11).setZipCode(280129).getAddress();
 		address2.setCity(city2);
-		Address address3 = new Address("Marinelor", 27, "", "", "", 0, 280129);
+		Address address3 = new AddressBuilder("Marinelor", 27).setBuildingNr("B").setZipCode(280129).getAddress();
 		address3.setCity(city2);
-		Address address4 = new Address("Marin Cordoba", 100, "", "", "", 0, 290111);
+		Address address4 = new AddressBuilder("Marin Cordoba", 100).setZipCode(290111).getAddress();
 		address4.setCity(city3);
-		Address address5 = new Address("Cosmopolitan", 127, "", "", "", 0, 270123);
+		Address address5 = new AddressBuilder("Cosmopolitan", 127).setBuildingNr("3").setApartamentNr(205)
+				.setFloorNr("2").setZipCode(270123).getAddress();
 		address5.setCity(city1);
-		Address address6 = new Address("Cosmopolitan", 129, "", "", "", 0, 270123);
+		Address address6 = new AddressBuilder("Cosmopolitan", 129).setZipCode(270123).getAddress();
 		address6.setCity(city1);
-		Address address7 = new Address("Bacau", 12, "", "", "", 0, 607648);
+		Address address7 = new AddressBuilder("Cereselor", 12).setApartamentNr(115).setFloorNr("GF").setZipCode(270323)
+				.getAddress();
 		address7.setCity(city1);
-		Address address8 = new Address("Timisoara", 30, "", "", "", 0, 509832);
+		Address address8 = new AddressBuilder("Independentei", 30).setZipCode(278012).getAddress();
 		address8.setCity(city1);
 
 		Subscription subscription1 = new Subscription(SubscriptionType.DISCOUNTS);
@@ -461,7 +465,25 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		// ***** Packages *****
 		items.add(package1);
 
-		List<CartLine> cartLines = objectGenerator.genCartLines(items, 1000);
+//		long timeSpent = 0;
+//		
+//		List<CartLine> cartLines = null;
+//		
+//		for (int i = 0; i < 100; i++) {
+//			long startTime = System.nanoTime();;
+//			cartLines = objectGenerator.genCartLines(items, 10000);
+//			long stopTime = System.nanoTime();;
+//			long elapsedTime = stopTime - startTime;
+//			System.out.println("TIME ELAPSED: " + elapsedTime);
+//			
+//			timeSpent += elapsedTime / 100;
+//		}
+//		
+//		System.out.println("TIME ELAPSED: " + timeSpent);
+//		
+//		System.exit(0);
+
+		List<CartLine> cartLines = objectGenerator.genCartLines(items, 100);
 		Object[] completeOrders = objectGenerator.genCompleteOrders(cartLines, customers);
 		List<Cart> carts = (List<Cart>) completeOrders[0];
 		List<Orders> orders = (List<Orders>) completeOrders[1];

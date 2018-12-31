@@ -16,6 +16,7 @@ import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.order.Cart;
 import com.project.sms.entities.order.CartLine;
+import com.project.sms.entities.order.CartLineFactory;
 import com.project.sms.entities.order.Orders;
 import com.project.sms.entities.order.Payment;
 import com.project.sms.enums.CatalogueStatus;
@@ -38,7 +39,8 @@ public class ObjectGenerator {
 		List<CartLine> generatedCartLines = new ArrayList<CartLine>();
 
 		for (int i = 0; i < amount; i++) {
-			CartLine cartLine = new CartLine(genRandNum(1, 3));
+//			CartLine cartLine = new CartLine(genRandNum(1, 3));
+			CartLine cartLine = CartLineFactory.getCartLine(genRandNum(1, 3));
 			cartLine.setItem(items.get(genRandNum(0, items.size() - 1)));
 			generatedCartLines.add(cartLine);
 		}

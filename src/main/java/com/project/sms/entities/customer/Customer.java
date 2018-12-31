@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.project.sms.entities.account.Account;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.order.Orders;
@@ -23,6 +24,7 @@ import com.project.sms.enums.AccountStatus;
 @Entity
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 @DiscriminatorValue("Customer")
+@JsonDeserialize(as = Customer.class)
 public class Customer extends Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 

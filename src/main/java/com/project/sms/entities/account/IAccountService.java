@@ -14,4 +14,6 @@ public interface IAccountService {
 	public void updateAccount(Account account);
 
 	public void deleteAccountById(int accountId);
+	
+	public Account findUserByUsernameAndPassword(String username, String password);
 }

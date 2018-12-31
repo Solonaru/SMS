@@ -17,7 +17,7 @@ import com.project.sms.utils.UtilMethods;
 
 @Entity
 @NamedQuery(name = "CartLine.findAll", query = "SELECT cl FROM CartLine cl")
-public class CartLine implements Serializable {
+public class CartLine implements Serializable, ILine {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -83,6 +83,18 @@ public class CartLine implements Serializable {
 
 	public Double getValue() {
 		return this.getItem().getPrice(UtilMethods.getMonthFromDate(this.getCart().getOrder().getDate()));
+	}
+
+	public ILine makeCopy() {
+		CartLine cartLine = null;
+		
+		try {
+			cartLine = (CartLine) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		
+		return cartLine;
 	}
 
 }

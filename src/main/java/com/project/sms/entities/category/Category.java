@@ -3,6 +3,7 @@ package com.project.sms.entities.category;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,11 +18,12 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.employee.Employee;
+import com.project.sms.entities.item.IItemIterator;
 import com.project.sms.entities.item.Item;
 
 @Entity
 @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
-public class Category implements Serializable {
+public class Category implements Serializable, IItemIterator {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -120,5 +122,9 @@ public class Category implements Serializable {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public Iterator<Item> createIterator() {
+		return this.items.iterator();
 	}
 }

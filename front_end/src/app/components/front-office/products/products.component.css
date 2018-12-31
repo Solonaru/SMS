@@ -38,7 +38,7 @@
 }
 
 #main-div :hover {
-  border: 7px solid lightblue;
+  border: 6px solid lightblue;
 }
 
 .no-pointer-events {

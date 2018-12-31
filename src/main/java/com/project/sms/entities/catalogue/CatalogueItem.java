@@ -1,5 +1,7 @@
 package com.project.sms.entities.catalogue;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +13,13 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
+import com.project.sms.entities.order.ILine;
 
 @Entity
 @NamedQuery(name = "CatalogueItem.findAll", query = "SELECT cp FROM CatalogueItem cp")
-public class CatalogueItem {
+public class CatalogueItem implements Serializable, ILine {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "catalogue_item_generator")
 	@SequenceGenerator(name = "catalogue_item_generator", sequenceName = "catalogue_item_sequence", initialValue = 900000001, allocationSize = 1)
@@ -69,6 +74,19 @@ public class CatalogueItem {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	// ----- Methods -----
+	public ILine makeCopy() {
+		CatalogueItem catalogueLine = null;
+
+		try {
+			catalogueLine = (CatalogueItem) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+
+		return catalogueLine;
 	}
 
 }

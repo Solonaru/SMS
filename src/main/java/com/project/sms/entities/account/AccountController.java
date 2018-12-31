@@ -53,4 +53,10 @@ public class AccountController {
 		dataDisplay.printCrudInfo(accountId);
 		accountService.deleteAccountById(accountId);
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Account findUserByUsernameAndPassword(@RequestBody Account account) {
+		dataDisplay.printCrudInfo(); 
+		return accountService.findUserByUsernameAndPassword(account.getUsername(), account.getPassword());
+	}
 }

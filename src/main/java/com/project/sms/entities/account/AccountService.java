@@ -31,4 +31,8 @@ public class AccountService implements IAccountService{
 	public void deleteAccountById(int accountId) {
 		accountRepository.deleteById(accountId);
 	}
+	
+	public Account findUserByUsernameAndPassword(String username, String password) {
+		return accountRepository.findUserByUsernameAndPassword(username, password);
+	}
 }

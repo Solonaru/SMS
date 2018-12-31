@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.project.sms.entities.location.Address;
 import com.project.sms.enums.AccountStatus;
 
@@ -23,6 +24,7 @@ import com.project.sms.enums.AccountStatus;
 @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "ACCOUNT_TYPE")
+@JsonDeserialize(using = AccountDeserializer.class)
 public abstract class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
