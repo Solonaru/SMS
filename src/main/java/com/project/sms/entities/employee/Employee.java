@@ -2,6 +2,7 @@ package com.project.sms.entities.employee;
 
 import java.sql.Date;
 
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -20,10 +21,8 @@ public class Employee extends Account {
 
 	private EmployeeStatus employeeStatus;
 
-//	@OneToOne(targetEntity = Right.class)
-//	private IRight rightType;
-
-	private Right rightType;
+	@Convert(converter = RightConverter.class)
+	private IRight rightType;
 
 	// ----- Constructors -----
 	public Employee() {
@@ -34,7 +33,7 @@ public class Employee extends Account {
 	}
 
 	public Employee(String username, String password, String name, String email, String phoneNumber,
-			EmployeeStatus employeeStatus, Right rightType) {
+			EmployeeStatus employeeStatus, IRight rightType) {
 		super(username, password, name, email, phoneNumber);
 		super.creationDate = new Date(System.currentTimeMillis());
 		super.status = AccountStatus.ACTIVE;
@@ -51,11 +50,11 @@ public class Employee extends Account {
 		this.employeeStatus = employeeStatus;
 	}
 
-	public Right getRightType() {
+	public IRight getRightType() {
 		return rightType;
 	}
 
-	public void setRightType(Right rightType) {
+	public void setRightType(IRight rightType) {
 		this.rightType = rightType;
 	}
 

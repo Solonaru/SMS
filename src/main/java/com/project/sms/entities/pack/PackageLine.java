@@ -12,10 +12,11 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Product;
+import com.project.sms.entities.lines.ILine;
 
 @Entity
 @NamedQuery(name = "PackageLine.findAll", query = "SELECT p FROM PackageLine p")
-public class PackageLine {
+public class PackageLine implements ILine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "package_line_generator")
 	@SequenceGenerator(name = "package_line_generator", sequenceName = "package_line_sequence", initialValue = 1, allocationSize = 1)
@@ -71,5 +72,18 @@ public class PackageLine {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	// ----- Methods -----
+	public ILine makeCopy() {
+		PackageLine packageLine = null;
+
+		try {
+			packageLine = (PackageLine) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+
+		return packageLine;
 	}
 }

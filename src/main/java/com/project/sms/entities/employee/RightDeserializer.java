@@ -13,11 +13,9 @@ public class RightDeserializer extends JsonDeserializer<IRight> {
 	public IRight deserialize(JsonParser jp, DeserializationContext context) throws IOException {
 		ObjectMapper mapper = (ObjectMapper) jp.getCodec();
 		ObjectNode root = mapper.readTree(jp);
-		/* write you own condition */
-//        if (true) {
-//            return mapper.readValue(root.toString(), Admin.class);
-//        }
+		
+		System.out.println(root);
 
-		return mapper.readValue(root.toString(), OperatorProducts.class);
+		return mapper.readValue(root.toString(), NoRight.class);
 	}
 }

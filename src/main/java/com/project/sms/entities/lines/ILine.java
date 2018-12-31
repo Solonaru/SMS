@@ -1,4 +1,4 @@
-package com.project.sms.entities.order;
+package com.project.sms.entities.lines;
 
 public interface ILine extends Cloneable {
 

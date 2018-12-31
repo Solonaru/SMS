@@ -1,15 +1,16 @@
 package com.project.sms.entities.employee;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@Entity
-public class OperatorEmployees extends Right {
-	private static final long serialVersionUID = 1L;
+@JsonDeserialize(as = OperatorEmployees.class)
+public class OperatorEmployees implements IRight {
 
+	// ----- Constructors -----
 	public OperatorEmployees() {
 
 	}
 
+	// ----- Methods -----
 	public boolean canCreateProduct() {
 		return false;
 	}

@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
-import com.project.sms.entities.order.ILine;
+import com.project.sms.entities.lines.ILine;
 
 @Entity
 @NamedQuery(name = "CatalogueItem.findAll", query = "SELECT cp FROM CatalogueItem cp")

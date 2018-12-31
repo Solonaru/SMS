@@ -14,10 +14,11 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Component;
+import com.project.sms.entities.lines.ILine;
 
 @Entity
 @NamedQuery(name = "RecipeLine.findAll", query = "SELECT r FROM RecipeLine r")
-public class RecipeLine implements Serializable {
+public class RecipeLine implements Serializable, ILine {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -76,4 +77,18 @@ public class RecipeLine implements Serializable {
 	public void setComponent(Component component) {
 		this.component = component;
 	}
+
+	// ----- Methods -----
+	public ILine makeCopy() {
+		RecipeLine recipeLine = null;
+
+		try {
+			recipeLine = (RecipeLine) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+
+		return recipeLine;
+	}
+
 }

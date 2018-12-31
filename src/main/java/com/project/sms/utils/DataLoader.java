@@ -19,13 +19,14 @@ import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
 import com.project.sms.entities.employee.Admin;
 import com.project.sms.entities.employee.Employee;
-import com.project.sms.entities.employee.IRightService;
+import com.project.sms.entities.employee.IRight;
 import com.project.sms.entities.employee.OperatorProducts;
-import com.project.sms.entities.employee.Right;
 import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
+import com.project.sms.entities.lines.LineFactory;
+import com.project.sms.entities.lines.RecipeLineFactory;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.location.AddressBuilder;
 import com.project.sms.entities.location.City;
@@ -63,8 +64,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private IAddressService addressService;
 	@Autowired
-	private IRightService rightService;
-	@Autowired
 	private IAccountService accountService;
 	@Autowired
 	private ISubscriptionService subscriptionService;
@@ -93,6 +92,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private DisplayData displayData;
 	@Autowired
 	private ObjectGenerator objectGenerator;
+	@Autowired
+	private LineFactory lineFactory;
 
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		if (isDBEmpty()) {
@@ -103,11 +104,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		System.out.println("Is the item listed: " + item.isListed());
 		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
 
-		Right right = rightService.findRightById(1).get();
-		System.out.println("HAS RIGHTS: " + right.canCreateProduct());
-
 		Employee employee = (Employee) accountService.findAccountById(400000005).get();
-		System.out.println("EMPLOYEE HAS RIGHTS: " + employee.getRightType().canCreateCategory());
+		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
+		System.out.println("EMPLOYEE HAS CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -164,8 +164,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// ------------------------------------------------------------------- //
 
-		Right admin = new Admin();
-		Right operatorProducts = new OperatorProducts();
+		IRight admin = new Admin();
+		IRight operatorProducts = new OperatorProducts();
 
 		Employee employee1 = new Employee("viorel", "viorel123", "Viorel", "viorelsolonaru@gmail.com", "0748974417",
 				EmployeeStatus.SENIOR, admin);
@@ -338,7 +338,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		hardware19.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware19.jpg");
 
 		// ***** Computer ASUS 2000 ***** //
-		RecipeLine recipeLine11 = new RecipeLine(1);
+		RecipeLine recipeLine11 = (RecipeLine) lineFactory.createLine(new RecipeLineFactory(1));
 		recipeLine11.setComponent(hardware1);
 		RecipeLine recipeLine12 = new RecipeLine(1);
 		recipeLine12.setComponent(hardware3);
@@ -575,9 +575,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		accountService.insertAccount(customer3);
 
 		// ------------------------------------------------------------------- //
-
-		rightService.insertRight(admin);
-		rightService.insertRight(operatorProducts);
 
 		accountService.insertAccount(employee1);
 		accountService.insertAccount(employee2);

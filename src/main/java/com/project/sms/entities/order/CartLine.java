@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
+import com.project.sms.entities.lines.ILine;
 import com.project.sms.utils.UtilMethods;
 
 @Entity
@@ -87,13 +88,13 @@ public class CartLine implements Serializable, ILine {
 
 	public ILine makeCopy() {
 		CartLine cartLine = null;
-		
+
 		try {
 			cartLine = (CartLine) super.clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
-		
+
 		return cartLine;
 	}
 

@@ -2,8 +2,7 @@ package com.project.sms.entities.employee;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@JsonDeserialize(as = Right.class)
-//@JsonDeserialize(using = RightDeserializer.class)
+@JsonDeserialize(using = RightDeserializer.class)
 public interface IRight {
 
 	public boolean canCreateProduct();
