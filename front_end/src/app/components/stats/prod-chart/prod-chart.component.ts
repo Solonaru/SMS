@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ItemService } from '../../../providers/services/item.service';
 import { Item } from '../../../entities/item';
 import { Router } from '@angular/router';
-import { CartLineService } from '../../../providers/services/cartline.service';
+import { ProductStatsService } from '../../../providers/services/productstats.service';
 
 @Component({
   selector: 'app-prod-chart',
@@ -18,7 +18,7 @@ export class ProdChartComponent {
   item: Item;
   private selectedValue;
 
-  constructor(private itemService: ItemService, private cartLineService: CartLineService, private router: Router) { }
+  constructor(private itemService: ItemService, private productStatsService: ProductStatsService, private router: Router) { }
 
   ngOnInit() {
     this.populateItems();
@@ -29,7 +29,7 @@ export class ProdChartComponent {
   }
 
   populateProductsStatisticDataMonth(productId: Number) {
-    this.cartLineService.getProductsStatisticDataMonth(productId).subscribe(data => { this.productsStatisticDataMonth = data; console.log(this.productsStatisticDataMonth); })
+    this.productStatsService.getProductsStatisticDataMonth(productId).subscribe(data => { this.productsStatisticDataMonth = data; console.log(this.productsStatisticDataMonth); })
   }
 
   changeItem() {

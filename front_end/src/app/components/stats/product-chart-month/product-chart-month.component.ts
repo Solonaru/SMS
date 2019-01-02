@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import * as CanvasJS from '../product-chart/canvasjs.min';
+import * as CanvasJS from '../canvasjs.min';
 
 import { ItemService } from '../../../providers/services/item.service';
 import { Item } from '../../../entities/item';
 import { Router } from '@angular/router';
-import { CartLineService } from '../../../providers/services/cartline.service';
+import { ProductStatsService } from '../../../providers/services/productstats.service';
 
 @Component({
   selector: 'app-product-chart-month',
@@ -20,7 +20,7 @@ export class ProductChartMonthComponent implements OnInit {
   item: Item;
   private selectedValue;
 
-  constructor(private itemService: ItemService, private cartLineService: CartLineService, private router: Router) { }
+  constructor(private itemService: ItemService, private productStatsService: ProductStatsService, private router: Router) { }
 
   ngOnInit() {
     this.populateItems();
@@ -33,8 +33,10 @@ export class ProductChartMonthComponent implements OnInit {
   populateProductsStatisticDataMonth(productId: Number) {
     let y = 0;
     let x = 0;
+    let month = 0;
+    let year = 0;
 
-    this.cartLineService.getProductsStatisticDataMonth(productId).subscribe(data => {
+    this.productStatsService.getProductsStatisticDataMonth(productId).subscribe(data => {
       this.productsStatisticDataMonth = data;
 
       for (var key in this.productsStatisticDataMonth) {
@@ -42,7 +44,10 @@ export class ProductChartMonthComponent implements OnInit {
           console.log(key + " -> " + this.productsStatisticDataMonth[key]);
           y = <any>this.productsStatisticDataMonth[key];
           x = <any>key;
-          this.dataPoints.push({ x: x * 10, y: y });
+          month = x % 100;
+          year = Math.floor(x / 100);
+
+          this.dataPoints.push({ x: new Date(year, month, 1), y: y });
         }
       };
 
@@ -56,9 +61,15 @@ export class ProductChartMonthComponent implements OnInit {
         subtitles: [{
           text: "Try Zooming and Panning"
         }],
+        axisX: {
+          interval: 1,
+          intervalType: "month",
+          valueFormatString: "MMM"
+        },
         data: [
           {
             type: "spline",
+            xValueFormatString: "MMM, YYYY",
             dataPoints: this.dataPoints
           }]
       });
