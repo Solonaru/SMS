@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +19,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.project.sms.entities.catalogue.CatalogueItem;
 import com.project.sms.entities.category.Category;
@@ -48,7 +50,8 @@ public abstract class Item implements Serializable {
 	protected String imageUrl;
 	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+	@OneToMany(mappedBy = "item")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	protected List<CatalogueItem> catalogueItems = new ArrayList<CatalogueItem>();
 	@ManyToOne
 	protected Category category;

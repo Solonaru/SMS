@@ -2,6 +2,7 @@ package com.project.sms.utils;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,9 @@ import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
+import com.project.sms.entities.lines.ILine;
 import com.project.sms.entities.lines.LineFactory;
+import com.project.sms.entities.lines.PackageLineFactory;
 import com.project.sms.entities.lines.RecipeLineFactory;
 import com.project.sms.entities.location.Address;
 import com.project.sms.entities.location.AddressBuilder;
@@ -50,6 +53,7 @@ import com.project.sms.entities.recipe.Recipe;
 import com.project.sms.entities.recipe.RecipeLine;
 import com.project.sms.entities.subscription.ISubscriptionService;
 import com.project.sms.entities.subscription.Subscription;
+import com.project.sms.enums.ComponentType;
 import com.project.sms.enums.EmployeeStatus;
 import com.project.sms.enums.Month;
 import com.project.sms.enums.SubscriptionType;
@@ -100,6 +104,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 			loadData();
 		}
 
+		System.out.println("------------------------------------------------------");
+
 		Item item = itemService.findItemById(4).get();
 		System.out.println("Is the item listed: " + item.isListed());
 		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
@@ -107,6 +113,28 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Employee employee = (Employee) accountService.findAccountById(400000005).get();
 		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
 		System.out.println("EMPLOYEE HAS CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
+
+		System.out.println("------------------------------------------------------");
+
+		Package package1 = (Package) itemService.findItemById(26).get();
+		Iterator<? extends ILine> iterator1 = package1.createIterator();
+
+		while (iterator1.hasNext()) {
+			PackageLine packageLine = (PackageLine) iterator1.next();
+			System.out.println("PACKAGE LINE: " + packageLine.getProduct().getName());
+		}
+
+		System.out.println("------------------------------------------------------");
+
+		Recipe recipe1 = (Recipe) itemService.findItemById(24).get();
+		Iterator<? extends ILine> iterator2 = recipe1.createIterator();
+
+		while (iterator2.hasNext()) {
+			RecipeLine recipeLine = (RecipeLine) iterator2.next();
+			System.out.println("RECIPE LINE: " + recipeLine.getComponent().getName());
+		}
+
+		System.out.println("------------------------------------------------------");
 
 	}
 
@@ -338,23 +366,30 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		hardware19.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware19.jpg");
 
 		// ***** Computer ASUS 2000 ***** //
-		RecipeLine recipeLine11 = (RecipeLine) lineFactory.createLine(new RecipeLineFactory(1));
+		RecipeLine recipeLine11 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.MOTHERBOARD, 1));
 		recipeLine11.setComponent(hardware1);
-		RecipeLine recipeLine12 = new RecipeLine(1);
+		RecipeLine recipeLine12 = (RecipeLine) lineFactory.createLine(new RecipeLineFactory(ComponentType.CPU, 1));
 		recipeLine12.setComponent(hardware3);
-		RecipeLine recipeLine13 = new RecipeLine(2);
+		RecipeLine recipeLine13 = (RecipeLine) lineFactory.createLine(new RecipeLineFactory(ComponentType.RAM, 2));
 		recipeLine13.setComponent(hardware5);
-		RecipeLine recipeLine14 = new RecipeLine(1);
+		RecipeLine recipeLine14 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.HARD_DRIVE, 1));
 		recipeLine14.setComponent(hardware7);
-		RecipeLine recipeLine15 = new RecipeLine(1);
+		RecipeLine recipeLine15 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.POWER_SUPPLY_UNIT, 1));
 		recipeLine15.setComponent(hardware8);
-		RecipeLine recipeLine16 = new RecipeLine(1);
+		RecipeLine recipeLine16 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.VIDEO_CARD, 1));
 		recipeLine16.setComponent(hardware10);
-		RecipeLine recipeLine17 = new RecipeLine(1);
+		RecipeLine recipeLine17 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.SOUND_CARD, 1));
 		recipeLine17.setComponent(hardware12);
-		RecipeLine recipeLine18 = new RecipeLine(1);
+		RecipeLine recipeLine18 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.NEWTWORK_CARD, 1));
 		recipeLine18.setComponent(hardware13);
-		RecipeLine recipeLine19 = new RecipeLine(1);
+		RecipeLine recipeLine19 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.OPERATING_SYSTEM, 1));
 		recipeLine19.setComponent(software1);
 
 		Recipe recipe1 = new Recipe("Computer: ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
@@ -371,23 +406,30 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipe1.addLine(recipeLine19);
 
 		// ***** Computer ASUS G1009 ***** //
-		RecipeLine recipeLine21 = new RecipeLine(1);
+		RecipeLine recipeLine21 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.MOTHERBOARD, 1));
 		recipeLine21.setComponent(hardware1);
-		RecipeLine recipeLine22 = new RecipeLine(1);
+		RecipeLine recipeLine22 = (RecipeLine) lineFactory.createLine(new RecipeLineFactory(ComponentType.CPU, 1));
 		recipeLine22.setComponent(hardware3);
-		RecipeLine recipeLine23 = new RecipeLine(4);
+		RecipeLine recipeLine23 = (RecipeLine) lineFactory.createLine(new RecipeLineFactory(ComponentType.RAM, 4));
 		recipeLine23.setComponent(hardware6);
-		RecipeLine recipeLine24 = new RecipeLine(1);
+		RecipeLine recipeLine24 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.HARD_DRIVE, 1));
 		recipeLine24.setComponent(hardware7);
-		RecipeLine recipeLine25 = new RecipeLine(1);
+		RecipeLine recipeLine25 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.POWER_SUPPLY_UNIT, 1));
 		recipeLine25.setComponent(hardware8);
-		RecipeLine recipeLine26 = new RecipeLine(1);
+		RecipeLine recipeLine26 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.VIDEO_CARD, 1));
 		recipeLine26.setComponent(hardware9);
-		RecipeLine recipeLine27 = new RecipeLine(1);
+		RecipeLine recipeLine27 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.SOUND_CARD, 1));
 		recipeLine27.setComponent(hardware12);
-		RecipeLine recipeLine28 = new RecipeLine(1);
+		RecipeLine recipeLine28 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.NEWTWORK_CARD, 1));
 		recipeLine28.setComponent(hardware13);
-		RecipeLine recipeLine29 = new RecipeLine(1);
+		RecipeLine recipeLine29 = (RecipeLine) lineFactory
+				.createLine(new RecipeLineFactory(ComponentType.OPERATING_SYSTEM, 1));
 		recipeLine29.setComponent(software3);
 
 		Recipe recipe2 = new Recipe("Computer: ASUS LK40", 10, new Date(System.currentTimeMillis()), "");
@@ -404,11 +446,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipe2.addLine(recipeLine29);
 
 		// ***** Package: Computer ASUS G1009 + mouse + keyboard ***** //
-		PackageLine packageLine1 = new PackageLine(1);
+		PackageLine packageLine1 = (PackageLine) lineFactory.createLine(new PackageLineFactory(1));
 		packageLine1.setProduct(recipe1);
-		PackageLine packageLine2 = new PackageLine(1);
+		PackageLine packageLine2 = (PackageLine) lineFactory.createLine(new PackageLineFactory(1));
 		packageLine2.setProduct(hardware16);
-		PackageLine packageLine3 = new PackageLine(1);
+		PackageLine packageLine3 = (PackageLine) lineFactory.createLine(new PackageLineFactory(1));
 		packageLine3.setProduct(hardware19);
 
 		Package package1 = new Package("Computer ASUS G1009 + Mouse: Corssair 2018 + Keyboard: Logitech K800", 4,
@@ -530,22 +572,22 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		prices.add(7500.0);
 
 		List<CatalogueItem> catalogueLines7 = objectGenerator.genCatalogueLines(items, prices);
-		Catalogue catalogue7 = objectGenerator.genCatalogue(catalogueLines7, 7);
+		Catalogue catalogue7 = objectGenerator.genCatalogue(catalogueLines7, 8, 2018);
 
 		List<CatalogueItem> catalogueLines8 = objectGenerator.genCatalogueLines(items, prices);
-		Catalogue catalogue8 = objectGenerator.genCatalogue(catalogueLines8, 8);
+		Catalogue catalogue8 = objectGenerator.genCatalogue(catalogueLines8, 9, 2018);
 
 		List<CatalogueItem> catalogueLines9 = objectGenerator.genCatalogueLines(items, prices);
-		Catalogue catalogue9 = objectGenerator.genCatalogue(catalogueLines9, 9);
+		Catalogue catalogue9 = objectGenerator.genCatalogue(catalogueLines9, 10, 2018);
 
 		List<CatalogueItem> catalogueLines10 = objectGenerator.genCatalogueLines(items, prices);
-		Catalogue catalogue10 = objectGenerator.genCatalogue(catalogueLines10, 10);
+		Catalogue catalogue10 = objectGenerator.genCatalogue(catalogueLines10, 11, 2018);
 
 		List<CatalogueItem> catalogueLines11 = objectGenerator.genCatalogueLines(items, prices);
-		Catalogue catalogue11 = objectGenerator.genCatalogue(catalogueLines11, 11);
+		Catalogue catalogue11 = objectGenerator.genCatalogue(catalogueLines11, 12, 2018);
 
 		List<CatalogueItem> catalogueLines12 = objectGenerator.genCatalogueLines(items, prices);
-		Catalogue catalogue12 = objectGenerator.genCatalogue(catalogueLines12, 12);
+		Catalogue catalogue12 = objectGenerator.genCatalogue(catalogueLines12, 1, 2019);
 
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //

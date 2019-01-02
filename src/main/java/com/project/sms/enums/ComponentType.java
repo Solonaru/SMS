@@ -1,0 +1,5 @@
+package com.project.sms.enums;
+
+public enum ComponentType {
+	MOTHERBOARD, CPU, RAM, HARD_DRIVE, POWER_SUPPLY_UNIT, VIDEO_CARD, SOUND_CARD, NEWTWORK_CARD, OPERATING_SYSTEM
+}

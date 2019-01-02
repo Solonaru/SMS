@@ -1,26 +1,33 @@
 package com.project.sms.entities.recipe;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.MapKey;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Product;
+import com.project.sms.entities.lines.ILine;
+import com.project.sms.entities.lines.ILineIterator;
+import com.project.sms.enums.ComponentType;
 
 @Entity
 @NamedQuery(name = "Recipe.findAll", query = "SELECT r FROM Recipe r")
 @DiscriminatorValue("Recipe")
-public class Recipe extends Product {
+public class Recipe extends Product implements ILineIterator {
 	private static final long serialVersionUID = 1L;
 
-	@OneToMany(mappedBy = "recipe")
-	@JsonIgnoreProperties(value = {"recipe", "category"})
-	private List<RecipeLine> recipeLines = new ArrayList<RecipeLine>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
+	@MapKey(name = "componentType")
+	@JsonIgnoreProperties(value = { "recipe", "category" })
+	private Map<ComponentType, RecipeLine> recipeLines = new TreeMap<ComponentType, RecipeLine>();
 
 	// ----- Constructors -----
 	public Recipe() {
@@ -31,19 +38,22 @@ public class Recipe extends Product {
 		super(name, stockQuantity, updateDate, description);
 	}
 
-	// ----- Getters and Setters -----
-	public List<RecipeLine> getRecipeLines() {
+	public Map<ComponentType, RecipeLine> getRecipeLines() {
 		return recipeLines;
 	}
 
-	public void setRecipeLines(List<RecipeLine> recipeLines) {
+	public void setRecipeLines(Map<ComponentType, RecipeLine> recipeLines) {
 		this.recipeLines = recipeLines;
 	}
-	
+
 	// ----- Methods -----
 	public void addLine(RecipeLine recipeLine) {
-		recipeLines.add(recipeLine);
+		recipeLines.put(recipeLine.getComponentType(), recipeLine);
 		recipeLine.setRecipe(this);
+	}
+
+	public Iterator<? extends ILine> createIterator() {
+		return recipeLines.values().iterator();
 	}
 
 }

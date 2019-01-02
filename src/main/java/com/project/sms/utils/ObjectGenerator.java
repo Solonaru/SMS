@@ -99,7 +99,7 @@ public class ObjectGenerator {
 
 			Orders order = null;
 			try {
-				order = new Orders(genRandDate(sdf.parse("01/07/2018"), sdf.parse("30/11/2018")),
+				order = new Orders(genRandDate(sdf.parse("01/08/2018"), sdf.parse("31/01/2019")),
 						OrderStatus.COMPLETED);
 				order.setCart(cart);
 				order.setCustomer(customers.get(genRandNum(0, customers.size() - 1)));
@@ -136,16 +136,16 @@ public class ObjectGenerator {
 		return generatedCatalogueLines;
 	}
 
-	public Catalogue genCatalogue(List<CatalogueItem> catalogueLines, int month) {
+	public Catalogue genCatalogue(List<CatalogueItem> catalogueLines, int month, int year) {
 
 		Date date = null;
 		try {
-			date = sdf.parse("01/" + month + "/2018");
+			date = sdf.parse("01/" + month + "/" + year);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
-		Catalogue catalogue = new Catalogue(UtilMethods.getMonthFromDate(date), 2018, date, CatalogueStatus.ACTIVE);
+		Catalogue catalogue = new Catalogue(UtilMethods.getMonthFromDate(date), year, date, CatalogueStatus.ACTIVE);
 
 		for (CatalogueItem catalogueLine : catalogueLines) {
 			catalogue.addLine(catalogueLine);
