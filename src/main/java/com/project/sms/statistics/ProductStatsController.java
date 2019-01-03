@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +52,6 @@ public class ProductStatsController {
 				Double value = cartLine.getValue();
 				cal.setTime(cartLine.getCart().getOrder().getDate());
 				Integer time = (cal.get(Calendar.YEAR) * 100) + cal.get(Calendar.MONTH);
-				System.out.println("TIME: " + time);
 				if (statisticData.get(time) != null) {
 					value += statisticData.get(time);
 				}
@@ -60,6 +60,19 @@ public class ProductStatsController {
 		}
 
 		return statisticData;
+	}
+
+	@RequestMapping(value = "/average", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Double getAverageFromStatisticData(@RequestBody Map<Integer, Double> statisticData) {		
+		Double total = 0.0;
+		Integer count = 0;
+
+		for (Map.Entry<Integer, Double> entry : statisticData.entrySet()) {
+			total += entry.getValue();
+			count++;
+		}
+
+		return total/count;
 	}
 
 }

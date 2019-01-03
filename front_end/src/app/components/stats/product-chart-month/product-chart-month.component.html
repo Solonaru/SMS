@@ -1,4 +1,8 @@
 <section class="chart">
+    <div id="chartContainer"></div>
+</section>
+
+<section>
     <div class="controls">
         <form action="#" class="controls__form">
             <label for="product" class="control__label">Select a product:</label>
@@ -7,6 +11,9 @@
                 <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
             </select>
         </form>
+
+        <label class="control__label">
+            <input type="checkbox" [(ngModel)]="displayAverage" (change)="onDisplayAverage()" [ngModelOptions]="{standalone: true}" /> Display average
+        </label>
     </div>
-    <div id="chartContainer"></div>
 </section>
