@@ -5,15 +5,36 @@
 <section>
     <div class="controls">
         <form action="#" class="controls__form">
-            <label for="product" class="control__label">Select a product:</label>
-            <select [(ngModel)]="selectedValue" (change)="changeItem()" name="product" id="product" class="controls__product">
-                <option value="-1">--- Select a product ---</option>
-                <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
+            <!-- <label for="product1" class="control__label">Select a product:</label> -->
+            <select [(ngModel)]="selectedCategory1" (change)="changeCategory1()" name="category1" class="controls__product">
+                <option value="-1">--- Select a category ---</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
+            <select *ngIf="items1" [(ngModel)]="selectedValue1" (change)="changeItem1()" name="product1" class="controls__product">
+                <option value="-1">--- Select a product ---</option>
+                <option *ngFor="let item of items1" [value]="item.id">{{item.name}}</option>
+            </select>
+
+            <label *ngIf="items1">
+                <input type="checkbox" [(ngModel)]="displayAverage1" (change)="onDisplayAverage1()" [ngModelOptions]="{standalone: true}" /> Display average
+            </label>
+
+            <br/>
+
+            <!-- <label for="product2" class="control__label">Select a product:</label> -->
+            <select [(ngModel)]="selectedCategory2" (change)="changeCategory2()" name="category2" class="controls__product">
+                <option value="-1">--- Select a category ---</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+            <select *ngIf="items2" [(ngModel)]="selectedValue2" (change)="changeItem2()" name="product2" class="controls__product">
+                <option value="-1">--- Select a product ---</option>
+                <option *ngFor="let item of items2" [value]="item.id">{{item.name}}</option>
+            </select>
+
+            <label *ngIf="items2">
+                <input type="checkbox" [(ngModel)]="displayAverage2" (change)="onDisplayAverage2()" [ngModelOptions]="{standalone: true}" /> Display average
+            </label>
         </form>
 
-        <label class="control__label">
-            <input type="checkbox" [(ngModel)]="displayAverage" (change)="onDisplayAverage()" [ngModelOptions]="{standalone: true}" /> Display average
-        </label>
     </div>
 </section>
