@@ -1,6 +1,7 @@
 package com.project.sms.entities.item;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,9 @@ public class ItemController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Item> getItems() {
 		dataDisplay.printCrudInfo();
-		return itemService.findAllItems();
+		List<Item> items = itemService.findAllItems();
+		Collections.sort(items);
+		return items;
 	}
 
 	@RequestMapping(value = "/all/listed", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,6 +55,7 @@ public class ItemController {
 			}
 		}
 
+		Collections.sort(listedItems);
 		return listedItems;
 	}
 
@@ -65,6 +69,7 @@ public class ItemController {
 			}
 		}
 
+		Collections.sort(listedItems);
 		return listedItems;
 	}
 

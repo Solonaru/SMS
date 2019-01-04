@@ -1,5 +1,6 @@
 package com.project.sms.entities.category;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +19,10 @@ import com.project.sms.utils.DisplayData;
 @RequestMapping("/category")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
-	
+
 	@Autowired
 	private ICategoryService categoryService;
-	
+
 	@Autowired
 	private DisplayData dataDisplay;
 
@@ -34,7 +35,9 @@ public class CategoryController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Category> getCategories() {
 		dataDisplay.printCrudInfo();
-		return categoryService.findAllCategories();
+		List<Category> categories = categoryService.findAllCategories();
+		Collections.sort(categories);
+		return categories;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

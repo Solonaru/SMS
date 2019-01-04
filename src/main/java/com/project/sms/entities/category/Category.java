@@ -23,7 +23,7 @@ import com.project.sms.entities.item.Item;
 
 @Entity
 @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
-public class Category implements Serializable, IItemIterator {
+public class Category implements Serializable, IItemIterator, Comparable<Category> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -33,7 +33,7 @@ public class Category implements Serializable, IItemIterator {
 	private Integer id;
 	private String name;
 	private Date updateDate;
-	@Column(columnDefinition="TEXT")
+	@Column(columnDefinition = "TEXT")
 	private String description;
 	@ManyToOne
 	@JsonIgnoreProperties(value = "childCategories")
@@ -126,5 +126,10 @@ public class Category implements Serializable, IItemIterator {
 
 	public Iterator<Item> createIterator() {
 		return this.items.iterator();
+	}
+
+	// ----- Methods -----
+	public int compareTo(Category category) {
+		return -category.getName().compareToIgnoreCase(this.getName());
 	}
 }

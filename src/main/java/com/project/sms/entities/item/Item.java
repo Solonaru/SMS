@@ -35,7 +35,7 @@ import com.project.sms.utils.UtilMethods;
 @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "ITEM_TYPE")
-public abstract class Item implements Serializable {
+public abstract class Item implements Serializable, Comparable<Item> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -186,6 +186,10 @@ public abstract class Item implements Serializable {
 		}
 
 		return -1.0;
+	}
+
+	public int compareTo(Item item) {
+		return -item.getName().compareToIgnoreCase(this.getName());
 	}
 
 	public String toString() {

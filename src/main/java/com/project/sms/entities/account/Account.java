@@ -25,7 +25,7 @@ import com.project.sms.enums.AccountStatus;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "ACCOUNT_TYPE")
 @JsonDeserialize(using = AccountDeserializer.class)
-public abstract class Account implements Serializable {
+public abstract class Account implements Serializable, Comparable<Account> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -133,5 +133,9 @@ public abstract class Account implements Serializable {
 	// -----Methods-----
 	public String toString() {
 		return username;
+	}
+	
+	public int compareTo(Account account) {
+		return -account.getName().compareToIgnoreCase(this.getName());
 	}
 }

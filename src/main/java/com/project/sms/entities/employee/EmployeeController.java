@@ -1,5 +1,6 @@
 package com.project.sms.entities.employee;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,9 @@ public class EmployeeController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Employee> getEmployees() {
 		dataDisplay.printCrudInfo();
-		return employeeService.findAllEmployees();
+		List<Employee> employees = employeeService.findAllEmployees();
+		Collections.sort(employees);
+		return employees;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
