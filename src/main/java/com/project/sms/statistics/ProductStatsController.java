@@ -61,6 +61,24 @@ public class ProductStatsController {
 
 		return statisticData;
 	}
+	
+	@RequestMapping(value = "/month/price/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Double, Double> getProductsStatisticDataBasedOnPriceByMonth(@PathVariable("productId") int productId) {
+		Map<Double, Double> statisticData = new TreeMap<Double, Double>();
+
+		for (CartLine cartLine : cartLineService.findAllCartLines()) {
+			if (cartLine.getItem().getId().equals(productId)) {
+				Double price = cartLine.getValue();
+				Double value = price;
+				if (statisticData.get(price) != null) {
+					value += statisticData.get(price);
+				}
+				statisticData.put(price, value);
+			}
+		}
+
+		return statisticData;
+	}
 
 	@RequestMapping(value = "/average", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Double getAverageFromStatisticData(@RequestBody Map<Integer, Double> statisticData) {		

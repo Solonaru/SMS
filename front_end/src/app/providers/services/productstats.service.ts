@@ -30,4 +30,9 @@ export class ProductStatsService {
             pipe(map((resp: any) => { return resp }));
     }
 
+    getProductsStatisticDataBasedOnPrice(productId: Number) {
+        return this.http.get(this.BASE_URL + 'month/price/' + productId)
+            .pipe(map((res: Map<Number, Number>) => { return res }));
+    }
+
 }

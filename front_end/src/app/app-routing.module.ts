@@ -15,6 +15,7 @@ import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.com
 import { ProductChartMonthComponent } from './components/stats/product-chart-month/product-chart-month.component';
 import { ProdChartComponent } from './components/stats/prod-chart/prod-chart.component';
 import { FooterComponent } from './components/front-office/footer/footer.component';
+import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'header', component: HeaderComponent },
     { path: 'adm', component: AdmHomeComponent },
     { path: 'product-chart-month', component: ProductChartMonthComponent },
+    { path: 'product-price-sales-chart', component: ProductPriceSalesChartComponent},
     { path: 'prod-chart', component: ProdChartComponent },
     { path: 'footer', component: FooterComponent}
 ];
