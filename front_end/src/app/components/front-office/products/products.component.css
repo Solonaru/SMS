@@ -1,3 +1,7 @@
+html {
+  overflow: inherit;
+}
+
 .card-flip {
   perspective: 1000px;
 }

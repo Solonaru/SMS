@@ -14,12 +14,12 @@
             <div id="chartContainer"></div>
         </section>
 
-        <section>
+        <section class="section-controls">
             <div class="controls">
                 <form action="#" class="controls__form">
                     <!-- <label for="product1" class="control__label">Select a product:</label> -->
-                    <select [(ngModel)]="selectedCategory1" (change)="changeCategory1()" name="category1" class="controls__product">
-                        <option value="-1">--- Select a category ---</option>
+                    <select [(ngModel)]="selectedCategory1" (change)="changeCategory1()" name="category1" class="controls__category">
+                        <option [value]="-1" class="d">--- Select a category ---</option>
                         <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                     </select>
                     <select *ngIf="items1" [(ngModel)]="selectedValue1" (change)="changeItem1()" name="product1" class="controls__product">
@@ -35,7 +35,7 @@
                     <br/>
 
                     <!-- <label for="product2" class="control__label">Select a product:</label> -->
-                    <select [(ngModel)]="selectedCategory2" (change)="changeCategory2()" name="category2" class="controls__product">
+                    <select [(ngModel)]="selectedCategory2" (change)="changeCategory2()" name="category2" class="controls__category">
                         <option value="-1">--- Select a category ---</option>
                         <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                     </select>
