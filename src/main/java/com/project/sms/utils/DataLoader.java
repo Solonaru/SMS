@@ -104,37 +104,37 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 			loadData();
 		}
 
-		System.out.println("------------------------------------------------------");
-
-		Item item = itemService.findItemById(4).get();
-		System.out.println("Is the item listed: " + item.isListed());
-		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
-
-		Employee employee = (Employee) accountService.findAccountById(400000005).get();
-		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
-		System.out.println("EMPLOYEE HAS CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
-
-		System.out.println("------------------------------------------------------");
-
-		Package package1 = (Package) itemService.findItemById(26).get();
-		Iterator<? extends ILine> iterator1 = package1.createIterator();
-
-		while (iterator1.hasNext()) {
-			PackageLine packageLine = (PackageLine) iterator1.next();
-			System.out.println("PACKAGE LINE: " + packageLine.getProduct().getName());
-		}
-
-		System.out.println("------------------------------------------------------");
-
-		Recipe recipe1 = (Recipe) itemService.findItemById(24).get();
-		Iterator<? extends ILine> iterator2 = recipe1.createIterator();
-
-		while (iterator2.hasNext()) {
-			RecipeLine recipeLine = (RecipeLine) iterator2.next();
-			System.out.println("RECIPE LINE: " + recipeLine.getComponent().getName());
-		}
-
-		System.out.println("------------------------------------------------------");
+//		System.out.println("------------------------------------------------------");
+//
+//		Item item = itemService.findItemById(4).get();
+//		System.out.println("Is the item listed: " + item.isListed());
+//		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
+//
+//		Employee employee = (Employee) accountService.findAccountById(400000005).get();
+//		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
+//		System.out.println("EMPLOYEE HAS CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
+//
+//		System.out.println("------------------------------------------------------");
+//
+//		Package package1 = (Package) itemService.findItemById(26).get();
+//		Iterator<? extends ILine> iterator1 = package1.createIterator();
+//
+//		while (iterator1.hasNext()) {
+//			PackageLine packageLine = (PackageLine) iterator1.next();
+//			System.out.println("PACKAGE LINE: " + packageLine.getProduct().getName());
+//		}
+//
+//		System.out.println("------------------------------------------------------");
+//
+//		Recipe recipe1 = (Recipe) itemService.findItemById(24).get();
+//		Iterator<? extends ILine> iterator2 = recipe1.createIterator();
+//
+//		while (iterator2.hasNext()) {
+//			RecipeLine recipeLine = (RecipeLine) iterator2.next();
+//			System.out.println("RECIPE LINE: " + recipeLine.getComponent().getName());
+//		}
+//
+//		System.out.println("------------------------------------------------------");
 
 	}
 
@@ -364,6 +364,104 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware19 = new Hardware("Keyboard: Logitech K800", 51, new Date(System.currentTimeMillis()), "");
 		hardware19.setCategory(category403);
 		hardware19.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware19.jpg");
+		
+		// -----------  products to create -------------------
+		Hardware hardware20 = new Hardware("iStarUSA TC-2U/50-80", 23, new Date(System.currentTimeMillis()), "");
+		hardware20.setCategory(category305);
+		hardware20.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware20.jpg");
+		Hardware hardware21 = new Hardware(" T10 Gaming Mouse 2400 ", 73, new Date(System.currentTimeMillis()), "");
+		hardware21.setCategory(category402);
+		hardware21.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware21.jpg");
+		Hardware hardware22 = new Hardware(" Rosewill NEON M60 RGB", 50, new Date(System.currentTimeMillis()), "");
+		hardware22.setCategory(category402);
+		hardware22.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware22.jpg");
+		Hardware hardware23 = new Hardware("Razer Basilisk-RZ01-02330100-R3U1 ", 37, new Date(System.currentTimeMillis()), "");
+		hardware23.setCategory(category402);
+		hardware23.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware23.jpg");
+		Hardware hardware24 = new Hardware("RGB Gaming Mouse - CM-310-KKWO2", 45, new Date(System.currentTimeMillis()), "");
+		hardware24.setCategory(category402);
+		hardware24.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware24.jpg");
+		Hardware hardware25 = new Hardware("Rosewill NEON M55 - 6000 dpi RGB", 54, new Date(System.currentTimeMillis()), "");
+		hardware25.setCategory(category402);
+		hardware25.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware25.jpg");
+		Hardware hardware26 = new Hardware("Logitech G203 Prodigy Wired", 77, new Date(System.currentTimeMillis()), "");
+		hardware26.setCategory(category402);
+		hardware26.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware26.jpg");
+		Hardware hardware27 = new Hardware("Logitech G703 LIGHTSPEED Wireless", 85, new Date(System.currentTimeMillis()), "");
+		hardware27.setCategory(category402);
+		hardware27.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware27.jpg");
+		Hardware hardware28 = new Hardware("Logitech POWERPLAY 910-005270 ", 90, new Date(System.currentTimeMillis()), "");
+		hardware28.setCategory(category402);
+		hardware28.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware28.jpg");
+		Hardware hardware29 = new Hardware("Rosewill NEON M59", 65, new Date(System.currentTimeMillis()), "");
+		hardware29.setCategory(category402);
+		hardware29.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware29.jpg");
+		Hardware hardware30 = new Hardware("Logitech G703 LIGHTSPEED-White", 50, new Date(System.currentTimeMillis()), "");
+		hardware30.setCategory(category402);
+		hardware30.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware30.jpg");
+		
+		Hardware hardware31 = new Hardware("Professional Gaming Keyboard 8 LED", 50, new Date(System.currentTimeMillis()), "");
+		hardware31.setCategory(category403);
+		hardware31.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware31.jpg");
+		Hardware hardware32 = new Hardware("Gigabyte Mechanical Keyboard (GK-FORCE K83 RED)", 100, new Date(System.currentTimeMillis()), "");
+		hardware32.setCategory(category403);
+		hardware32.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware32.jpg");
+		Hardware hardware33 = new Hardware("Corsair K95 RGB PLATINUM Mechanical)", 99, new Date(System.currentTimeMillis()), "");
+		hardware33.setCategory(category403);
+		hardware33.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware33.jpg");
+		Hardware hardware34 = new Hardware("Corsair K95 RGB Mechanical)", 50, new Date(System.currentTimeMillis()), "");
+		hardware34.setCategory(category403);
+		hardware34.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware34.jpg");
+		Hardware hardware35 = new Hardware("Logitech G910 Orion Spark RGB Mechanical", 48, new Date(System.currentTimeMillis()), "");
+		hardware35.setCategory(category403);
+		hardware35.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware35.jpg");
+		Hardware hardware36 = new Hardware("Corsair K63 Keyboard & Lapboard Combo", 215, new Date(System.currentTimeMillis()), "");
+		hardware36.setCategory(category403);
+		hardware36.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware36.jpg");
+		Hardware hardware37 = new Hardware("Razer Huntsman Elite", 87, new Date(System.currentTimeMillis()), "");
+		hardware37.setCategory(category403);
+		hardware37.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware37.jpg");
+		Hardware hardware38 = new Hardware("Patriot Viper V730", 120, new Date(System.currentTimeMillis()), "");
+		hardware38.setCategory(category403);
+		hardware38.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware38.jpg");
+		Hardware hardware39 = new Hardware("Devastator II LED Gaming Keyboard and Mouse Combo", 200, new Date(System.currentTimeMillis()), "");
+		hardware39.setCategory(category403);
+		hardware39.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware39.jpg");
+		Hardware hardware40 = new Hardware("Tt eSPORTS Challenger", 95, new Date(System.currentTimeMillis()), "");
+		hardware40.setCategory(category403);
+		hardware40.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware40.jpg");
+		
+		Hardware hardware41 = new Hardware("KEF Porsche Design SPACE ONE", 200, new Date(System.currentTimeMillis()), "");
+		hardware41.setCategory(category401);
+		hardware41.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware41.jpg");
+		Hardware hardware42 = new Hardware("Philips SHB5950WT/27 Bluetooth Headphones", 185, new Date(System.currentTimeMillis()), "");
+		hardware42.setCategory(category401);
+		hardware42.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware42.jpg");
+		Hardware hardware43 = new Hardware("Philips SHB3075BK BASS", 170, new Date(System.currentTimeMillis()), "");
+		hardware43.setCategory(category401);
+		hardware43.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware43.jpg");
+		Hardware hardware44 = new Hardware("Bose QuietComfort 35", 150, new Date(System.currentTimeMillis()), "");
+		hardware44.setCategory(category401);
+		hardware44.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware44.jpg");
+		Hardware hardware45 = new Hardware("Klipsch Reference On-Ear II", 100, new Date(System.currentTimeMillis()), "");
+		hardware45.setCategory(category401);
+		hardware45.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware45.jpg");
+		Hardware hardware46 = new Hardware("Beats Studio3", 300, new Date(System.currentTimeMillis()), "");
+		hardware46.setCategory(category401);
+		hardware46.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware46.jpg");
+		Hardware hardware47 = new Hardware("Beats Studio3 Wireless", 490, new Date(System.currentTimeMillis()), "");
+		hardware47.setCategory(category401);
+		hardware47.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware47.jpg");
+		Hardware hardware48 = new Hardware("Bose SoundSport Free Truly", 300, new Date(System.currentTimeMillis()), "");
+		hardware48.setCategory(category401);
+		hardware48.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware48.jpg");
+		Hardware hardware49 = new Hardware("Sennheiser HD 4.50 BTNC", 90, new Date(System.currentTimeMillis()), "");
+		hardware49.setCategory(category401);
+		hardware49.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware49.jpg");
+		Hardware hardware50 = new Hardware("Sony MDR-ZX220BT", 80, new Date(System.currentTimeMillis()), "");
+		hardware50.setCategory(category401);
+		hardware50.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware50.jpg");
+		
 
 		// ***** Computer ASUS 2000 ***** //
 		RecipeLine recipeLine11 = (RecipeLine) lineFactory
@@ -669,6 +767,39 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		itemService.insertItem(hardware17);
 		itemService.insertItem(hardware18);
 		itemService.insertItem(hardware19);
+		
+		// ----------- products to persist -------------------
+		itemService.insertItem(hardware20);
+		itemService.insertItem(hardware21);
+		itemService.insertItem(hardware22);
+		itemService.insertItem(hardware23);
+		itemService.insertItem(hardware24);
+		itemService.insertItem(hardware25);
+		itemService.insertItem(hardware26);
+		itemService.insertItem(hardware27);
+		itemService.insertItem(hardware28);
+		itemService.insertItem(hardware29);
+		itemService.insertItem(hardware30);
+		itemService.insertItem(hardware31);
+		itemService.insertItem(hardware32);
+		itemService.insertItem(hardware33);
+		itemService.insertItem(hardware34);
+		itemService.insertItem(hardware35);
+		itemService.insertItem(hardware36);
+		itemService.insertItem(hardware37);
+		itemService.insertItem(hardware38);
+		itemService.insertItem(hardware39);
+		itemService.insertItem(hardware40);
+		itemService.insertItem(hardware41);
+		itemService.insertItem(hardware42);
+		itemService.insertItem(hardware43);
+		itemService.insertItem(hardware44);
+		itemService.insertItem(hardware45);
+		itemService.insertItem(hardware46);
+		itemService.insertItem(hardware47);
+		itemService.insertItem(hardware48);
+		itemService.insertItem(hardware49);
+		itemService.insertItem(hardware50);
 
 		itemService.insertItem(recipe1);
 
