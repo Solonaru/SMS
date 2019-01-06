@@ -20,6 +20,7 @@ import { ProdChartComponent } from './components/stats/prod-chart/prod-chart.com
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './components/front-office/footer/footer.component';
 import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
+import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProductPriceSalesChartComponent } from './components/stats/product-pric
     ProdChartComponent,
     FooterComponent,
     ProductPriceSalesChartComponent,
+    ProductForecastMonthComponent,
   ],
 
   imports: [

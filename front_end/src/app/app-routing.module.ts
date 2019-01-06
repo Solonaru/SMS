@@ -16,6 +16,7 @@ import { ProductChartMonthComponent } from './components/stats/product-chart-mon
 import { ProdChartComponent } from './components/stats/prod-chart/prod-chart.component';
 import { FooterComponent } from './components/front-office/footer/footer.component';
 import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
+import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,9 +31,10 @@ const routes: Routes = [
     { path: 'header', component: HeaderComponent },
     { path: 'adm', component: AdmHomeComponent },
     { path: 'product-chart-month', component: ProductChartMonthComponent },
-    { path: 'product-price-sales-chart', component: ProductPriceSalesChartComponent},
+    { path: 'product-price-sales-chart', component: ProductPriceSalesChartComponent },
+    { path: 'product-forecast-month', component: ProductForecastMonthComponent },
     { path: 'prod-chart', component: ProdChartComponent },
-    { path: 'footer', component: FooterComponent}
+    { path: 'footer', component: FooterComponent }
 ];
 
 @NgModule({

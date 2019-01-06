@@ -1,0 +1,71 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <app-header></app-header>
+
+  <main>
+
+    <section class="chart">
+      <div id="chartContainer"></div>
+    </section>
+
+    <section class="section-controls">
+      <div class="controls">
+        <p class="is-title">Settings
+          <p>
+            <form action="#" class="controls__form">
+
+              <select [(ngModel)]="selectedCategory" (change)="changeCategory()" name="category" class="controls__category">
+                <option [value]="-1" class="d">--- Select a category ---</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+              </select>
+              <select *ngIf="items" [(ngModel)]="selectedValue" (change)="changeItem()" name="product" class="controls__product">
+                <option value="-1">--- Select a product ---</option>
+                <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
+              </select>
+
+              <label *ngIf="items">
+                <input type="checkbox" [(ngModel)]="displayAverage" (change)="onDisplayAverage()" [ngModelOptions]="{standalone: true}" /> Display average
+              </label>
+
+              <br/>
+              <br/>
+
+              <!-- <div *ngIf="item" class="control">  -->
+              <div class="control">
+                <label class="label">Forecasts</label>
+                <label class="radio">
+                  <input type="radio" name="forecast" ng-control="forecast" [value]="0" [(ngModel)]="forecast" (change)="onDisplayForecast()"> No forecast
+                </label>
+
+                <br/>
+
+                <label class="radio">
+                  <input type="radio" name="forecast" ng-control="forecast" [value]="1" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Moving average
+                </label>
+
+                    <select [(ngModel)]="periods" (change)="onChangePeriod()" name="periods">
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                    </select>
+
+              </div>
+
+            </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <app-footer></app-footer>
+
+</body>

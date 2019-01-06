@@ -25,9 +25,19 @@ export class ProductStatsService {
             .pipe(map((res: Map<Number, Number>) => { return res }));
     }
 
+    getCompleteProductsStatisticDataMonth(productId: Number) {
+        return this.http.get(this.BASE_URL + 'month/complete/' + productId)
+            .pipe(map((res: Map<Number, Number>) => { return res }));
+    }
+
     getAverageFromStatisticData(statisticData: Map<Number, Number>) {
         return this.http.post<Number>(this.BASE_URL + 'average', JSON.stringify(statisticData), this.httpOptions).
             pipe(map((resp: any) => { return resp }));
+    }
+
+    getMovingAverageForecast(statisticData: Map<Number, Number>, periods: Number) {
+        return this.http.post<Number>(this.BASE_URL + 'forecast/movingAverage', {statisticData, periods },
+            this.httpOptions).pipe(map((resp: any) => { return resp }));
     }
 
     getProductsStatisticDataBasedOnPrice(productId: Number) {

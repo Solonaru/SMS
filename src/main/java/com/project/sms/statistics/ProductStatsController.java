@@ -1,7 +1,9 @@
 package com.project.sms.statistics;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -61,7 +63,62 @@ public class ProductStatsController {
 
 		return statisticData;
 	}
-	
+
+	@RequestMapping(value = "/month/complete/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getCompleteProductsStatisticDataByMonth(@PathVariable("productId") int productId) {
+		Map<Integer, Double> statisticData = this.getProductsStatisticDataByMonth(productId);
+
+		List<Integer> months = Arrays.asList(201801, 201802, 201803, 201804, 201805, 201806, 201807, 201808, 201809,
+				201810, 201811, 201900);
+
+		for (Integer month : months) {
+			if (statisticData.get(month) == null) {
+				statisticData.put(month, 0.0);
+			}
+		}
+
+		return statisticData;
+	}
+
+	@RequestMapping(value = "/forecast/movingAverage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getMovingAverageForecast(@RequestBody ForecastRequest forecastRequest) {
+		Map<Integer, Double> forecast = new TreeMap<Integer, Double>();
+		Integer lastMonth = 0;
+		int size = forecastRequest.getPeriods();
+
+		for (int i = 0; i + size <= forecastRequest.getStatisticData().size(); i++) {
+			Double sum = 0.0;
+			for (int j = i; j < i + size; j++) {
+				lastMonth = (Integer) forecastRequest.getStatisticData().keySet().toArray()[j];
+				sum += forecastRequest.getStatisticData().get(lastMonth);
+			}
+
+			forecast.put(lastMonth, Math.floor(sum / size));
+		}
+
+		return forecast;
+	}
+
+	@RequestMapping(value = "/forecast/movingAverage/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getMovingAverageForecastByProductId(@PathVariable("productId") int productId) {
+		Map<Integer, Double> statisticData = this.getCompleteProductsStatisticDataByMonth(productId);
+		Map<Integer, Double> forecast = new TreeMap<Integer, Double>();
+		Integer lastMonth = 0;
+		int size = 3;
+
+		for (int i = 0; i + size <= statisticData.size(); i++) {
+			Double sum = 0.0;
+			for (int j = i; j < i + size; j++) {
+				lastMonth = (Integer) statisticData.keySet().toArray()[j];
+				sum += statisticData.get(lastMonth);
+			}
+
+			forecast.put(lastMonth, Math.floor(sum / size));
+		}
+
+		return forecast;
+	}
+
 	@RequestMapping(value = "/month/price/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<Double, Double> getProductsStatisticDataBasedOnPriceByMonth(@PathVariable("productId") int productId) {
 		Map<Double, Double> statisticData = new TreeMap<Double, Double>();
@@ -81,7 +138,7 @@ public class ProductStatsController {
 	}
 
 	@RequestMapping(value = "/average", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Double getAverageFromStatisticData(@RequestBody Map<Integer, Double> statisticData) {		
+	public Double getAverageFromStatisticData(@RequestBody Map<Integer, Double> statisticData) {
 		Double total = 0.0;
 		Integer count = 0;
 
@@ -90,7 +147,7 @@ public class ProductStatsController {
 			count++;
 		}
 
-		return total/count;
+		return total / count;
 	}
 
 }

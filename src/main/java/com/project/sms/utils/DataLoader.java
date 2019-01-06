@@ -2,7 +2,6 @@ package com.project.sms.utils;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
-import com.project.sms.entities.lines.ILine;
 import com.project.sms.entities.lines.LineFactory;
 import com.project.sms.entities.lines.PackageLineFactory;
 import com.project.sms.entities.lines.RecipeLineFactory;
@@ -55,7 +53,6 @@ import com.project.sms.entities.subscription.ISubscriptionService;
 import com.project.sms.entities.subscription.Subscription;
 import com.project.sms.enums.ComponentType;
 import com.project.sms.enums.EmployeeStatus;
-import com.project.sms.enums.Month;
 import com.project.sms.enums.SubscriptionType;
 
 @Component
@@ -364,58 +361,69 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware19 = new Hardware("Keyboard: Logitech K800", 51, new Date(System.currentTimeMillis()), "");
 		hardware19.setCategory(category403);
 		hardware19.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware19.jpg");
-		
-		// -----------  products to create -------------------
+
+		// ----------- products to create -------------------
 		Hardware hardware20 = new Hardware("iStarUSA TC-2U/50-80", 23, new Date(System.currentTimeMillis()), "");
 		hardware20.setCategory(category305);
 		hardware20.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware20.jpg");
-		Hardware hardware21 = new Hardware(" T10 Gaming Mouse 2400 ", 73, new Date(System.currentTimeMillis()), "");
+		Hardware hardware21 = new Hardware("T10 Gaming Mouse 2400", 73, new Date(System.currentTimeMillis()), "");
 		hardware21.setCategory(category402);
 		hardware21.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware21.jpg");
-		Hardware hardware22 = new Hardware(" Rosewill NEON M60 RGB", 50, new Date(System.currentTimeMillis()), "");
+		Hardware hardware22 = new Hardware("Rosewill NEON M60 RGB", 50, new Date(System.currentTimeMillis()), "");
 		hardware22.setCategory(category402);
 		hardware22.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware22.jpg");
-		Hardware hardware23 = new Hardware("Razer Basilisk-RZ01-02330100-R3U1 ", 37, new Date(System.currentTimeMillis()), "");
+		Hardware hardware23 = new Hardware("Razer Basilisk-RZ01-02330100-R3U1", 37,
+				new Date(System.currentTimeMillis()), "");
 		hardware23.setCategory(category402);
 		hardware23.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware23.jpg");
-		Hardware hardware24 = new Hardware("RGB Gaming Mouse - CM-310-KKWO2", 45, new Date(System.currentTimeMillis()), "");
+		Hardware hardware24 = new Hardware("RGB Gaming Mouse - CM-310-KKWO2", 45, new Date(System.currentTimeMillis()),
+				"");
 		hardware24.setCategory(category402);
 		hardware24.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware24.jpg");
-		Hardware hardware25 = new Hardware("Rosewill NEON M55 - 6000 dpi RGB", 54, new Date(System.currentTimeMillis()), "");
+		Hardware hardware25 = new Hardware("Rosewill NEON M55 - 6000 dpi RGB", 54, new Date(System.currentTimeMillis()),
+				"");
 		hardware25.setCategory(category402);
 		hardware25.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware25.jpg");
 		Hardware hardware26 = new Hardware("Logitech G203 Prodigy Wired", 77, new Date(System.currentTimeMillis()), "");
 		hardware26.setCategory(category402);
 		hardware26.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware26.jpg");
-		Hardware hardware27 = new Hardware("Logitech G703 LIGHTSPEED Wireless", 85, new Date(System.currentTimeMillis()), "");
+		Hardware hardware27 = new Hardware("Logitech G703 LIGHTSPEED Wireless", 85,
+				new Date(System.currentTimeMillis()), "");
 		hardware27.setCategory(category402);
 		hardware27.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware27.jpg");
-		Hardware hardware28 = new Hardware("Logitech POWERPLAY 910-005270 ", 90, new Date(System.currentTimeMillis()), "");
+		Hardware hardware28 = new Hardware("Logitech POWERPLAY 910-005270", 90, new Date(System.currentTimeMillis()),
+				"");
 		hardware28.setCategory(category402);
 		hardware28.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware28.jpg");
 		Hardware hardware29 = new Hardware("Rosewill NEON M59", 65, new Date(System.currentTimeMillis()), "");
 		hardware29.setCategory(category402);
 		hardware29.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware29.jpg");
-		Hardware hardware30 = new Hardware("Logitech G703 LIGHTSPEED-White", 50, new Date(System.currentTimeMillis()), "");
+		Hardware hardware30 = new Hardware("Logitech G703 LIGHTSPEED-White", 50, new Date(System.currentTimeMillis()),
+				"");
 		hardware30.setCategory(category402);
 		hardware30.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware30.jpg");
-		
-		Hardware hardware31 = new Hardware("Professional Gaming Keyboard 8 LED", 50, new Date(System.currentTimeMillis()), "");
+
+		Hardware hardware31 = new Hardware("Professional Gaming Keyboard 8 LED", 50,
+				new Date(System.currentTimeMillis()), "");
 		hardware31.setCategory(category403);
 		hardware31.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware31.jpg");
-		Hardware hardware32 = new Hardware("Gigabyte Mechanical Keyboard (GK-FORCE K83 RED)", 100, new Date(System.currentTimeMillis()), "");
+		Hardware hardware32 = new Hardware("Gigabyte Mechanical Keyboard (GK-FORCE K83 RED)", 100,
+				new Date(System.currentTimeMillis()), "");
 		hardware32.setCategory(category403);
 		hardware32.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware32.jpg");
-		Hardware hardware33 = new Hardware("Corsair K95 RGB PLATINUM Mechanical)", 99, new Date(System.currentTimeMillis()), "");
+		Hardware hardware33 = new Hardware("Corsair K95 RGB PLATINUM Mechanical", 99,
+				new Date(System.currentTimeMillis()), "");
 		hardware33.setCategory(category403);
 		hardware33.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware33.jpg");
-		Hardware hardware34 = new Hardware("Corsair K95 RGB Mechanical)", 50, new Date(System.currentTimeMillis()), "");
+		Hardware hardware34 = new Hardware("Corsair K95 RGB Mechanical", 50, new Date(System.currentTimeMillis()), "");
 		hardware34.setCategory(category403);
 		hardware34.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware34.jpg");
-		Hardware hardware35 = new Hardware("Logitech G910 Orion Spark RGB Mechanical", 48, new Date(System.currentTimeMillis()), "");
+		Hardware hardware35 = new Hardware("Logitech G910 Orion Spark RGB Mechanical", 48,
+				new Date(System.currentTimeMillis()), "");
 		hardware35.setCategory(category403);
 		hardware35.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware35.jpg");
-		Hardware hardware36 = new Hardware("Corsair K63 Keyboard & Lapboard Combo", 215, new Date(System.currentTimeMillis()), "");
+		Hardware hardware36 = new Hardware("Corsair K63 Keyboard & Lapboard Combo", 215,
+				new Date(System.currentTimeMillis()), "");
 		hardware36.setCategory(category403);
 		hardware36.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware36.jpg");
 		Hardware hardware37 = new Hardware("Razer Huntsman Elite", 87, new Date(System.currentTimeMillis()), "");
@@ -424,17 +432,20 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware38 = new Hardware("Patriot Viper V730", 120, new Date(System.currentTimeMillis()), "");
 		hardware38.setCategory(category403);
 		hardware38.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware38.jpg");
-		Hardware hardware39 = new Hardware("Devastator II LED Gaming Keyboard and Mouse Combo", 200, new Date(System.currentTimeMillis()), "");
+		Hardware hardware39 = new Hardware("Devastator II LED Gaming Keyboard and Mouse Combo", 200,
+				new Date(System.currentTimeMillis()), "");
 		hardware39.setCategory(category403);
 		hardware39.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware39.jpg");
 		Hardware hardware40 = new Hardware("Tt eSPORTS Challenger", 95, new Date(System.currentTimeMillis()), "");
 		hardware40.setCategory(category403);
 		hardware40.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware40.jpg");
-		
-		Hardware hardware41 = new Hardware("KEF Porsche Design SPACE ONE", 200, new Date(System.currentTimeMillis()), "");
+
+		Hardware hardware41 = new Hardware("KEF Porsche Design SPACE ONE", 200, new Date(System.currentTimeMillis()),
+				"");
 		hardware41.setCategory(category401);
 		hardware41.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware41.jpg");
-		Hardware hardware42 = new Hardware("Philips SHB5950WT/27 Bluetooth Headphones", 185, new Date(System.currentTimeMillis()), "");
+		Hardware hardware42 = new Hardware("Philips SHB5950WT/27 Bluetooth Headphones", 185,
+				new Date(System.currentTimeMillis()), "");
 		hardware42.setCategory(category401);
 		hardware42.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware42.jpg");
 		Hardware hardware43 = new Hardware("Philips SHB3075BK BASS", 170, new Date(System.currentTimeMillis()), "");
@@ -443,7 +454,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware44 = new Hardware("Bose QuietComfort 35", 150, new Date(System.currentTimeMillis()), "");
 		hardware44.setCategory(category401);
 		hardware44.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware44.jpg");
-		Hardware hardware45 = new Hardware("Klipsch Reference On-Ear II", 100, new Date(System.currentTimeMillis()), "");
+		Hardware hardware45 = new Hardware("Klipsch Reference On-Ear II", 100, new Date(System.currentTimeMillis()),
+				"");
 		hardware45.setCategory(category401);
 		hardware45.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware45.jpg");
 		Hardware hardware46 = new Hardware("Beats Studio3", 300, new Date(System.currentTimeMillis()), "");
@@ -461,127 +473,160 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Hardware hardware50 = new Hardware("Sony MDR-ZX220BT", 80, new Date(System.currentTimeMillis()), "");
 		hardware50.setCategory(category401);
 		hardware50.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware50.jpg");
-		Hardware hardware51 = new Hardware("GIGABYTE Z390 AORUS XTREME LGA 1151",550,new Date(System.currentTimeMillis()), "");
+
+		Hardware hardware51 = new Hardware("GIGABYTE Z390 AORUS XTREME LGA 1151", 550,
+				new Date(System.currentTimeMillis()), "");
 		hardware51.setCategory(category301);
 		hardware51.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware51.jpg");
-		Hardware hardware52=new Hardware("MSI MEG Z390 GODLIKE LGA 1151",565,new Date(System.currentTimeMillis()), "");
+		Hardware hardware52 = new Hardware("MSI MEG Z390 GODLIKE LGA 1151", 565, new Date(System.currentTimeMillis()),
+				"");
 		hardware52.setCategory(category301);
 		hardware52.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware52.jpg");
-		Hardware hardware53=new Hardware("ASUS ROG Maximus XI Extreme LGA 1151",600,new Date(System.currentTimeMillis()), "");
+		Hardware hardware53 = new Hardware("ASUS ROG Maximus XI Extreme LGA 1151", 600,
+				new Date(System.currentTimeMillis()), "");
 		hardware53.setCategory(category301);
 		hardware53.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware53.jpg");
-		Hardware hardware54=new Hardware("ASRock Z390 Phantom Gaming 9 LGA 1151",270,new Date(System.currentTimeMillis()), "");
+		Hardware hardware54 = new Hardware("ASRock Z390 Phantom Gaming 9 LGA 1151", 270,
+				new Date(System.currentTimeMillis()), "");
 		hardware54.setCategory(category301);
 		hardware54.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware54.jpg");
-		Hardware hardware55=new Hardware("MSI MEG X399 CREATION sTR4 AMD X399",550,new Date(System.currentTimeMillis()), "");
+		Hardware hardware55 = new Hardware("MSI MEG X399 CREATION sTR4 AMD X399", 550,
+				new Date(System.currentTimeMillis()), "");
 		hardware55.setCategory(category301);
 		hardware55.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware55.jpg");
-		Hardware hardware56=new Hardware("Intel Core i7-8700K Coffee Lake 6-Core 3.7 GHz (4.7 GHz Turbo) LGA 1151",370,new Date(System.currentTimeMillis()), "");
+		Hardware hardware56 = new Hardware("Intel Core i7-8700K Coffee Lake", 370, new Date(System.currentTimeMillis()),
+				"");
 		hardware56.setCategory(category302);
 		hardware56.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware56.jpg");
-		Hardware hardware57=new Hardware("AMD RYZEN 7 2700X 8-Core 3.7 GHz (4.3 GHz Max Boost)",310,new Date(System.currentTimeMillis()), "");
+		Hardware hardware57 = new Hardware("AMD RYZEN 7 2700X 8-Core 3.7 GHz", 310,
+				new Date(System.currentTimeMillis()), "");
 		hardware57.setCategory(category302);
 		hardware57.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware57.jpg");
-		Hardware hardware58=new Hardware("Intel Core i5-8600K Coffee Lake 6-Core 3.6 GHz (4.3 GHz Turbo)",260,new Date(System.currentTimeMillis()), "");
+		Hardware hardware58 = new Hardware("Intel Core i5-8600K Coffee Lake", 260, new Date(System.currentTimeMillis()),
+				"");
 		hardware58.setCategory(category302);
 		hardware58.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware58.jpg");
-		Hardware hardware59=new Hardware("AMD RYZEN 5 2600X 6-Core 3.6 GHz (4.2 GHz Max Boost)",220,new Date(System.currentTimeMillis()), "");
+		Hardware hardware59 = new Hardware("AMD RYZEN 5 2600X 6-Core", 220, new Date(System.currentTimeMillis()), "");
 		hardware59.setCategory(category302);
 		hardware59.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware59.jpg");
-		Hardware hardware60=new Hardware("Intel Core i7-8700 Coffee Lake 6-Core 3.2 GHz (4.6 GHz Turbo)",305,new Date(System.currentTimeMillis()), "");
+		Hardware hardware60 = new Hardware("Intel Core i7-8700 Coffee Lake", 305, new Date(System.currentTimeMillis()),
+				"");
 		hardware60.setCategory(category302);
 		hardware60.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware60.jpg");
-		Hardware hardware61=new Hardware("G.SKILL TridentZ RGB Series 16GB (2 x 8GB) 288-Pin DDR4",140,new Date(System.currentTimeMillis()), "");
+		Hardware hardware61 = new Hardware("G.SKILL TridentZ RGB-Z Series", 140, new Date(System.currentTimeMillis()),
+				"");
 		hardware61.setCategory(category303);
 		hardware61.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware61.jpg");
-		Hardware hardware62=new Hardware("G.SKILL TridentZ RGB Series 16GB (2 x 8GB) 288-Pin DDR4",125,new Date(System.currentTimeMillis()), "");
+		Hardware hardware62 = new Hardware("G.SKILL TridentZ RGB Series", 125, new Date(System.currentTimeMillis()),
+				"");
 		hardware62.setCategory(category303);
 		hardware62.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware62.jpg");
-		Hardware hardware63=new Hardware("CORSAIR Vengeance RGB Pro 16GB (2 x 8GB) 288-Pin DDR4",140,new Date(System.currentTimeMillis()), "");
+		Hardware hardware63 = new Hardware("CORSAIR Vengeance RGB Pro 16GB", 140, new Date(System.currentTimeMillis()),
+				"");
 		hardware63.setCategory(category303);
 		hardware63.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware63.jpg");
-		Hardware hardware64=new Hardware("G.SKILL Flare X Series 16GB (2 x 8GB) 288-Pin DDR4",205,new Date(System.currentTimeMillis()), "");
+		Hardware hardware64 = new Hardware("G.SKILL Flare X Series 16GB", 205, new Date(System.currentTimeMillis()),
+				"");
 		hardware64.setCategory(category303);
 		hardware64.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware64.jpg");
-		Hardware hardware65=new Hardware("CORSAIR Vengeance RGB DRAM 16GB (2 x 8GB) 288-Pin DDR4",145,new Date(System.currentTimeMillis()), "");
+		Hardware hardware65 = new Hardware("CORSAIR Vengeance RGB4", 145, new Date(System.currentTimeMillis()), "");
 		hardware65.setCategory(category303);
 		hardware65.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware65.jpg");
-		Hardware hardware66=new Hardware("Seagate BarraCuda ST1000DM010 1TB 7200 RPM 64MB Cache",45,new Date(System.currentTimeMillis()), "");
+		Hardware hardware66 = new Hardware("Seagate BarraCuda ST1000DM010", 45, new Date(System.currentTimeMillis()),
+				"");
 		hardware66.setCategory(category304);
 		hardware66.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware66.jpg");
-		Hardware hardware67=new Hardware("Toshiba P300 3TB Desktop PC Internal Hard Drive 7200 RPM",85,new Date(System.currentTimeMillis()), "");
+		Hardware hardware67 = new Hardware("Toshiba P300 3TB Desktop PC", 85, new Date(System.currentTimeMillis()), "");
 		hardware67.setCategory(category304);
 		hardware67.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware67.jpg");
-		Hardware hardware68=new Hardware("Seagate BarraCuda ST3000DM008 3TB 7200 RPM",85,new Date(System.currentTimeMillis()), "");
+		Hardware hardware68 = new Hardware("Seagate BarraCuda ST3000DM008", 85, new Date(System.currentTimeMillis()),
+				"");
 		hardware68.setCategory(category304);
 		hardware68.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware68.jpg");
-		Hardware hardware69=new Hardware("Toshiba X300 6TB Performance & Gaming Internal Hard Drive",165,new Date(System.currentTimeMillis()), "");
+		Hardware hardware69 = new Hardware("Toshiba X300 6TB Performance & Gaming", 165,
+				new Date(System.currentTimeMillis()), "");
 		hardware69.setCategory(category304);
 		hardware69.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware69.jpg");
-		Hardware hardware70=new Hardware("WD Red 8TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s",250,new Date(System.currentTimeMillis()), "");
+		Hardware hardware70 = new Hardware("WD Red 8TB NAS Hard Disk Drive", 250, new Date(System.currentTimeMillis()),
+				"");
 		hardware70.setCategory(category304);
 		hardware70.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware70.jpg");
-		Hardware hardware71=new Hardware("CORSAIR RMx Series RM750x CP-9020179-NA 750W Power Supply",100,new Date(System.currentTimeMillis()), "");
+		Hardware hardware71 = new Hardware("CORSAIR RMx Series RM750x", 100, new Date(System.currentTimeMillis()), "");
 		hardware71.setCategory(category305);
 		hardware71.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware71.jpg");
-		Hardware hardware72=new Hardware("EVGA SuperNOVA 850 G3, 220-G3-0850-X1, 80+ GOLD",100,new Date(System.currentTimeMillis()), "");
+		Hardware hardware72 = new Hardware("EVGA SuperNOVA 850 G3", 100, new Date(System.currentTimeMillis()), "");
 		hardware72.setCategory(category305);
 		hardware72.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware72.jpg");
-		Hardware hardware73=new Hardware("EVGA 450 BT 100-BT-0450-K1 450W Power Supply",30,new Date(System.currentTimeMillis()), "");
+		Hardware hardware73 = new Hardware("EVGA 450 BT 100-BT-0450-K1", 30, new Date(System.currentTimeMillis()), "");
 		hardware73.setCategory(category305);
 		hardware73.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware73.jpg");
-		Hardware hardware74=new Hardware("CORSAIR RMx Series RM850x CP-9020180-NA 850W Power Supply",110,new Date(System.currentTimeMillis()), "");
+		Hardware hardware74 = new Hardware("CORSAIR RMx Series RM850x CP-9020180-NA", 110,
+				new Date(System.currentTimeMillis()), "");
 		hardware74.setCategory(category305);
 		hardware74.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware74.jpg");
-		Hardware hardware75=new Hardware("EVGA 500 BR 100-BR-0500-K1 500W Power Supply",40,new Date(System.currentTimeMillis()), "");
+		Hardware hardware75 = new Hardware("EVGA 500 BR 100-BR-0500-K1", 40, new Date(System.currentTimeMillis()), "");
 		hardware75.setCategory(category305);
 		hardware75.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware75.jpg");
-		Hardware hardware76=new Hardware("GIGABYTE GeForce GTX 1070 8GB WINDFORCE OC",335,new Date(System.currentTimeMillis()), "");
+		Hardware hardware76 = new Hardware("GIGABYTE GeForce GTX 1070", 335, new Date(System.currentTimeMillis()), "");
 		hardware76.setCategory(category306);
 		hardware76.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware76.jpg");
-		Hardware hardware77=new Hardware("ZOTAC GAMING GeForce RTX 2080 Ti AMP 11GB GDDR6 ",1330,new Date(System.currentTimeMillis()), "");
+		Hardware hardware77 = new Hardware("ZOTAC GAMING GeForce RTX 2080", 1330, new Date(System.currentTimeMillis()),
+				"");
 		hardware77.setCategory(category306);
 		hardware77.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware77.jpg");
-		Hardware hardware78=new Hardware("Sapphire Radeon NITRO+ RX 590 8GB GDDR5 PCI-E",260,new Date(System.currentTimeMillis()), "");
+		Hardware hardware78 = new Hardware("Sapphire Radeon NITRO+ RX 590", 260, new Date(System.currentTimeMillis()),
+				"");
 		hardware78.setCategory(category306);
 		hardware78.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware78.jpg");
-		Hardware hardware79=new Hardware("MSI GeForce GTX 1070 Ti DirectX 12 GTX 1070 Ti Titanium 8G Video Card",450,new Date(System.currentTimeMillis()), "");
+		Hardware hardware79 = new Hardware("MSI GeForce GTX 1070 Ti DirectX 12 GTX 1070", 450,
+				new Date(System.currentTimeMillis()), "");
 		hardware79.setCategory(category306);
 		hardware79.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware79.jpg");
-		Hardware hardware80=new Hardware("PowerColor Radeon RX VEGA 64 DirectX 12 AXRX VEGA 64 8GB",520,new Date(System.currentTimeMillis()), "");
+		Hardware hardware80 = new Hardware("PowerColor Radeon RX VEGA 64", 520, new Date(System.currentTimeMillis()),
+				"");
 		hardware80.setCategory(category306);
 		hardware80.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware80.jpg");
-		Hardware hardware81=new Hardware("Creative Sound Blaster Audigy2 ZS SB0350 5.1 Channels 24-bit 192KHz PCI Interface Sound Card",43,new Date(System.currentTimeMillis()), "");
+		Hardware hardware81 = new Hardware("Creative Sound Blaster Audigy2 ZS SB0350 5.1 Channels 24-bit 192KHz", 43,
+				new Date(System.currentTimeMillis()), "");
 		hardware81.setCategory(category307);
 		hardware81.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware81.jpg");
-		Hardware hardware82=new Hardware("Creative Sound Blaster Z PCIe 116dB SNR Gaming Sound Card",95,new Date(System.currentTimeMillis()), "");
+		Hardware hardware82 = new Hardware("Creative Sound Blaster Z PCIe 116dB SNR", 95,
+				new Date(System.currentTimeMillis()), "");
 		hardware82.setCategory(category307);
 		hardware82.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware82.jpg");
-		Hardware hardware83=new Hardware("Creative Sound BlasterX AE-5 RGB 5.1 Discrete / 7.1 Virtual Surround Pro Gaming PCIe Sound Card",145,new Date(System.currentTimeMillis()), "");
+		Hardware hardware83 = new Hardware("Creative Sound BlasterX AE-5 RGB 5.1 Discrete / 7.1", 145,
+				new Date(System.currentTimeMillis()), "");
 		hardware83.setCategory(category307);
 		hardware83.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware83.jpg");
-		Hardware hardware84=new Hardware("Creative Sound BlasterX G6 Hi-Res Gaming DAC and USB Sound Card",145,new Date(System.currentTimeMillis()), "");
+		Hardware hardware84 = new Hardware("Creative Sound BlasterX G6 Hi-Res", 145,
+				new Date(System.currentTimeMillis()), "");
 		hardware84.setCategory(category307);
 		hardware84.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware84.jpg");
-		Hardware hardware85=new Hardware("ASUS XONAR DGX 5.1 Channels PCI Express x1 Interface Gaming Audio Card",40,new Date(System.currentTimeMillis()), "");
+		Hardware hardware85 = new Hardware("ASUS XONAR DGX 5.1 Channels PCI Express x1", 40,
+				new Date(System.currentTimeMillis()), "");
 		hardware85.setCategory(category307);
 		hardware85.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware85.jpg");
-		Hardware hardware86=new Hardware("Intel EXPI9301CTBLK 10/100/1000Mbps PCI-Express Network Adapter - OEM",32,new Date(System.currentTimeMillis()), "");
+		Hardware hardware86 = new Hardware("Intel EXPI9301CTBLK 10/100/1000Mbps", 32,
+				new Date(System.currentTimeMillis()), "");
 		hardware86.setCategory(category308);
 		hardware86.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware86.jpg");
-		Hardware hardware87=new Hardware("StarTech ST100SLP 1 Port Low Profile PCI / PCI-X 10/100 Mbps Ethernet Network Adapter Card",12,new Date(System.currentTimeMillis()), "");
+		Hardware hardware87 = new Hardware("StarTech ST100SLP 1 Port Low Profile PCI / PCI-X 10/100", 12,
+				new Date(System.currentTimeMillis()), "");
 		hardware87.setCategory(category308);
 		hardware87.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware87.jpg");
-		Hardware hardware88=new Hardware("StarTech USB433ACD1X1 USB Wi-Fi Adapter - AC600 - Dual-Band Nano USB Wireless Network Adapter",24,new Date(System.currentTimeMillis()), "");
+		Hardware hardware88 = new Hardware("StarTech USB433ACD1X1 USB Wi-Fi Adapter - AC600r", 24,
+				new Date(System.currentTimeMillis()), "");
 		hardware88.setCategory(category308);
 		hardware88.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware88.jpg");
-		Hardware hardware89=new Hardware("Intel EXPI9301CT 10/100/1000Mbps PCI-Express Desktop Adapter Gigabit CT",35,new Date(System.currentTimeMillis()), "");
+		Hardware hardware89 = new Hardware("Intel EXPI9301CT 10/100/1000Mbps", 35, new Date(System.currentTimeMillis()),
+				"");
 		hardware89.setCategory(category308);
 		hardware89.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware89.jpg");
-		Hardware hardware90=new Hardware("TP-LINK Archer T9E PCI Express AC1900 Wireless Dual Band PCI Express",70,new Date(System.currentTimeMillis()), "");
+		Hardware hardware90 = new Hardware("TP-LINK Archer T9E PCI Express AC1900", 70,
+				new Date(System.currentTimeMillis()), "");
 		hardware90.setCategory(category308);
 		hardware90.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware90.jpg");
-		
+
 		// ***** Computer ASUS 2000 ***** //
 		RecipeLine recipeLine11 = (RecipeLine) lineFactory
 				.createLine(new RecipeLineFactory(ComponentType.MOTHERBOARD, 1));
@@ -717,6 +762,81 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		items.add(hardware18);
 		items.add(hardware19);
 
+		// --------------- new items --------------------
+		items.add(hardware20);
+		items.add(hardware21);
+		items.add(hardware22);
+		items.add(hardware23);
+		items.add(hardware24);
+		items.add(hardware25);
+		items.add(hardware26);
+		items.add(hardware27);
+		items.add(hardware28);
+		items.add(hardware29);
+		items.add(hardware30);
+		items.add(hardware31);
+		items.add(hardware32);
+		items.add(hardware33);
+		items.add(hardware34);
+		items.add(hardware35);
+		items.add(hardware36);
+		items.add(hardware37);
+		items.add(hardware38);
+		items.add(hardware39);
+		items.add(hardware40);
+		items.add(hardware41);
+		items.add(hardware42);
+		items.add(hardware43);
+		items.add(hardware44);
+		items.add(hardware45);
+		items.add(hardware46);
+		items.add(hardware47);
+		items.add(hardware48);
+		items.add(hardware49);
+		items.add(hardware50);
+
+		// ------------ newer items --------------
+		items.add(hardware51);
+		items.add(hardware52);
+		items.add(hardware53);
+		items.add(hardware54);
+		items.add(hardware55);
+		items.add(hardware56);
+		items.add(hardware57);
+		items.add(hardware58);
+		items.add(hardware59);
+		items.add(hardware60);
+		items.add(hardware61);
+		items.add(hardware62);
+		items.add(hardware63);
+		items.add(hardware64);
+		items.add(hardware65);
+		items.add(hardware66);
+		items.add(hardware67);
+		items.add(hardware68);
+		items.add(hardware69);
+		items.add(hardware70);
+		items.add(hardware71);
+		items.add(hardware72);
+		items.add(hardware73);
+		items.add(hardware74);
+		items.add(hardware75);
+		items.add(hardware76);
+		items.add(hardware77);
+		items.add(hardware78);
+		items.add(hardware79);
+		items.add(hardware80);
+		items.add(hardware81);
+		items.add(hardware82);
+		items.add(hardware83);
+		items.add(hardware84);
+		items.add(hardware85);
+		items.add(hardware86);
+		items.add(hardware87);
+		items.add(hardware88);
+		items.add(hardware89);
+		items.add(hardware90);
+
 		// ***** Recipes *****
 		items.add(recipe1);
 		items.add(recipe2);
@@ -742,7 +862,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 //		
 //		System.exit(0);
 
-		List<CartLine> cartLines = objectGenerator.genCartLines(items, 1000);
+		List<CartLine> cartLines = objectGenerator.genCartLines(items, 3000);
 		Object[] completeOrders = objectGenerator.genCompleteOrders(cartLines, customers);
 		List<Cart> carts = (List<Cart>) completeOrders[0];
 		List<Orders> orders = (List<Orders>) completeOrders[1];
@@ -773,6 +893,83 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		prices.add(180.0);
 		prices.add(310.0);
 
+		// ******* new prices *******
+		prices.add(500.0);
+		prices.add(120.0);
+		prices.add(130.0);
+		prices.add(250.0);
+		prices.add(135.0);
+		prices.add(80.0);
+		prices.add(82.0);
+		prices.add(152.0);
+		prices.add(172.0);
+		prices.add(300.0);
+
+		prices.add(500.0);
+		prices.add(330.0);
+		prices.add(230.0);
+		prices.add(130.0);
+		prices.add(280.0);
+		prices.add(390.0);
+		prices.add(288.0);
+		prices.add(296.0);
+		prices.add(190.0);
+		prices.add(600.0);
+
+		prices.add(550.0);
+		prices.add(452.0);
+		prices.add(800.0);
+		prices.add(300.0);
+		prices.add(500.0);
+		prices.add(830.0);
+		prices.add(330.0);
+		prices.add(630.0);
+		prices.add(230.0);
+		prices.add(430.0);
+		prices.add(520.0);
+
+		// --------- newer prices ---------
+		prices.add(750.0);
+		prices.add(490.0);
+		prices.add(900.0);
+		prices.add(640.0);
+		prices.add(660.0);
+		prices.add(340.0);
+		prices.add(400.0);
+		prices.add(600.0);
+		prices.add(890.0);
+		prices.add(340.0);
+		prices.add(200.0);
+		prices.add(640.0);
+		prices.add(643.0);
+		prices.add(432.0);
+		prices.add(234.0);
+		prices.add(800.0);
+		prices.add(1250.0);
+		prices.add(750.0);
+		prices.add(850.0);
+		prices.add(962.0);
+		prices.add(800.0);
+		prices.add(900.0);
+		prices.add(1020.0);
+		prices.add(1235.0);
+		prices.add(952.0);
+		prices.add(750.0);
+		prices.add(825.0);
+		prices.add(824.0);
+		prices.add(500.0);
+		prices.add(520.0);
+		prices.add(722.0);
+		prices.add(420.0);
+		prices.add(450.0);
+		prices.add(290.0);
+		prices.add(345.0);
+		prices.add(231.0);
+		prices.add(200.0);
+		prices.add(195.0);
+		prices.add(500.0);
+		prices.add(660.0);
+
 		// ***** Components *****
 		prices.add(260.0);
 		prices.add(210.0);
@@ -787,6 +984,24 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// ***** Packages *****
 		prices.add(7500.0);
+
+		List<CatalogueItem> catalogueLines1 = objectGenerator.genCatalogueLines(items, prices);
+		Catalogue catalogue1 = objectGenerator.genCatalogue(catalogueLines1, 2, 2018);
+
+		List<CatalogueItem> catalogueLines2 = objectGenerator.genCatalogueLines(items, prices);
+		Catalogue catalogue2 = objectGenerator.genCatalogue(catalogueLines2, 3, 2018);
+
+		List<CatalogueItem> catalogueLines3 = objectGenerator.genCatalogueLines(items, prices);
+		Catalogue catalogue3 = objectGenerator.genCatalogue(catalogueLines3, 4, 2018);
+
+		List<CatalogueItem> catalogueLines4 = objectGenerator.genCatalogueLines(items, prices);
+		Catalogue catalogue4 = objectGenerator.genCatalogue(catalogueLines4, 5, 2018);
+
+		List<CatalogueItem> catalogueLines5 = objectGenerator.genCatalogueLines(items, prices);
+		Catalogue catalogue5 = objectGenerator.genCatalogue(catalogueLines5, 6, 2018);
+
+		List<CatalogueItem> catalogueLines6 = objectGenerator.genCatalogueLines(items, prices);
+		Catalogue catalogue6 = objectGenerator.genCatalogue(catalogueLines6, 7, 2018);
 
 		List<CatalogueItem> catalogueLines7 = objectGenerator.genCatalogueLines(items, prices);
 		Catalogue catalogue7 = objectGenerator.genCatalogue(catalogueLines7, 8, 2018);
@@ -886,7 +1101,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		itemService.insertItem(hardware17);
 		itemService.insertItem(hardware18);
 		itemService.insertItem(hardware19);
-		
+
 		// ----------- products to persist -------------------
 		itemService.insertItem(hardware20);
 		itemService.insertItem(hardware21);
@@ -919,6 +1134,47 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		itemService.insertItem(hardware48);
 		itemService.insertItem(hardware49);
 		itemService.insertItem(hardware50);
+
+		itemService.insertItem(hardware51);
+		itemService.insertItem(hardware52);
+		itemService.insertItem(hardware53);
+		itemService.insertItem(hardware54);
+		itemService.insertItem(hardware55);
+		itemService.insertItem(hardware56);
+		itemService.insertItem(hardware57);
+		itemService.insertItem(hardware58);
+		itemService.insertItem(hardware59);
+		itemService.insertItem(hardware60);
+		itemService.insertItem(hardware61);
+		itemService.insertItem(hardware62);
+		itemService.insertItem(hardware63);
+		itemService.insertItem(hardware64);
+		itemService.insertItem(hardware65);
+		itemService.insertItem(hardware66);
+		itemService.insertItem(hardware67);
+		itemService.insertItem(hardware68);
+		itemService.insertItem(hardware69);
+		itemService.insertItem(hardware70);
+		itemService.insertItem(hardware71);
+		itemService.insertItem(hardware72);
+		itemService.insertItem(hardware73);
+		itemService.insertItem(hardware74);
+		itemService.insertItem(hardware75);
+		itemService.insertItem(hardware76);
+		itemService.insertItem(hardware77);
+		itemService.insertItem(hardware78);
+		itemService.insertItem(hardware79);
+		itemService.insertItem(hardware80);
+		itemService.insertItem(hardware81);
+		itemService.insertItem(hardware82);
+		itemService.insertItem(hardware83);
+		itemService.insertItem(hardware84);
+		itemService.insertItem(hardware85);
+		itemService.insertItem(hardware86);
+		itemService.insertItem(hardware87);
+		itemService.insertItem(hardware88);
+		itemService.insertItem(hardware89);
+		itemService.insertItem(hardware90);
 
 		itemService.insertItem(recipe1);
 
@@ -964,6 +1220,36 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		for (Payment payment : payments) {
 			paymentService.insertPayment(payment);
+		}
+
+		catalogueService.insertCatalogue(catalogue1);
+		for (CatalogueItem catalogueLine : catalogueLines1) {
+			catalogueItemService.insertCatalogueItem(catalogueLine);
+		}
+
+		catalogueService.insertCatalogue(catalogue2);
+		for (CatalogueItem catalogueLine : catalogueLines2) {
+			catalogueItemService.insertCatalogueItem(catalogueLine);
+		}
+
+		catalogueService.insertCatalogue(catalogue3);
+		for (CatalogueItem catalogueLine : catalogueLines3) {
+			catalogueItemService.insertCatalogueItem(catalogueLine);
+		}
+
+		catalogueService.insertCatalogue(catalogue4);
+		for (CatalogueItem catalogueLine : catalogueLines4) {
+			catalogueItemService.insertCatalogueItem(catalogueLine);
+		}
+
+		catalogueService.insertCatalogue(catalogue5);
+		for (CatalogueItem catalogueLine : catalogueLines5) {
+			catalogueItemService.insertCatalogueItem(catalogueLine);
+		}
+
+		catalogueService.insertCatalogue(catalogue6);
+		for (CatalogueItem catalogueLine : catalogueLines6) {
+			catalogueItemService.insertCatalogueItem(catalogueLine);
 		}
 
 		catalogueService.insertCatalogue(catalogue7);

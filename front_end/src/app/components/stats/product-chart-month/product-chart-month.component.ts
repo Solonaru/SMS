@@ -57,18 +57,18 @@ export class ProductChartMonthComponent implements OnInit {
   // }
 
   populateChart(productId: Number, displayAverage, num, dataPoints) {
-    this.productStatsService.getProductsStatisticDataMonth(productId).subscribe(statData => {
+    this.productStatsService.getCompleteProductsStatisticDataMonth(productId).subscribe(statData => {
       this.productStatsService.getAverageFromStatisticData(statData).subscribe(average => {
 
         if (displayAverage) {
           switch (num) {
             case 1:
               this.averageValue1 = average;
-              this.averageLabel1 = "Average = " + this.averageValue1;
+              this.averageLabel1 = "" + Math.round(this.averageValue1);
               break;
             case 2:
               this.averageValue2 = average;
-              this.averageLabel2 = "Average = " + this.averageValue2;
+              this.averageLabel2 = "" + Math.round(this.averageValue2);
               break;
           }
         }
