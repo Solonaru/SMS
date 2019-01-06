@@ -36,9 +36,10 @@
               <br/>
               <br/>
 
-              <!-- <div *ngIf="item" class="control">  -->
-              <div class="control">
-                <label class="label">Forecasts</label>
+              <div *ngIf="item" class="control">
+                <div class="label">
+                  <label>Forecasts</label>
+                </div>
                 <label class="radio">
                   <input type="radio" name="forecast" ng-control="forecast" [value]="0" [(ngModel)]="forecast" (change)="onDisplayForecast()"> No forecast
                 </label>
@@ -49,7 +50,7 @@
                   <input type="radio" name="forecast" ng-control="forecast" [value]="1" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Moving average
                 </label>
 
-                <select [(ngModel)]="periods" (change)="onChangePeriod()" name="periods">
+                <select [(ngModel)]="periodsSMA" (change)="onChangePeriodSMA()" name="periodsSMA" class="periods">
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
@@ -64,13 +65,22 @@
                   <input type="radio" name="forecast" ng-control="forecast" [value]="2" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Weighted moving average
                 </label>
 
+                <select [(ngModel)]="periodsWMA" (change)="onChangePeriodWMA()" name="periodsWMA" class="periods">
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+                <span> periods</span>
+
                 <br/>
 
-                <label class="radio">
+                <label class="radio avg">
                   <input type="radio" name="forecast" ng-control="forecast" [value]="3" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Exponential moving average
                 </label>
 
-                <input [(ngModel)]="alpha" (change)="onChangeAlpha()" type="number" name="alpha" step="0.01" min="0.01" max="1">
+                <input [(ngModel)]="alpha" (change)="onChangeAlpha()" type="number" class="average" name="alpha" step="0.01" min="0.01" max="1">
 
               </div>
 

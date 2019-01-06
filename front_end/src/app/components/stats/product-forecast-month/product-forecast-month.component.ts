@@ -30,6 +30,8 @@ export class ProductForecastMonthComponent implements OnInit {
   private dataPointsForecast = [];
   private forecast: Number = 0;
   private periods = 3;
+  private periodsSMA = 3;
+  private periodsWMA = 3;
   private alpha = 0.5;
 
   constructor(private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService) { }
@@ -145,7 +147,6 @@ export class ProductForecastMonthComponent implements OnInit {
 
     for (var key in statData) {
       if (statData.hasOwnProperty(key)) {
-        // console.log(key + " -> " + statData[key]);
         y = <any>statData[key];
         x = <any>key;
         month = x % 100;
@@ -174,11 +175,29 @@ export class ProductForecastMonthComponent implements OnInit {
   }
 
   onDisplayForecast() {
+    switch (this.forecast) {
+      case 1:
+        this.periods = this.periodsSMA;
+        break;
+
+      case 2:
+        this.periods = this.periodsWMA;
+        break;
+    }
+
     this.changeItem();
   }
 
-  onChangePeriod() {
-    if (this.forecast == 1 || this.forecast == 2) {
+  onChangePeriodSMA() {
+    if (this.forecast == 1) {
+      this.periods = this.periodsSMA;
+      this.changeItem();
+    }
+  }
+
+  onChangePeriodWMA() {
+    this.periods = this.periodsWMA;
+    if (this.forecast == 2) {
       this.changeItem();
     }
   }
@@ -186,7 +205,6 @@ export class ProductForecastMonthComponent implements OnInit {
   onChangeAlpha() {
     var a = this.alpha;
     setTimeout(() => {
-      console.log(a + " and " + this.alpha);
       if (this.forecast == 3 && a == this.alpha) {
         this.changeItem();
       }
