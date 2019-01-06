@@ -36,7 +36,17 @@ export class ProductStatsService {
     }
 
     getMovingAverageForecast(statisticData: Map<Number, Number>, periods: Number) {
-        return this.http.post<Number>(this.BASE_URL + 'forecast/movingAverage', {statisticData, periods },
+        return this.http.post<Number>(this.BASE_URL + 'forecast/movingAverage', { statisticData, periods },
+            this.httpOptions).pipe(map((resp: any) => { return resp }));
+    }
+
+    getWeightedMovingAverageForecast(statisticData: Map<Number, Number>, periods: Number) {
+        return this.http.post<Number>(this.BASE_URL + 'forecast/weightedMovingAverage', { statisticData, periods },
+            this.httpOptions).pipe(map((resp: any) => { return resp }));
+    }
+
+    getExponentialMovingAverageForecast(statisticData: Map<Number, Number>, periods: Number) {
+        return this.http.post<Number>(this.BASE_URL + 'forecast/exponentialMovingAverage', { statisticData, periods },
             this.httpOptions).pipe(map((resp: any) => { return resp }));
     }
 

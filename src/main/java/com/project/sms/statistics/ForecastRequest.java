@@ -2,17 +2,17 @@ package com.project.sms.statistics;
 
 import java.util.Map;
 
-public class ForecastRequest {
+class ForecastRequest {
 
 	private Map<Integer, Double> statisticData;
-	private Integer periods;
+	private Double periods;
 
 	// ----- Getters and Setters -----
 	public Map<Integer, Double> getStatisticData() {
 		return statisticData;
 	}
 
-	public Integer getPeriods() {
+	public Double getPeriods() {
 		return periods;
 	}
 

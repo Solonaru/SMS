@@ -30,6 +30,7 @@ export class ProductForecastMonthComponent implements OnInit {
   private dataPointsForecast = [];
   private forecast: Number = 0;
   private periods = 3;
+  private alpha = 0.5;
 
   constructor(private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService) { }
 
@@ -53,6 +54,22 @@ export class ProductForecastMonthComponent implements OnInit {
         switch (this.forecast) {
           case 1:
             this.productStatsService.getMovingAverageForecast(statData, this.periods).subscribe(forecastData => {
+              this.generateData(this.dataPoints, statData);
+              this.generateData(this.dataPointsForecast, forecastData);
+              this.generateChart();
+            });
+            break;
+
+          case 2:
+            this.productStatsService.getWeightedMovingAverageForecast(statData, this.periods).subscribe(forecastData => {
+              this.generateData(this.dataPoints, statData);
+              this.generateData(this.dataPointsForecast, forecastData);
+              this.generateChart();
+            });
+            break;
+
+          case 3:
+            this.productStatsService.getExponentialMovingAverageForecast(statData, this.alpha).subscribe(forecastData => {
               this.generateData(this.dataPoints, statData);
               this.generateData(this.dataPointsForecast, forecastData);
               this.generateChart();
@@ -161,9 +178,19 @@ export class ProductForecastMonthComponent implements OnInit {
   }
 
   onChangePeriod() {
-    if (this.forecast == 1) {
+    if (this.forecast == 1 || this.forecast == 2) {
       this.changeItem();
     }
+  }
+
+  onChangeAlpha() {
+    var a = this.alpha;
+    setTimeout(() => {
+      console.log(a + " and " + this.alpha);
+      if (this.forecast == 3 && a == this.alpha) {
+        this.changeItem();
+      }
+    }, 500);
   }
 
   changeCategory() {

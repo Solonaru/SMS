@@ -84,7 +84,7 @@ public class ProductStatsController {
 	public Map<Integer, Double> getMovingAverageForecast(@RequestBody ForecastRequest forecastRequest) {
 		Map<Integer, Double> forecast = new TreeMap<Integer, Double>();
 		Integer lastMonth = 0;
-		int size = forecastRequest.getPeriods();
+		Double size = forecastRequest.getPeriods();
 
 		for (int i = 0; i + size <= forecastRequest.getStatisticData().size(); i++) {
 			Double sum = 0.0;
@@ -99,21 +99,42 @@ public class ProductStatsController {
 		return forecast;
 	}
 
-	@RequestMapping(value = "/forecast/movingAverage/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<Integer, Double> getMovingAverageForecastByProductId(@PathVariable("productId") int productId) {
-		Map<Integer, Double> statisticData = this.getCompleteProductsStatisticDataByMonth(productId);
+	@RequestMapping(value = "/forecast/weightedMovingAverage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getWeightedMovingAverageForecast(@RequestBody ForecastRequest forecastRequest) {
 		Map<Integer, Double> forecast = new TreeMap<Integer, Double>();
 		Integer lastMonth = 0;
-		int size = 3;
+		Double size = forecastRequest.getPeriods();
 
-		for (int i = 0; i + size <= statisticData.size(); i++) {
+		for (int i = 0; i + size <= forecastRequest.getStatisticData().size(); i++) {
 			Double sum = 0.0;
+			Integer weight = 0;
+			Integer totalWeight = 0;
 			for (int j = i; j < i + size; j++) {
-				lastMonth = (Integer) statisticData.keySet().toArray()[j];
-				sum += statisticData.get(lastMonth);
+				weight++;
+				totalWeight += weight;
+				lastMonth = (Integer) forecastRequest.getStatisticData().keySet().toArray()[j];
+				sum += weight * forecastRequest.getStatisticData().get(lastMonth);
 			}
 
-			forecast.put(lastMonth, Math.floor(sum / size));
+			forecast.put(lastMonth, Math.floor(sum / totalWeight));
+		}
+
+		return forecast;
+	}
+
+	@RequestMapping(value = "/forecast/exponentialMovingAverage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getExponentialMovingAverageForecast(@RequestBody ForecastRequest forecastRequest) {
+		Map<Integer, Double> forecast = new TreeMap<Integer, Double>();
+		Double alpha = forecastRequest.getPeriods();
+		System.out.println("ALPHA: " + alpha);
+		Double average = 0.0;
+
+		ExponentialMovingAverage ema = new ExponentialMovingAverage(alpha);
+
+		for (Map.Entry<Integer, Double> entry : forecastRequest.getStatisticData().entrySet()) {
+			average = ema.getAverage(entry.getValue());
+			forecast.put(entry.getKey(), average);
+			System.out.println("AVERAGE: " + average);
 		}
 
 		return forecast;
