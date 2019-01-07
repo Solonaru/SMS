@@ -46,6 +46,7 @@ import com.project.sms.entities.order.Payment;
 import com.project.sms.entities.pack.IPackageLineService;
 import com.project.sms.entities.pack.Package;
 import com.project.sms.entities.pack.PackageLine;
+import com.project.sms.entities.pack.SimplePackage;
 import com.project.sms.entities.recipe.IRecipeLineService;
 import com.project.sms.entities.recipe.Recipe;
 import com.project.sms.entities.recipe.RecipeLine;
@@ -114,20 +115,18 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 //		System.out.println("------------------------------------------------------");
 //
 //		Package package1 = (Package) itemService.findItemById(26).get();
-//		Iterator<? extends ILine> iterator1 = package1.createIterator();
+//		Iterator<? extends ILine> iteratorPackageLines = package1.createIterator();
 //
-//		while (iterator1.hasNext()) {
-//			PackageLine packageLine = (PackageLine) iterator1.next();
+//		while (iteratorPackageLines.hasNext()) {
+//			PackageLine packageLine = (PackageLine) iteratorPackageLines.next();
 //			System.out.println("PACKAGE LINE: " + packageLine.getProduct().getName());
 //		}
 //
-//		System.out.println("------------------------------------------------------");
-//
 //		Recipe recipe1 = (Recipe) itemService.findItemById(24).get();
-//		Iterator<? extends ILine> iterator2 = recipe1.createIterator();
+//		Iterator<? extends ILine> iteratorRecipeLines = recipe1.createIterator();
 //
-//		while (iterator2.hasNext()) {
-//			RecipeLine recipeLine = (RecipeLine) iterator2.next();
+//		while (iteratorRecipeLines.hasNext()) {
+//			RecipeLine recipeLine = (RecipeLine) iteratorRecipeLines.next();
 //			System.out.println("RECIPE LINE: " + recipeLine.getComponent().getName());
 //		}
 //
@@ -723,6 +722,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		package1.addLine(packageLine2);
 		package1.addLine(packageLine3);
 
+		SimplePackage simplePackage1 = new SimplePackage("Gaming starter pack", 15,
+				new Date(System.currentTimeMillis()), "");
+		simplePackage1.addComponent(hardware34);
+		simplePackage1.addComponent(hardware17);
+
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
 
@@ -1205,6 +1209,8 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		packageLineService.insertPackageLine(packageLine1);
 		packageLineService.insertPackageLine(packageLine2);
 		packageLineService.insertPackageLine(packageLine3);
+
+		itemService.insertItem(simplePackage1);
 
 		for (Cart cart : carts) {
 			cartService.insertCart(cart);

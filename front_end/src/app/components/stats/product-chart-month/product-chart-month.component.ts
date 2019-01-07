@@ -152,7 +152,6 @@ export class ProductChartMonthComponent implements OnInit {
 
     for (var key in statData) {
       if (statData.hasOwnProperty(key)) {
-        console.log(key + " -> " + statData[key]);
         y = <any>statData[key];
         x = <any>key;
         month = x % 100;
