@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     document.querySelector(".sidebar-list").classList.toggle("show");
+    document.querySelector(".sidebar").classList.toggle("biggerZ");
   }
 
 }
