@@ -10,6 +10,11 @@ html {
   transform: scaleY(1) !important;
   visibility: visible !important;
   opacity: 1 !important;
+  z-index: 100 !important;
+}
+
+.biggerZ {
+  z-index: 100 !important;
 }
 
 .center, .left, .right {
@@ -116,8 +121,8 @@ html {
   top: 10.4rem;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 5;
   background-color: transparent;
+  z-index: -1;
 }
 
 .sidebar-list {
@@ -128,6 +133,7 @@ html {
   background-color: #fff;
   transform: scaleY(0);
   transition: all .3s ease;
+  z-index: -1;
 }
 
 .sidebar-item {
