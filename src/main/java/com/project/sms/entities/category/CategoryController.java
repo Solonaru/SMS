@@ -1,5 +1,6 @@
 package com.project.sms.entities.category;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,22 @@ public class CategoryController {
 		List<Category> categories = categoryService.findAllCategories();
 		Collections.sort(categories);
 		return categories;
+	}
+
+	@RequestMapping(value = "/all/noParent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Category> getNoParentCategories() {
+		dataDisplay.printCrudInfo();
+		List<Category> categories = categoryService.findAllCategories();
+		List<Category> noParentCategories = new ArrayList<Category>();
+
+		for (Category category : categories) {
+			if (category.getChildCategories().size() == 0) {
+				noParentCategories.add(category);
+			}
+		}
+
+		Collections.sort(noParentCategories);
+		return noParentCategories;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

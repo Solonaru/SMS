@@ -6,21 +6,20 @@ import { CategoryService } from '../../../providers/services/category.service';
 import { ItemService } from '../../../providers/services/item.service';
 import { ProductStatsService } from '../../../providers/services/productstats.service';
 import { CommonStatsService } from '../../../providers/services/commonstats.service';
+import { CategoryStatsService } from '../../../providers/services/categoriesstats.service';
 
 @Component({
-  selector: 'app-product-forecast-month',
-  templateUrl: './product-forecast-month.component.html',
-  styleUrls: ['./product-forecast-month.component.css']
+  selector: 'app-category-forecast-month',
+  templateUrl: './category-forecast-month.component.html',
+  styleUrls: ['./category-forecast-month.component.css']
 })
-export class ProductForecastMonthComponent implements OnInit {
+export class CategoryForecastMonthComponent implements OnInit {
 
   categories: Category[];
   productsStatisticDataMonth: Map<Number, Number>;
 
-  items: Item[];
-  item: Item;
+  category: Category;
   private selectedCategory;
-  private selectedValue;
 
   private displayAverage: boolean = true;
 
@@ -35,7 +34,7 @@ export class ProductForecastMonthComponent implements OnInit {
   private periodsWMA = 3;
   private alpha = 0.5;
 
-  constructor(private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService, private commonStatsService: CommonStatsService) { }
+  constructor(private categoryService: CategoryService, private categoryStatsService: CategoryStatsService, private commonStatsService: CommonStatsService) { }
 
   ngOnInit() {
     this.populateCategories();
@@ -45,8 +44,8 @@ export class ProductForecastMonthComponent implements OnInit {
     this.categoryService.getCategories().subscribe(data => { this.categories = data });
   }
 
-  populateChart(productId: Number, displayAverage) {
-    this.productStatsService.getCompleteProductsStatisticDataMonth(productId).subscribe(statData => {
+  populateChart(categoryId: Number, displayAverage) {
+    this.categoryStatsService.getCompleteCategoriesStatisticDataMonth(categoryId).subscribe(statData => {
       this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
 
         if (displayAverage) {
@@ -94,7 +93,7 @@ export class ProductForecastMonthComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Product Sales by Month"
+        text: "Category Sales by Month"
       },
       axisX: {
         title: "Month",
@@ -159,21 +158,21 @@ export class ProductForecastMonthComponent implements OnInit {
 
   }
 
-  changeItem() {
+  changeCategory() {
     this.averageValue = 0;
     this.averageLabel = "";
     this.dataPoints = [];
     this.dataPointsForecast = [];
 
-    this.itemService.getItemById(this.selectedValue).subscribe(data => {
-      this.item = data;
-      this.populateChart(this.item.id, this.displayAverage);
+    this.categoryService.getCategoryById(this.selectedCategory).subscribe(data => {
+      this.category = data;
+      this.populateChart(this.category.id, this.displayAverage);
     });
   }
 
   onDisplayAverage() {
-    if (this.item) {
-      this.changeItem();
+    if (this.category) {
+      this.changeCategory();
     }
   }
 
@@ -188,20 +187,20 @@ export class ProductForecastMonthComponent implements OnInit {
         break;
     }
 
-    this.changeItem();
+    this.changeCategory();
   }
 
   onChangePeriodSMA() {
     if (this.forecast == 1) {
       this.periods = this.periodsSMA;
-      this.changeItem();
+      this.changeCategory();
     }
   }
 
   onChangePeriodWMA() {
     this.periods = this.periodsWMA;
     if (this.forecast == 2) {
-      this.changeItem();
+      this.changeCategory();
     }
   }
 
@@ -209,13 +208,9 @@ export class ProductForecastMonthComponent implements OnInit {
     var a = this.alpha;
     setTimeout(() => {
       if (this.forecast == 3 && a == this.alpha) {
-        this.changeItem();
+        this.changeCategory();
       }
     }, 500);
-  }
-
-  changeCategory() {
-    this.itemService.getListedItemsByCategoryId(this.selectedCategory).subscribe(data => { this.items = data });
   }
 
 }

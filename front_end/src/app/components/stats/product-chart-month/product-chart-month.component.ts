@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ProductStatsService } from '../../../providers/services/productstats.service';
 import { Category } from '../../../entities/category';
 import { CategoryService } from '../../../providers/services/category.service';
+import { CommonStatsService } from '../../../providers/services/commonstats.service';
 
 @Component({
   selector: 'app-product-chart-month',
@@ -41,24 +42,19 @@ export class ProductChartMonthComponent implements OnInit {
   private averageLabel2 = "";
   private dataPoints2 = [];
 
-  constructor(private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService, private router: Router) { }
+  constructor(private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService, private commonStatsService: CommonStatsService, private router: Router) { }
 
   ngOnInit() {
     this.populateCategories();
-    // this.populateItems();
   }
 
   populateCategories() {
-    this.categoryService.getCategories().subscribe(data => {this.categories = data});
+    this.categoryService.getCategories().subscribe(data => { this.categories = data });
   }
-
-  // populateItems() {
-  //   this.itemService.getItems().subscribe(data => { this.items = data; });
-  // }
 
   populateChart(productId: Number, displayAverage, num, dataPoints) {
     this.productStatsService.getCompleteProductsStatisticDataMonth(productId).subscribe(statData => {
-      this.productStatsService.getAverageFromStatisticData(statData).subscribe(average => {
+      this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
 
         if (displayAverage) {
           switch (num) {
@@ -174,7 +170,9 @@ export class ProductChartMonthComponent implements OnInit {
   }
 
   onDisplayAverage1() {
-    this.changeItem1();
+    if (this.item1) {
+      this.changeItem1();
+    }
   }
 
   changeItem2() {
@@ -189,16 +187,18 @@ export class ProductChartMonthComponent implements OnInit {
   }
 
   onDisplayAverage2() {
-    this.changeItem2();
+    if (this.item2) {
+      this.changeItem2();
+    }
   }
 
 
   changeCategory1() {
-    this.itemService.getListedItemsByCategoryId(this.selectedCategory1).subscribe(data => {this.items1 = data});
+    this.itemService.getListedItemsByCategoryId(this.selectedCategory1).subscribe(data => { this.items1 = data });
   }
 
   changeCategory2() {
-    this.itemService.getListedItemsByCategoryId(this.selectedCategory2).subscribe(data => {this.items2 = data});
+    this.itemService.getListedItemsByCategoryId(this.selectedCategory2).subscribe(data => { this.items2 = data });
   }
 
 }

@@ -22,6 +22,7 @@ import { ProductPriceSalesChartComponent } from './components/stats/product-pric
 import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
 import { CategoryChartMonthComponent } from './components/stats/category-chart-month/category-chart-month.component';
 import { BiComponent } from './components/back-office/bi/bi.component';
+import { CategoryForecastMonthComponent } from './components/stats/category-forecast-month/category-forecast-month.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BiComponent } from './components/back-office/bi/bi.component';
     ProductPriceSalesChartComponent,
     ProductForecastMonthComponent,
     CategoryChartMonthComponent,
+    CategoryForecastMonthComponent,
     BiComponent,
   ],
 

@@ -36,7 +36,7 @@ select:-moz-focusring {
 }
 
 .controls__product {
-  width: 60%;
+  width: 50%;
 }
 
 .control__label {
@@ -53,5 +53,15 @@ select:-moz-focusring {
 
 .is-title {
   font-size: 30px;
+  font-weight: bold;
+}
+
+.is-label1 {
+  color: #0059b3;
+  font-weight: bold;
+}
+
+.is-label2 {
+  color: #ff0200;
   font-weight: bold;
 }

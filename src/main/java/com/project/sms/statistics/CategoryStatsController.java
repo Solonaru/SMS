@@ -21,12 +21,12 @@ import com.project.sms.entities.order.ICartLineService;
 @RequestMapping("/categoryStats")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CategoryStatsController {
-	
+
 	@Autowired
 	private ICartLineService cartLineService;
-	
+
 	@RequestMapping(value = "/month/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<Integer, Double> getProductsStatisticDataByMonth(@PathVariable("categoryId") int categoryId) {
+	public Map<Integer, Double> getCategoriesStatisticDataByMonth(@PathVariable("categoryId") int categoryId) {
 		Map<Integer, Double> statisticData = new TreeMap<Integer, Double>();
 		Calendar cal = Calendar.getInstance();
 
@@ -45,9 +45,9 @@ public class CategoryStatsController {
 		return statisticData;
 	}
 
-	@RequestMapping(value = "/month/complete/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<Integer, Double> getCompleteProductsStatisticDataByMonth(@PathVariable("productId") int productId) {
-		Map<Integer, Double> statisticData = this.getProductsStatisticDataByMonth(productId);
+	@RequestMapping(value = "/month/complete/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getCompleteCategoriesStatisticDataByMonth(@PathVariable("categoryId") int categoryId) {
+		Map<Integer, Double> statisticData = this.getCategoriesStatisticDataByMonth(categoryId);
 
 		List<Integer> months = Arrays.asList(201801, 201802, 201803, 201804, 201805, 201806, 201807, 201808, 201809,
 				201810, 201811, 201900);

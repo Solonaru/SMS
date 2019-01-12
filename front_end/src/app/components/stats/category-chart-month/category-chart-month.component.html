@@ -1,3 +1,54 @@
-<p>
-  category-chart-month works!
-</p>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <app-header></app-header>
+
+  <main>
+
+      <section class="chart">
+          <div id="chartContainer"></div>
+      </section>
+
+      <section class="section-controls">
+          <div class="controls">
+              <p class="is-title">Settings<p>
+              <form action="#" class="controls__form">
+
+                <label class="is-label1"> Category 1: </label>
+                  <select [(ngModel)]="selectedCategory1" (change)="changeCategory1()" name="category1" class="controls__category">
+                      <option [value]="-1" class="d">--- Select a category ---</option>
+                      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+
+                  <label *ngIf="categories">
+                      <input type="checkbox" [(ngModel)]="displayAverage1" (change)="onDisplayAverage1()" [ngModelOptions]="{standalone: true}"
+                      /> Display average
+                  </label>
+
+                  <br/>
+
+                  <label class="is-label2"> Category 2: </label>
+                  <select [(ngModel)]="selectedCategory2" (change)="changeCategory2()" name="category2" class="controls__category">
+                      <option value="-1">--- Select a category ---</option>
+                      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+
+                  <label *ngIf="categories">
+                      <input type="checkbox" [(ngModel)]="displayAverage2" (change)="onDisplayAverage2()" [ngModelOptions]="{standalone: true}"
+                      /> Display average
+                  </label>
+              </form>
+
+          </div>
+      </section>
+
+  </main>
+
+  <app-footer></app-footer>
+
+</body>
