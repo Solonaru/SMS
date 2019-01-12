@@ -21,6 +21,7 @@ import { FooterComponent } from './components/front-office/footer/footer.compone
 import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
 import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
 import { CategoryChartMonthComponent } from './components/stats/category-chart-month/category-chart-month.component';
+import { BiComponent } from './components/back-office/bi/bi.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CategoryChartMonthComponent } from './components/stats/category-chart-m
     ProductPriceSalesChartComponent,
     ProductForecastMonthComponent,
     CategoryChartMonthComponent,
+    BiComponent,
   ],
 
   imports: [

@@ -17,6 +17,7 @@ import { FooterComponent } from './components/front-office/footer/footer.compone
 import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
 import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
 import { CategoryChartMonthComponent } from './components/stats/category-chart-month/category-chart-month.component';
+import { BiComponent } from './components/back-office/bi/bi.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'aboutus', component: AboutusComponent },
     { path: 'bo_products', component: BoProductsComponent },
     { path: 'bo_employees', component: BoEmployeesComponent },
+    { path: 'bi', component: BiComponent },
     { path: 'header', component: HeaderComponent },
     { path: 'adm', component: AdmHomeComponent },
     { path: 'category-chart-month', component: CategoryChartMonthComponent },
