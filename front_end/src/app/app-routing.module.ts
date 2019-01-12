@@ -13,10 +13,10 @@ import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-e
 import { HeaderComponent } from './components/front-office/header/header.component';
 import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.component';
 import { ProductChartMonthComponent } from './components/stats/product-chart-month/product-chart-month.component';
-import { ProdChartComponent } from './components/stats/prod-chart/prod-chart.component';
 import { FooterComponent } from './components/front-office/footer/footer.component';
 import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
 import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
+import { CategoryChartMonthComponent } from './components/stats/category-chart-month/category-chart-month.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,10 +30,10 @@ const routes: Routes = [
     { path: 'bo_employees', component: BoEmployeesComponent },
     { path: 'header', component: HeaderComponent },
     { path: 'adm', component: AdmHomeComponent },
+    { path: 'category-chart-month', component: CategoryChartMonthComponent },
     { path: 'product-chart-month', component: ProductChartMonthComponent },
     { path: 'product-price-sales-chart', component: ProductPriceSalesChartComponent },
     { path: 'product-forecast-month', component: ProductForecastMonthComponent },
-    { path: 'prod-chart', component: ProdChartComponent },
     { path: 'footer', component: FooterComponent }
 ];
 

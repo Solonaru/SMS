@@ -2,6 +2,7 @@ package com.project.sms.entities.order;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,11 +17,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.project.sms.entities.lines.ILine;
+import com.project.sms.entities.lines.ILineIterator;
 import com.project.sms.entities.promotion.Promotion;
 
 @Entity
 @NamedQuery(name = "Cart.findAll", query = "SELECT c FROM Cart c")
-public class Cart implements Serializable {
+public class Cart implements Serializable, ILineIterator {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -83,12 +86,18 @@ public class Cart implements Serializable {
 
 	public Double getTotalValue() {
 		Double total = 0.0;
+		Iterator<? extends ILine> linesIterator = this.createLinesIterator();
 
-		for (CartLine cartLine : this.cartLines) {
+		while (linesIterator.hasNext()) {
+			CartLine cartLine = (CartLine) linesIterator.next();
 			total += cartLine.getValue();
 		}
 
 		return total;
+	}
+
+	public Iterator<? extends ILine> createLinesIterator() {
+		return cartLines.iterator();
 	}
 
 }

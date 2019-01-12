@@ -2,6 +2,7 @@ package com.project.sms.utils;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import com.project.sms.entities.catalogue.ICatalogueService;
 import com.project.sms.entities.category.Category;
 import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
+import com.project.sms.entities.customer.CustomerProxy;
+import com.project.sms.entities.customer.ICustomer;
 import com.project.sms.entities.employee.Admin;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.employee.IRight;
@@ -25,6 +28,7 @@ import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
+import com.project.sms.entities.lines.ILine;
 import com.project.sms.entities.lines.LineFactory;
 import com.project.sms.entities.lines.PackageLineFactory;
 import com.project.sms.entities.lines.RecipeLineFactory;
@@ -102,35 +106,41 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 			loadData();
 		}
 
-//		System.out.println("------------------------------------------------------");
-//
-//		Item item = itemService.findItemById(4).get();
-//		System.out.println("Is the item listed: " + item.isListed());
-//		System.out.println("The price of the item is: " + item.getPrice(Month.DECEMBER));
-//
-//		Employee employee = (Employee) accountService.findAccountById(400000005).get();
-//		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
-//		System.out.println("EMPLOYEE HAS CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
-//
-//		System.out.println("------------------------------------------------------");
-//
-//		Package package1 = (Package) itemService.findItemById(26).get();
-//		Iterator<? extends ILine> iteratorPackageLines = package1.createIterator();
-//
-//		while (iteratorPackageLines.hasNext()) {
-//			PackageLine packageLine = (PackageLine) iteratorPackageLines.next();
-//			System.out.println("PACKAGE LINE: " + packageLine.getProduct().getName());
-//		}
-//
-//		Recipe recipe1 = (Recipe) itemService.findItemById(24).get();
-//		Iterator<? extends ILine> iteratorRecipeLines = recipe1.createIterator();
-//
-//		while (iteratorRecipeLines.hasNext()) {
-//			RecipeLine recipeLine = (RecipeLine) iteratorRecipeLines.next();
-//			System.out.println("RECIPE LINE: " + recipeLine.getComponent().getName());
-//		}
-//
-//		System.out.println("------------------------------------------------------");
+		System.out.println("------------------------------------------------------ Strategy Pattern");
+
+		Employee employee = (Employee) accountService.findAccountById(400000005).get();
+		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
+		System.out.println("EMPLOYEE CAN CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
+
+		System.out.println("------------------------------------------------------ Iterator Pattern");
+
+		Package package1 = (Package) itemService.findItemById(97).get();
+		Iterator<? extends ILine> packageLinesIterator = package1.createLinesIterator();
+
+		System.out.println("PACKAGE LINES: ");
+		while (packageLinesIterator.hasNext()) {
+			PackageLine packageLine = (PackageLine) packageLinesIterator.next();
+			System.out.println("Package line: " + packageLine.getProduct().getName());
+		}
+
+		System.out.println("------------------------------------------------------");
+
+		Recipe recipe1 = (Recipe) itemService.findItemById(95).get();
+		Iterator<? extends ILine> recipeLinesIterator = recipe1.createLinesIterator();
+
+		System.out.println("RECIPE LINES: ");
+		while (recipeLinesIterator.hasNext()) {
+			RecipeLine recipeLine = (RecipeLine) recipeLinesIterator.next();
+			System.out.println("Recipe line: " + recipeLine.getComponent().getName());
+		}
+
+		System.out.println("------------------------------------------------------ Proxy pattern");
+
+		ICustomer customer = new CustomerProxy((Customer) this.accountService.findAccountById(400000001).get());
+		System.out.println("CUSTOMER NAME: " + customer.getName());
+		System.out.println("CUSTOMER PHONE NUMBER: " + customer.getPhoneNumber());
+
+		System.out.println("------------------------------------------------------");
 
 	}
 
@@ -766,7 +776,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		items.add(hardware18);
 		items.add(hardware19);
 
-		// --------------- new items --------------------
+		// ------------ new items --------------
 		items.add(hardware20);
 		items.add(hardware21);
 		items.add(hardware22);
@@ -847,24 +857,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		// ***** Packages *****
 		items.add(package1);
-
-//		long timeSpent = 0;
-//		
-//		List<CartLine> cartLines = null;
-//		
-//		for (int i = 0; i < 100; i++) {
-//			long startTime = System.nanoTime();;
-//			cartLines = objectGenerator.genCartLines(items, 10000);
-//			long stopTime = System.nanoTime();;
-//			long elapsedTime = stopTime - startTime;
-//			System.out.println("TIME ELAPSED: " + elapsedTime);
-//			
-//			timeSpent += elapsedTime / 100;
-//		}
-//		
-//		System.out.println("TIME ELAPSED: " + timeSpent);
-//		
-//		System.exit(0);
 
 		List<CartLine> cartLines = objectGenerator.genCartLines(items, 3000);
 		Object[] completeOrders = objectGenerator.genCompleteOrders(cartLines, customers);

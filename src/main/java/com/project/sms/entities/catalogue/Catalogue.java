@@ -1,8 +1,9 @@
 package com.project.sms.entities.catalogue;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,12 +18,14 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.employee.Employee;
+import com.project.sms.entities.lines.ILine;
+import com.project.sms.entities.lines.ILineIterator;
 import com.project.sms.enums.CatalogueStatus;
 import com.project.sms.enums.Month;
 
 @Entity
 @NamedQuery(name = "Catalogue.findAll", query = "SELECT c FROM Catalogue c")
-public class Catalogue implements Serializable {
+public class Catalogue implements Serializable, ILineIterator {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -114,6 +117,10 @@ public class Catalogue implements Serializable {
 	public void addLine(CatalogueItem catalogueLine) {
 		catalogueItems.add(catalogueLine);
 		catalogueLine.setCatalogue(this);
+	}
+
+	public Iterator<? extends ILine> createLinesIterator() {
+		return catalogueItems.iterator();
 	}
 
 }

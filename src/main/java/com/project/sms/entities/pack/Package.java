@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.lines.ILine;
 import com.project.sms.entities.lines.ILineIterator;
+import com.project.sms.enums.Month;
 
 @Entity
 @NamedQuery(name = "Package.findAll", query = "SELECT p FROM Package p")
@@ -50,7 +51,31 @@ public class Package extends Item implements ILineIterator {
 		packageLine.setPack(this);
 	}
 
-	public Iterator<? extends ILine> createIterator() {
+	public Double getPrice() {
+		Double price = 0.0;
+		Iterator<? extends ILine> linesIterator = this.createLinesIterator();
+
+		while (linesIterator.hasNext()) {
+			PackageLine packageLine = (PackageLine) linesIterator.next();
+			price += packageLine.getProduct().getPrice();
+		}
+
+		return price * 0.9;
+	}
+
+	public Double getPrice(Month month) {
+		Double price = 0.0;
+		Iterator<? extends ILine> linesIterator = this.createLinesIterator();
+
+		while (linesIterator.hasNext()) {
+			PackageLine packageLine = (PackageLine) linesIterator.next();
+			price += packageLine.getProduct().getPrice(month);
+		}
+
+		return price * 0.9;
+	}
+
+	public Iterator<? extends ILine> createLinesIterator() {
 		return packageLines.iterator();
 	}
 

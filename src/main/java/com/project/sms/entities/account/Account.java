@@ -134,7 +134,7 @@ public abstract class Account implements Serializable, Comparable<Account> {
 	public String toString() {
 		return username;
 	}
-	
+
 	public int compareTo(Account account) {
 		return -account.getName().compareToIgnoreCase(this.getName());
 	}

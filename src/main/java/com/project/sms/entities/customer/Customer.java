@@ -25,7 +25,7 @@ import com.project.sms.enums.AccountStatus;
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 @DiscriminatorValue("Customer")
 @JsonDeserialize(as = Customer.class)
-public class Customer extends Account implements Serializable {
+public class Customer extends Account implements Serializable, ICustomer {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToMany

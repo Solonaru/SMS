@@ -52,7 +52,7 @@ public class Recipe extends Product implements ILineIterator {
 		recipeLine.setRecipe(this);
 	}
 
-	public Iterator<? extends ILine> createIterator() {
+	public Iterator<? extends ILine> createLinesIterator() {
 		return recipeLines.values().iterator();
 	}
 

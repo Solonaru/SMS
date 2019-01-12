@@ -4,6 +4,6 @@ import java.util.Iterator;
 
 public interface ILineIterator {
 
-	public Iterator<? extends ILine> createIterator();
+	public Iterator<? extends ILine> createLinesIterator();
 
 }

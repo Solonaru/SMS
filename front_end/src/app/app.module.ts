@@ -16,11 +16,11 @@ import { BoEmployeesComponent } from './components/back-office/bo-employees/bo-e
 import { HeaderComponent } from './components/front-office/header/header.component';
 import { AdmHomeComponent } from './components/back-office/adm-home/adm-home.component';
 import { ProductChartMonthComponent } from './components/stats/product-chart-month/product-chart-month.component';
-import { ProdChartComponent } from './components/stats/prod-chart/prod-chart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './components/front-office/footer/footer.component';
 import { ProductPriceSalesChartComponent } from './components/stats/product-price-sales-chart/product-price-sales-chart.component';
 import { ProductForecastMonthComponent } from './components/stats/product-forecast-month/product-forecast-month.component';
+import { CategoryChartMonthComponent } from './components/stats/category-chart-month/category-chart-month.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +36,10 @@ import { ProductForecastMonthComponent } from './components/stats/product-foreca
     HeaderComponent,
     AdmHomeComponent,
     ProductChartMonthComponent,
-    ProdChartComponent,
     FooterComponent,
     ProductPriceSalesChartComponent,
     ProductForecastMonthComponent,
+    CategoryChartMonthComponent,
   ],
 
   imports: [

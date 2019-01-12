@@ -39,7 +39,6 @@ public class ObjectGenerator {
 		List<CartLine> generatedCartLines = new ArrayList<CartLine>();
 
 		for (int i = 0; i < amount; i++) {
-//			CartLine cartLine = new CartLine(genRandNum(1, 3));
 			CartLine cartLine = CartLineFactory.getCartLine(genRandNum(1, 3));
 			cartLine.setItem(items.get(genRandNum(0, items.size() - 1)));
 			generatedCartLines.add(cartLine);

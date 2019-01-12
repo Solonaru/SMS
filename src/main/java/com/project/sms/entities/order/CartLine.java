@@ -90,7 +90,7 @@ public class CartLine implements Serializable, ILine {
 		CartLine cartLine = null;
 
 		try {
-			cartLine = (CartLine) super.clone();
+			cartLine = (CartLine) this.clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
