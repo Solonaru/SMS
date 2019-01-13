@@ -20,6 +20,7 @@
                     <p>
                         <form action="#" class="controls__form">
 
+                            <label class="is-label1"> Category: </label>
                             <select [(ngModel)]="selectedCategory" (change)="changeCategory()" name="category" class="controls__category">
                                 <option [value]="-1" class="d">--- Select a category ---</option>
                                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>

@@ -55,3 +55,8 @@ select:-moz-focusring {
     font-size: 30px;
     font-weight: bold;
 }
+
+.is-label1 {
+    color: #0059b3;
+    font-weight: bold;
+}

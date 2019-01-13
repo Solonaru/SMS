@@ -1,38 +1,40 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-  <app-header></app-header>
+    <app-header></app-header>
 
-  <main>
+    <main>
 
-      <section class="chart">
-          <div id="chartContainer"></div>
-      </section>
+        <section class="chart">
+            <div id="chartContainer"></div>
+        </section>
 
-      <section class="section-controls">
-          <div class="controls">
-            <p class="is-title">Settings</p>
-              <form action="#" class="controls__form">
-                  <select [(ngModel)]="selectedCategory" (change)="changeCategory()" name="category" class="controls__category">
-                      <option value="-1">--- Select a category ---</option>
-                      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-                  </select>
-                  <select *ngIf="items" [(ngModel)]="selectedValue" (change)="changeItem()" name="product" class="controls__product">
-                      <option value="-1">--- Select a product ---</option>
-                      <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
-                  </select>
-              </form>
+        <section class="section-controls">
+            <div class="controls">
+                <p class="is-title">Settings</p>
+                <form action="#" class="controls__form">
 
-          </div>
-      </section>
+                    <label class="is-label1"> Product: </label>
+                    <select [(ngModel)]="selectedCategory" (change)="changeCategory()" name="category" class="controls__category">
+                        <option value="-1">--- Select a category ---</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
+                    <select *ngIf="items" [(ngModel)]="selectedValue" (change)="changeItem()" name="product" class="controls__product">
+                        <option value="-1">--- Select a product ---</option>
+                        <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
+                    </select>
+                </form>
 
-  </main>
+            </div>
+        </section>
 
-  <app-footer></app-footer>
+    </main>
+
+    <app-footer></app-footer>
 
 </body>
