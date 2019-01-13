@@ -9,11 +9,57 @@
   <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 </head>
 
+<section class="hero is-primary is-centered level">
+  <div class="hero-body ">
+    <div class="container ">
+      <h1 class="title level-item has-text-centered">
+        Want to improve the Sales Management System?
+      </h1>
+      <h2 class="subtitle level-item has-text-centered">
+        We have plenty of tools you can use!
+      </h2>
+    </div>
+  </div>
+</section>
+
 <body>
   <app-header></app-header>
 
-  <p><a routerLink="/bo_products" class="nav-link">BO - Products</a></p>
-  <p><a routerLink="/bo_employees" class="nav-link">BO - Employees</a></p>
-  <p><a routerLink="/bi" class="nav-link">Business Intelligence Solutions</a></p>
-
+  <section class="hero is-large">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+              Administration Tools
+          </h1>
+          <h2 class="subtitle">
+            Back-office tools for Sales Management System Improvement
+          </h2>
+          <aside class="menu">
+              <ul class="menu-list">
+                <li>
+                  <p >
+                      <a routerLink="/bo_products" class="nav-link" class="button  is-large is-primary">
+                        BO - Products
+                      </a>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                      <a routerLink="/bo_employees" class="nav-link" class="button  is-large is-primary"
+                      >BO - Employees
+                    </a>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                      <a routerLink="/bi" class="nav-link" class="button  is-large is-primary">
+                        Business Intelligence Solutions
+                      </a>
+                  </p>
+                </li>
+              </ul>
+           </aside>
+        </div>
+      </div>
+    </section>
 </body>
