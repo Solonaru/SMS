@@ -32,7 +32,29 @@ select:-moz-focusring {
   border: 1px solid #777;
 }
 
-.controls__category:hover, .controls__product:hover,.average:hover, .periods:hover {
+.controls__from, .controls__to {
+  text-align: center;
+  margin-top: 1rem;
+  border-radius: 5px;
+  border: 1px solid #777;
+}
+
+.controls__min, .controls__max {
+  margin-top: 1rem;
+  border-radius: 5px;
+  border: 1px solid #777;
+}
+
+.controls__min {
+  margin-left: .7rem;
+}
+
+.controls__max {
+  margin-left: .1rem;
+}
+
+.controls__category:hover, .controls__product:hover,.average:hover, .periods:hover, .controls__from:hover, .controls__to:hover,
+.controls__min:hover, .controls__max:hover {
   border: 1px solid lightblue;
 }
 

@@ -61,23 +61,23 @@
                                 </div>
 
                                 <label> Starting from </label>
-                                <select [(ngModel)]="selectedMonthStart" (change)="changeMonthStart()" name="monthStart" class="controls__category">
+                                <select [(ngModel)]="selectedMonthStart" (change)="changeMonthStart()" name="monthStart" class="controls__from">
                                     <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
                                 </select>
                                 <label> to </label>
-                                <select [(ngModel)]="selectedMonthEnd" (change)="changeMonthEnd()" name="monthEnd" class="controls__category">
+                                <select [(ngModel)]="selectedMonthEnd" (change)="changeMonthEnd()" name="monthEnd" class="controls__to">
                                     <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
                                 </select>
 
                                 <br/>
 
                                 <label> Only months with sales over </label>
-                                <input [(ngModel)]="selectedMinValue" class="has-text-centered" name="minValue" (change)="changeMinValue()" type="text">
+                                <input [(ngModel)]="selectedMinValue" class="has-text-centered controls__min" name="minValue" (change)="changeMinValue()" type="text">
 
                                 <br/>
 
                                 <label> Only months with sales under </label>
-                                <input [(ngModel)]="selectedMaxValue" class="has-text-centered" name="maxValue" (change)="changeMaxValue()" type="text">
+                                <input [(ngModel)]="selectedMaxValue" class="has-text-centered controls__max" name="maxValue" (change)="changeMaxValue()" type="text">
                 
                               </div>
                         </form>
