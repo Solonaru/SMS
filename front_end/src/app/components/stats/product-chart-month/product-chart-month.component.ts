@@ -8,6 +8,10 @@ import { ProductStatsService } from '../../../providers/services/productstats.se
 import { Category } from '../../../entities/category';
 import { CategoryService } from '../../../providers/services/category.service';
 import { CommonStatsService } from '../../../providers/services/commonstats.service';
+import { DataRequest } from '../../../entities/helper-classes/request';
+import { Month } from '../../../entities/enums/Month';
+import { Catalogue } from '../../../entities/catalogue';
+import { CatalogueService } from '../../../providers/services/catalogue.service';
 
 @Component({
   selector: 'app-product-chart-month',
@@ -15,6 +19,13 @@ import { CommonStatsService } from '../../../providers/services/commonstats.serv
   styleUrls: ['./product-chart-month.component.css']
 })
 export class ProductChartMonthComponent implements OnInit {
+
+  dataRequest: DataRequest;
+  catalogues: Catalogue[];
+  private selectedMonthStart = 9001;
+  private selectedMonthEnd = 9012;
+  private selectedMinValue = "0";
+  private selectedMaxValue = "10000";
 
   categories: Category[];
   productsStatisticDataMonth: Map<Number, Number>;
@@ -42,10 +53,15 @@ export class ProductChartMonthComponent implements OnInit {
   private averageLabel2 = "";
   private dataPoints2 = [];
 
-  constructor(private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService, private commonStatsService: CommonStatsService, private router: Router) { }
+  constructor(private catalogueService: CatalogueService, private categoryService: CategoryService, private itemService: ItemService, private productStatsService: ProductStatsService, private commonStatsService: CommonStatsService, private router: Router) { }
 
   ngOnInit() {
+    this.populateCatalogues();
     this.populateCategories();
+  }
+
+  populateCatalogues() {
+    this.catalogueService.getCatalogues().subscribe(data => { this.catalogues = data; });
   }
 
   populateCategories() {
@@ -53,24 +69,36 @@ export class ProductChartMonthComponent implements OnInit {
   }
 
   populateChart(productId: Number, displayAverage, num, dataPoints) {
-    this.productStatsService.getCompleteProductsStatisticDataMonth(productId).subscribe(statData => {
-      this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
 
-        if (displayAverage) {
-          switch (num) {
-            case 1:
-              this.averageValue1 = average;
-              this.averageLabel1 = "" + Math.round(this.averageValue1);
-              break;
-            case 2:
-              this.averageValue2 = average;
-              this.averageLabel2 = "" + Math.round(this.averageValue2);
-              break;
-          }
-        }
+    this.catalogueService.getCatalogueById(this.selectedMonthStart).subscribe(catalogueStart => {
+      this.catalogueService.getCatalogueById(this.selectedMonthEnd).subscribe(catalogueEnd => {
+        this.dataRequest = new DataRequest();
+        this.dataRequest.objectId = productId;
+        this.dataRequest.monthStart = catalogueStart.month;
+        this.dataRequest.monthEnd = catalogueEnd.month;
+        this.dataRequest.minValue = parseInt(this.selectedMinValue, 10);
+        this.dataRequest.maxValue = parseInt(this.selectedMaxValue, 10);
 
-        this.generateData(dataPoints, statData);
-        this.generateChart();
+        this.productStatsService.getProductsComplexStatisticDataByMonth(this.dataRequest).subscribe(statData => {
+          this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
+
+            if (displayAverage) {
+              switch (num) {
+                case 1:
+                  this.averageValue1 = average;
+                  this.averageLabel1 = "" + Math.round(this.averageValue1);
+                  break;
+                case 2:
+                  this.averageValue2 = average;
+                  this.averageLabel2 = "" + Math.round(this.averageValue2);
+                  break;
+              }
+            }
+
+            this.generateData(dataPoints, statData);
+            this.generateChart();
+          });
+        });
       });
     });
   }
@@ -83,9 +111,6 @@ export class ProductChartMonthComponent implements OnInit {
       title: {
         text: "Product Sales by Month"
       },
-      subtitles: [{
-        // text: "Try Zooming and Panning"
-      }],
       axisX: {
         title: "Month",
         interval: 1,
@@ -111,12 +136,8 @@ export class ProductChartMonthComponent implements OnInit {
       legend: {
         cursor: "pointer",
         verticalAlign: "top",
-        horizontalAlign: "center",
-        // dockInsidePlotArea: true
+        horizontalAlign: "center"
       },
-      // toolTip: {
-      //   shared: true
-      // },
       data: [
         {
           name: "Product 1",
@@ -192,13 +213,80 @@ export class ProductChartMonthComponent implements OnInit {
     }
   }
 
-
   changeCategory1() {
     this.itemService.getListedItemsByCategoryId(this.selectedCategory1).subscribe(data => { this.items1 = data });
   }
 
   changeCategory2() {
     this.itemService.getListedItemsByCategoryId(this.selectedCategory2).subscribe(data => { this.items2 = data });
+  }
+
+  changeMonthStart() {
+    if (this.selectedMonthStart > this.selectedMonthEnd) {
+      let temp = this.selectedMonthStart;
+      this.selectedMonthStart = this.selectedMonthEnd;
+      this.selectedMonthEnd = temp;
+    }
+
+    if (this.item1) {
+      this.changeItem1();
+    }
+
+    if (this.item2) {
+      this.changeItem2();
+    }
+
+  }
+
+  changeMonthEnd() {
+    if (this.selectedMonthStart > this.selectedMonthEnd) {
+      let temp = this.selectedMonthStart;
+      this.selectedMonthStart = this.selectedMonthEnd;
+      this.selectedMonthEnd = temp;
+    }
+
+    if (this.item1) {
+      this.changeItem1();
+    }
+
+    if (this.item2) {
+      this.changeItem2();
+    }
+
+  }
+
+  changeMinValue() {
+    if (parseInt(this.selectedMinValue, 10) > parseInt(this.selectedMaxValue, 10)) {
+      let temp = this.selectedMinValue;
+      this.selectedMinValue = this.selectedMaxValue;
+      this.selectedMaxValue = temp;
+    }
+
+    if (this.item1) {
+      this.changeItem1();
+    }
+
+    if (this.item2) {
+      this.changeItem2();
+    }
+
+  }
+
+  changeMaxValue() {
+    if (parseInt(this.selectedMinValue, 10) > parseInt(this.selectedMaxValue, 10)) {
+      let temp = this.selectedMinValue;
+      this.selectedMinValue = this.selectedMaxValue;
+      this.selectedMaxValue = temp;
+    }
+
+    if (this.item1) {
+      this.changeItem1();
+    }
+
+    if (this.item2) {
+      this.changeItem2();
+    }
+
   }
 
 }

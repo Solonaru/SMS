@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.sms.entities.order.CartLine;
 import com.project.sms.entities.order.ICartLineService;
+import com.project.sms.utils.UtilMethods;
 
 @RestController
 @RequestMapping("/productStats")
@@ -98,17 +99,38 @@ public class ProductStatsController {
 		return statisticData;
 	}
 
-	@RequestMapping(value = "/average", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Double getAverageFromStatisticData(@RequestBody Map<Integer, Double> statisticData) {
-		Double total = 0.0;
-		Integer count = 0;
+	@RequestMapping(value = "/month/complex", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getProductsComplexStatisticDataByMonth(@RequestBody DataRequest dataRequest) {
+		Map<Integer, Double> tempData = new TreeMap<Integer, Double>();
+		Map<Integer, Double> statisticData = new TreeMap<Integer, Double>();
+		Calendar cal = Calendar.getInstance();
 
-		for (Map.Entry<Integer, Double> entry : statisticData.entrySet()) {
-			total += entry.getValue();
-			count++;
+		for (CartLine cartLine : cartLineService.findAllCartLines()) {
+
+			if ((UtilMethods.getMonthFromDate(cartLine.getCart().getOrder().getDate()).ordinal() >= dataRequest
+					.getMonthStart().ordinal())
+					&& (UtilMethods.getMonthFromDate(cartLine.getCart().getOrder().getDate()).ordinal() <= dataRequest
+							.getMonthEnd().ordinal())) {
+
+				if (cartLine.getItem().getId().equals(dataRequest.getObjectId())) {
+					Double value = cartLine.getValue();
+					cal.setTime(cartLine.getCart().getOrder().getDate());
+					Integer time = (cal.get(Calendar.YEAR) * 100) + cal.get(Calendar.MONTH);
+					if (tempData.get(time) != null) {
+						value += tempData.get(time);
+					}
+					tempData.put(time, value);
+				}
+			}
 		}
 
-		return total / count;
+		for (Map.Entry<Integer, Double> entry : tempData.entrySet()) {
+			if (entry.getValue() <= dataRequest.getMaxValue() && entry.getValue() >= dataRequest.getMinValue()) {
+				statisticData.put(entry.getKey(), entry.getValue());
+			}
+		}
+
+		return statisticData;
 	}
 
 }
