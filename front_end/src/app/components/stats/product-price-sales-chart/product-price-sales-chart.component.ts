@@ -71,14 +71,12 @@ export class ProductPriceSalesChartComponent implements OnInit {
           enabled: true,
           snapToDataPoint: true
         },
-        suffix: " lei",
         lineColor: "#4F81BC",
         tickColor: "#4F81BC"
       },
       axisY2: {
         title: "Quantity",
         titleFontColor: "#C0504E",
-        suffix: " units",
         lineColor: "#C0504E",
         tickColor: "#C0504E"
       },
@@ -111,8 +109,8 @@ export class ProductPriceSalesChartComponent implements OnInit {
       if (statData.hasOwnProperty(key)) {
         y = <any>statData[key];
         x = <any>key;
-        this.dataPoints.push({ x: x, y: y });
-        this.dataPoints2.push({ x: x, y: y / x });
+        this.dataPoints.push({ x: parseInt("" + x, 10), y: parseInt("" + y, 10) });
+        this.dataPoints2.push({ x: parseInt("" + x, 10), y: parseInt("" + (y / x), 10) });
       }
     };
   }

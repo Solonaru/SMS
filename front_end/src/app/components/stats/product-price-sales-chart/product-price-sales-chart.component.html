@@ -11,7 +11,9 @@
     <main>
 
         <section class="chart">
-            <div id="chartContainer"></div>
+            <div id="chartContainer">
+                <img *ngIf="!category" src="../../../../assets/images/no-data-available.png" alt="Placeholder image">
+            </div>
         </section>
 
         <section class="section-controls">

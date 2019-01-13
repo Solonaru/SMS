@@ -11,81 +11,82 @@
   <main>
 
     <section class="chart">
-      <div id="chartContainer"></div>
+      <div id="chartContainer">
+        <img *ngIf="!category" src="../../../../assets/images/no-data-available.png" alt="Placeholder image">
+      </div>
     </section>
 
     <section class="section-controls">
       <div class="controls">
-        <p class="is-title">Settings
-          <p>
-            <form action="#" class="controls__form">
+        <p class="is-title">Settings</p>
+        <form action="#" class="controls__form">
 
-              <label class="is-label1"> Product: </label>
-              <select [(ngModel)]="selectedCategory" (change)="changeCategory()" name="category" class="controls__category">
-                <option [value]="-1">--- Select a category ---</option>
-                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-              </select>
-              <select *ngIf="items" [(ngModel)]="selectedValue" (change)="changeItem()" name="product" class="controls__product">
-                <option value="-1">--- Select a product ---</option>
-                <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
-              </select>
+          <label class="is-label1"> Product: </label>
+          <select [(ngModel)]="selectedCategory" (change)="changeCategory()" name="category" class="controls__category">
+            <option [value]="-1">--- Select a category ---</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <select *ngIf="items" [(ngModel)]="selectedValue" (change)="changeItem()" name="product" class="controls__product">
+            <option value="-1">--- Select a product ---</option>
+            <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
+          </select>
 
-              <label *ngIf="items">
-                <input type="checkbox" [(ngModel)]="displayAverage" (change)="onDisplayAverage()" [ngModelOptions]="{standalone: true}" /> Display average
-              </label>
+          <label *ngIf="items">
+            <input type="checkbox" [(ngModel)]="displayAverage" (change)="onDisplayAverage()" [ngModelOptions]="{standalone: true}" /> Display average
+          </label>
 
-              <br/>
-              <br/>
+          <br/>
+          <br/>
 
-              <div *ngIf="item" class="control">
-                <div class="label">
-                  <label>Forecasts</label>
-                </div>
-                <label class="radio">
-                  <input type="radio" name="forecast" ng-control="forecast" [value]="0" [(ngModel)]="forecast" (change)="onDisplayForecast()"> No forecast
-                </label>
+          <div *ngIf="item" class="control">
+            <div class="label">
+              <label>Forecasts</label>
+            </div>
+            <label class="radio">
+              <input type="radio" name="forecast" ng-control="forecast" [value]="0" [(ngModel)]="forecast" (change)="onDisplayForecast()"> No forecast
+            </label>
 
-                <br/>
+            <br/>
 
-                <label class="radio">
-                  <input type="radio" name="forecast" ng-control="forecast" [value]="1" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Moving average
-                </label>
+            <label class="radio">
+              <input type="radio" name="forecast" ng-control="forecast" [value]="1" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Moving average
+            </label>
 
-                <select [(ngModel)]="periodsSMA" (change)="onChangePeriodSMA()" name="periodsSMA" class="periods">
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                </select>
-                <span> periods</span>
+            <select [(ngModel)]="periodsSMA" (change)="onChangePeriodSMA()" name="periodsSMA" class="periods">
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+            <span> periods</span>
 
-                <br/>
+            <br/>
 
-                <label class="radio">
-                  <input type="radio" name="forecast" ng-control="forecast" [value]="2" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Weighted moving average
-                </label>
+            <label class="radio">
+              <input type="radio" name="forecast" ng-control="forecast" [value]="2" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Weighted moving average
+            </label>
 
-                <select [(ngModel)]="periodsWMA" (change)="onChangePeriodWMA()" name="periodsWMA" class="periods">
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                </select>
-                <span> periods</span>
+            <select [(ngModel)]="periodsWMA" (change)="onChangePeriodWMA()" name="periodsWMA" class="periods">
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+            <span> periods</span>
 
-                <br/>
+            <br/>
 
-                <label class="radio avg">
-                  <input type="radio" name="forecast" ng-control="forecast" [value]="3" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Exponential moving average
-                </label>
+            <label class="radio avg">
+              <input type="radio" name="forecast" ng-control="forecast" [value]="3" [(ngModel)]="forecast" (change)="onDisplayForecast()"> Exponential moving average
+            </label>
 
-                <input [(ngModel)]="alpha" (change)="onChangeAlpha()" type="number" class="average" name="alpha" step="0.01" min="0.01" max="1">
+            <input [(ngModel)]="alpha" (change)="onChangeAlpha()" type="number" class="average" name="alpha" step="0.01" min="0.01" max="1">
 
-              </div>
+          </div>
 
-            </form>
+        </form>
 
       </div>
     </section>

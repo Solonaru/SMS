@@ -27,12 +27,24 @@
                         <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                     </select>
 
-                    <select [(ngModel)]="selectedCatalogue" (change)="changeMonth()" name="month" class="controls__category">
+                    <label> Month: </label>
+                    <select [(ngModel)]="selectedMonth" (change)="changeMonth()" name="month" class="controls__month">
                         <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
                     </select>
 
-                </form>
+                    <label class="is-label-amount"> Top: </label>
+                    <select [(ngModel)]="selectedAmount" (change)="changeAmount()" name="amount" class="controls__amount">
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
 
+                </form>
             </div>
         </section>
 

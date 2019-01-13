@@ -24,6 +24,8 @@ import { CategoryChartMonthComponent } from './components/stats/category-chart-m
 import { BiComponent } from './components/back-office/bi/bi.component';
 import { CategoryForecastMonthComponent } from './components/stats/category-forecast-month/category-forecast-month.component';
 import { ProductsShareInCategoryComponent } from './components/stats/products-share-in-category/products-share-in-category.component';
+import { TopProductsByQuantityChartComponent } from './components/stats/top-products-by-quantity-chart/top-products-by-quantity-chart.component';
+import { TopProductsByPriceChartComponent } from './components/stats/top-products-by-price-chart/top-products-by-price-chart.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { ProductsShareInCategoryComponent } from './components/stats/products-sh
     CategoryForecastMonthComponent,
     BiComponent,
     ProductsShareInCategoryComponent,
+    TopProductsByQuantityChartComponent,
+    TopProductsByPriceChartComponent
   ],
 
   imports: [

@@ -2,6 +2,7 @@ package com.project.sms.statistics;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -92,7 +93,7 @@ public class CategoryStatsController {
 
 		return statisticData;
 	}
-	
+
 	@RequestMapping(value = "/month/complex", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Map<Integer, Double> getCategoriesComplexStatisticDataByMonth(@RequestBody DataRequest dataRequest) {
 		Map<Integer, Double> tempData = new TreeMap<Integer, Double>();
@@ -122,6 +123,101 @@ public class CategoryStatsController {
 			if (entry.getValue() <= dataRequest.getMaxValue() && entry.getValue() >= dataRequest.getMinValue()) {
 				statisticData.put(entry.getKey(), entry.getValue());
 			}
+		}
+
+		return statisticData;
+	}
+
+	@RequestMapping(value = "/month/top/price", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Double, String> getTopProductsByCategoryBasedOnPriceStatisticDataByMonth(
+			@RequestBody TopProductsDataRequest topProductsDataRequest) {
+		int counter = -1;
+		Double previousValue = 0.0;
+		Map<String, Double> tempData = new TreeMap<String, Double>();
+		Map<Double, String> tempSortedData = new TreeMap<Double, String>(new Comparator<Double>() {
+			public int compare(Double data1, Double data2) {
+				return (data2.compareTo(data1));
+			}
+		});
+		Map<Double, String> statisticData = new TreeMap<Double, String>();
+
+		for (CartLine cartLine : cartLineService.findAllCartLines()) {
+
+			if (cartLine.getItem().getCategory().getId().equals(topProductsDataRequest.getCategoryId())) {
+
+				if (UtilMethods.getMonthFromDate(cartLine.getCart().getOrder().getDate())
+						.ordinal() == topProductsDataRequest.getMonth().ordinal()) {
+					Double value = cartLine.getValue();
+
+					if (tempData.get(cartLine.getItem().getName()) != null) {
+						value += tempData.get(cartLine.getItem().getName());
+					}
+					tempData.put(cartLine.getItem().getName(), value);
+				}
+			}
+		}
+
+		for (Map.Entry<String, Double> entry : tempData.entrySet()) {
+			tempSortedData.put(entry.getValue(), entry.getKey());
+		}
+
+		for (Map.Entry<Double, String> entry : tempSortedData.entrySet()) {
+			counter++;
+
+			if (topProductsDataRequest.getAmount().equals(counter) && !entry.getKey().equals(previousValue)) {
+				break;
+			}
+
+			statisticData.put(entry.getKey(), entry.getValue());
+			previousValue = entry.getKey();
+		}
+
+		return statisticData;
+	}
+
+	@RequestMapping(value = "/month/top/quantity", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Double, String> getTopProductsByCategoryBasedOnQuantityStatisticDataByMonth(
+			@RequestBody TopProductsDataRequest topProductsDataRequest) {
+		int counter = -1;
+		Double previousValue = 0.0;
+		Map<String, Double> tempData = new TreeMap<String, Double>();
+		Map<Double, String> tempSortedData = new TreeMap<Double, String>(new Comparator<Double>() {
+			public int compare(Double data1, Double data2) {
+				return (data2.compareTo(data1));
+			}
+		});
+		Map<Double, String> statisticData = new TreeMap<Double, String>();
+
+		for (CartLine cartLine : cartLineService.findAllCartLines()) {
+
+			if (cartLine.getItem().getCategory().getId().equals(topProductsDataRequest.getCategoryId())) {
+
+				if (UtilMethods.getMonthFromDate(cartLine.getCart().getOrder().getDate())
+						.ordinal() == topProductsDataRequest.getMonth().ordinal()) {
+					Double value = (double) cartLine.getQuantity();
+
+					if (tempData.get(cartLine.getItem().getName()) != null) {
+						value += tempData.get(cartLine.getItem().getName());
+					}
+					tempData.put(cartLine.getItem().getName(), value);
+				}
+			}
+		}
+
+		for (Map.Entry<String, Double> entry : tempData.entrySet()) {
+			tempSortedData.put(entry.getValue(), entry.getKey());
+		}
+
+		for (Map.Entry<Double, String> entry : tempSortedData.entrySet()) {
+			counter++;
+
+			if (topProductsDataRequest.getAmount().equals(counter) && !(entry.getKey().equals(previousValue))) {
+				System.out.println("I'm here");
+				break;
+			}
+
+			statisticData.put(entry.getKey(), entry.getValue());
+			previousValue = entry.getKey();
 		}
 
 		return statisticData;

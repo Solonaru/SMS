@@ -4,10 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-      crossorigin="anonymous">
+    crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
-</head>  
+</head>
 
 <body>
   <app-header></app-header>
@@ -24,70 +24,88 @@
         </div>
       </div>
     </section>
-  </main> 
+  </main>
 
   <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-              BI Tools
-          </h1>
-          <h2 class="subtitle">
-            Dynamic Charts based on product categories
-          </h2>
-          <aside class="menu">
-              <ul class="menu-list">
-                <li>
-                  <p >
-                    <a routerLink="/category-chart-month" class="nav-link" class="button is-large is-primary" >
-                      Category chart by month
-                    </a>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <a routerLink="/category-forecast-month" class="nav-link" class="button  is-large is-primary">
-                      Category forecasts by month
-                    </a>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <a routerLink="/products-share-in-category" class="nav-link" class="button is-large is-primary">
-                      Product share in category by month
-                    </a>
-                  </p>
-                </li>
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          BI Tools
+        </h1>
+        <h2 class="subtitle">
+          Dynamic Charts based on product categories
+        </h2>
+        <aside class="menu">
+          <ul class="menu-list">
+            <li>
+              <p>
+                <a routerLink="/category-chart-month" class="nav-link" class="button is-large is-primary">
+                  Category chart by month
+                </a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a routerLink="/category-forecast-month" class="nav-link" class="button  is-large is-primary">
+                  Category forecasts by month
+                </a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a routerLink="/products-share-in-category" class="nav-link" class="button is-large is-primary">
+                  Product share in category by month
+                </a>
+              </p>
+            </li>
 
-                <br/>
-                <br/>
+            <br/>
+            <br/>
 
-                <li>
-                  <p>
-                    <a routerLink="/product-chart-month" class="nav-link" class="button is-large is-primary">
-                      Product chart by month
-                    </a>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <a routerLink="/product-price-sales-chart" class="nav-link" class="button is-large is-primary">
-                      Product sales based on price
-                    </a>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <a routerLink="/product-forecast-month" class="nav-link" class="button is-large is-primary">
-                      Product forecasts by month
-                    </a>
-                  </p>
-                </li>
-            </ul>
-           </aside>
-        </div>
+            <li>
+              <p>
+                <a routerLink="/top-products-by-quantity-chart" class="nav-link" class="button is-large is-primary">
+                  Top products by quantity sold
+                </a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a routerLink="/top-products-by-price-chart" class="nav-link" class="button is-large is-primary">
+                  Top products by sales
+                </a>
+              </p>
+            </li>
+
+            <br/>
+            <br/>
+
+            <li>
+              <p>
+                <a routerLink="/product-chart-month" class="nav-link" class="button is-large is-primary">
+                  Product chart by month
+                </a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a routerLink="/product-price-sales-chart" class="nav-link" class="button is-large is-primary">
+                  Product sales based on price
+                </a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a routerLink="/product-forecast-month" class="nav-link" class="button is-large is-primary">
+                  Product forecasts by month
+                </a>
+              </p>
+            </li>
+          </ul>
+        </aside>
       </div>
-    </section>
-  
-    <app-footer></app-footer>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
 </body>

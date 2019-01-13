@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../../../entities/item';
 import { ItemService } from '../../../providers/services/item.service';
-import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../../entities/category';
 import { CategoryService } from '../../../providers/services/category.service';
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../../providers/services/item.service';
 import { Item } from '../../../entities/item';
 import { Category } from '../../../entities/category';
-import { CategoryService } from 'src/app/providers/services/category.service';
+import { CategoryService } from '../../../providers/services/category.service';
 
 @Component({
   selector: 'app-bo-products',

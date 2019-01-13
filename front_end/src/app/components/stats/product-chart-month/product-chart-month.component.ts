@@ -142,17 +142,19 @@ export class ProductChartMonthComponent implements OnInit {
         {
           name: "Product 1",
           type: "spline",
-          xValueFormatString: "MMM, YYYY",
           color: "#003366",
           showInLegend: true,
+          yValueFormatString: "### lei",
+          xValueFormatString: "MMM, YYYY",
           dataPoints: this.dataPoints1
         },
         {
           name: "Product 2",
           type: "spline",
-          xValueFormatString: "MMM, YYYY",
           color: "#b30100",
           showInLegend: true,
+          yValueFormatString: "### lei",
+          xValueFormatString: "MMM, YYYY",
           dataPoints: this.dataPoints2
         }
       ]

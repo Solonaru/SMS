@@ -11,68 +11,71 @@
     <main>
 
         <section class="chart">
-            <div id="chartContainer"></div>
+            <div id="chartContainer">
+                <img *ngIf="!category" src="../../../../assets/images/no-data-available.png" alt="Placeholder image">
+            </div>
         </section>
 
         <section class="section-controls">
             <div class="controls">
-                <p class="is-title">Settings
-                    <p>
-                        <form action="#" class="controls__form">
+                <p class="is-title">Settings</p>
+                <form action="#" class="controls__form">
 
-                            <label class="is-label1"> Category 1: </label>
-                            <select [(ngModel)]="selectedCategory1" (change)="changeCategory1()" name="category1" class="controls__category">
-                                <option [value]="-1" class="d">--- Select a category ---</option>
-                                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-                            </select>
+                    <label class="is-label1"> Category 1: </label>
+                    <select [(ngModel)]="selectedCategory1" (change)="changeCategory1()" name="category1" class="controls__category">
+                        <option [value]="-1" class="d">--- Select a category ---</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
 
-                            <label *ngIf="categories">
-                                <input type="checkbox" [(ngModel)]="displayAverage1" (change)="onDisplayAverage1()" [ngModelOptions]="{standalone: true}"
-                                /> Display average
-                            </label>
+                    <label *ngIf="categories">
+                        <input type="checkbox" [(ngModel)]="displayAverage1" (change)="onDisplayAverage1()" [ngModelOptions]="{standalone: true}"
+                        /> Display average
+                    </label>
 
-                            <br/>
+                    <br/>
 
-                            <label class="is-label2"> Category 2: </label>
-                            <select [(ngModel)]="selectedCategory2" (change)="changeCategory2()" name="category2" class="controls__category">
-                                <option value="-1">--- Select a category ---</option>
-                                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-                            </select>
+                    <label class="is-label2"> Category 2: </label>
+                    <select [(ngModel)]="selectedCategory2" (change)="changeCategory2()" name="category2" class="controls__category">
+                        <option value="-1">--- Select a category ---</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
 
-                            <label *ngIf="categories">
-                                <input type="checkbox" [(ngModel)]="displayAverage2" (change)="onDisplayAverage2()" [ngModelOptions]="{standalone: true}"
-                                /> Display average
-                            </label>
+                    <label *ngIf="categories">
+                        <input type="checkbox" [(ngModel)]="displayAverage2" (change)="onDisplayAverage2()" [ngModelOptions]="{standalone: true}"
+                        /> Display average
+                    </label>
 
-                            <br/>
-                            <br/>
+                    <br/>
+                    <br/>
 
-                            <div class="control">
-                                <div class="label">
-                                    <label>Data sorting</label>
-                                </div>
+                    <div class="control">
+                        <div class="label">
+                            <label>Data sorting</label>
+                        </div>
 
-                                <label> Starting from </label>
-                                <select [(ngModel)]="selectedMonthStart" (change)="changeMonthStart()" name="monthStart" class="controls__from">
-                                    <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
-                                </select>
-                                <label> to </label>
-                                <select [(ngModel)]="selectedMonthEnd" (change)="changeMonthEnd()" name="monthEnd" class="controls__to">
-                                    <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
-                                </select>
+                        <label> Starting from </label>
+                        <select [(ngModel)]="selectedMonthStart" (change)="changeMonthStart()" name="monthStart" class="controls__from">
+                            <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
+                        </select>
+                        <label> to </label>
+                        <select [(ngModel)]="selectedMonthEnd" (change)="changeMonthEnd()" name="monthEnd" class="controls__to">
+                            <option *ngFor="let catalogue of catalogues" [value]="catalogue.id">{{catalogue.month + ", " + catalogue.year}}</option>
+                        </select>
 
-                                <br/>
+                        <br/>
 
-                                <label> Only months with sales over </label>
-                                <input [(ngModel)]="selectedMinValue" class="has-text-centered controls__min" name="minValue" (change)="changeMinValue()" type="text">
+                        <label> Only months with sales over </label>
+                        <input [(ngModel)]="selectedMinValue" class="has-text-centered controls__min" name="minValue" (change)="changeMinValue()"
+                            type="text">
 
-                                <br/>
+                        <br/>
 
-                                <label> Only months with sales under </label>
-                                <input [(ngModel)]="selectedMaxValue" class="has-text-centered controls__max" name="maxValue" (change)="changeMaxValue()" type="text">
+                        <label> Only months with sales under </label>
+                        <input [(ngModel)]="selectedMaxValue" class="has-text-centered controls__max" name="maxValue" (change)="changeMaxValue()"
+                            type="text">
 
-                            </div>
-                        </form>
+                    </div>
+                </form>
 
             </div>
         </section>

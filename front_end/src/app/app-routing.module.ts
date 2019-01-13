@@ -20,6 +20,8 @@ import { CategoryChartMonthComponent } from './components/stats/category-chart-m
 import { BiComponent } from './components/back-office/bi/bi.component';
 import { CategoryForecastMonthComponent } from './components/stats/category-forecast-month/category-forecast-month.component';
 import { ProductsShareInCategoryComponent } from './components/stats/products-share-in-category/products-share-in-category.component';
+import { TopProductsByQuantityChartComponent } from './components/stats/top-products-by-quantity-chart/top-products-by-quantity-chart.component';
+import { TopProductsByPriceChartComponent } from './components/stats/top-products-by-price-chart/top-products-by-price-chart.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -37,6 +39,8 @@ const routes: Routes = [
     { path: 'category-chart-month', component: CategoryChartMonthComponent },
     { path: 'category-forecast-month', component: CategoryForecastMonthComponent },
     { path: 'products-share-in-category', component: ProductsShareInCategoryComponent },
+    { path: 'top-products-by-quantity-chart', component: TopProductsByQuantityChartComponent },
+    { path: 'top-products-by-price-chart', component: TopProductsByPriceChartComponent },
     { path: 'product-chart-month', component: ProductChartMonthComponent },
     { path: 'product-price-sales-chart', component: ProductPriceSalesChartComponent },
     { path: 'product-forecast-month', component: ProductForecastMonthComponent },

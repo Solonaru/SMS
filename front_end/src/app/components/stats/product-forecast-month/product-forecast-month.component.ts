@@ -120,18 +120,20 @@ export class ProductForecastMonthComponent implements OnInit {
         {
           name: "Actual sales",
           type: "spline",
-          xValueFormatString: "MMM, YYYY",
           color: "#003366",
           showInLegend: true,
+          yValueFormatString: "### lei",
+          xValueFormatString: "MMM, YYYY",
           dataPoints: this.dataPoints
         },
         {
           name: "Forecast",
           type: "spline",
-          xValueFormatString: "MMM, YYYY",
           color: "#b30100",
           showInLegend: true,
           lineDashType: "dash",
+          yValueFormatString: "### lei",
+          xValueFormatString: "MMM, YYYY",
           dataPoints: this.dataPointsForecast
         }
       ]
