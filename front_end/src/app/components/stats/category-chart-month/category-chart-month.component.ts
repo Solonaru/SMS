@@ -6,6 +6,9 @@ import { Category } from '../../../entities/category';
 import { CategoryService } from '../../../providers/services/category.service';
 import { CategoryStatsService } from '../../../providers/services/categoriesstats.service';
 import { CommonStatsService } from '../../../providers/services/commonstats.service';
+import { CatalogueService } from '../../../providers/services/catalogue.service';
+import { DataRequest } from '../../../entities/helper-classes/request';
+import { Catalogue } from '../../../entities/catalogue';
 
 @Component({
   selector: 'app-category-chart-month',
@@ -13,6 +16,13 @@ import { CommonStatsService } from '../../../providers/services/commonstats.serv
   styleUrls: ['./category-chart-month.component.css']
 })
 export class CategoryChartMonthComponent implements OnInit {
+
+  dataRequest: DataRequest;
+  catalogues: Catalogue[];
+  private selectedMonthStart = 9001;
+  private selectedMonthEnd = 9012;
+  private selectedMinValue = "0";
+  private selectedMaxValue = "50000";
 
   categories: Category[];
 
@@ -32,10 +42,15 @@ export class CategoryChartMonthComponent implements OnInit {
   private averageLabel2 = "";
   private dataPoints2 = [];
 
-  constructor(private categoryService: CategoryService, private categoryStatsService: CategoryStatsService, private commonStatsService: CommonStatsService, private router: Router) { }
+  constructor(private catalogueService: CatalogueService, private categoryService: CategoryService, private categoryStatsService: CategoryStatsService, private commonStatsService: CommonStatsService, private router: Router) { }
 
   ngOnInit() {
+    this.populateCatalogues();
     this.populateCategories();
+  }
+
+  populateCatalogues() {
+    this.catalogueService.getCatalogues().subscribe(data => { this.catalogues = data; });
   }
 
   populateCategories() {
@@ -43,24 +58,36 @@ export class CategoryChartMonthComponent implements OnInit {
   }
 
   populateChart(categoryId: Number, displayAverage, num, dataPoints) {
-    this.categoryStatsService.getCompleteCategoriesStatisticDataMonth(categoryId).subscribe(statData => {
-      this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
 
-        if (displayAverage) {
-          switch (num) {
-            case 1:
-              this.averageValue1 = average;
-              this.averageLabel1 = "" + Math.round(this.averageValue1);
-              break;
-            case 2:
-              this.averageValue2 = average;
-              this.averageLabel2 = "" + Math.round(this.averageValue2);
-              break;
-          }
-        }
+    this.catalogueService.getCatalogueById(this.selectedMonthStart).subscribe(catalogueStart => {
+      this.catalogueService.getCatalogueById(this.selectedMonthEnd).subscribe(catalogueEnd => {
+        this.dataRequest = new DataRequest();
+        this.dataRequest.objectId = categoryId;
+        this.dataRequest.monthStart = catalogueStart.month;
+        this.dataRequest.monthEnd = catalogueEnd.month;
+        this.dataRequest.minValue = parseInt(this.selectedMinValue, 10);
+        this.dataRequest.maxValue = parseInt(this.selectedMaxValue, 10);
 
-        this.generateData(dataPoints, statData);
-        this.generateChart();
+        this.categoryStatsService.getCategoriesComplexStatisticDataByMonth(this.dataRequest).subscribe(statData => {
+          this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
+
+            if (displayAverage) {
+              switch (num) {
+                case 1:
+                  this.averageValue1 = average;
+                  this.averageLabel1 = "" + Math.round(this.averageValue1);
+                  break;
+                case 2:
+                  this.averageValue2 = average;
+                  this.averageLabel2 = "" + Math.round(this.averageValue2);
+                  break;
+              }
+            }
+
+            this.generateData(dataPoints, statData);
+            this.generateChart();
+          });
+        });
       });
     });
   }
@@ -173,6 +200,74 @@ export class CategoryChartMonthComponent implements OnInit {
     if (this.category2) {
       this.changeCategory2();
     }
+  }
+
+  changeMonthStart() {
+    if (this.selectedMonthStart > this.selectedMonthEnd) {
+      let temp = this.selectedMonthStart;
+      this.selectedMonthStart = this.selectedMonthEnd;
+      this.selectedMonthEnd = temp;
+    }
+
+    if (this.category1) {
+      this.changeCategory1();
+    }
+
+    if (this.category2) {
+      this.changeCategory2();
+    }
+
+  }
+
+  changeMonthEnd() {
+    if (this.selectedMonthStart > this.selectedMonthEnd) {
+      let temp = this.selectedMonthStart;
+      this.selectedMonthStart = this.selectedMonthEnd;
+      this.selectedMonthEnd = temp;
+    }
+
+    if (this.category1) {
+      this.changeCategory1();
+    }
+
+    if (this.category2) {
+      this.changeCategory2();
+    }
+
+  }
+
+  changeMinValue() {
+    if (parseInt(this.selectedMinValue, 10) > parseInt(this.selectedMaxValue, 10)) {
+      let temp = this.selectedMinValue;
+      this.selectedMinValue = this.selectedMaxValue;
+      this.selectedMaxValue = temp;
+    }
+
+    if (this.category1) {
+      this.changeCategory1();
+    }
+
+    if (this.category2) {
+      this.changeCategory2();
+    }
+
+  }
+
+  changeMaxValue() {
+    if (parseInt(this.selectedMinValue, 10) > parseInt(this.selectedMaxValue, 10)) {
+      let temp = this.selectedMinValue;
+      this.selectedMinValue = this.selectedMaxValue;
+      this.selectedMaxValue = temp;
+    }
+
+    if (this.category1) {
+      this.changeCategory1();
+    }
+
+    if (this.category2) {
+      this.changeCategory2();
+    }
+
   }
 
 }

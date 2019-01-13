@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.sms.entities.order.CartLine;
 import com.project.sms.entities.order.ICartLineService;
+import com.project.sms.utils.UtilMethods;
 
 @RestController
 @RequestMapping("/categoryStats")
@@ -86,6 +88,40 @@ public class CategoryStatsController {
 
 		for (Map.Entry<String, Double> entry : statisticData.entrySet()) {
 			statisticData.put(entry.getKey(), (double) Math.round((entry.getValue() / total) * 10000) / 100);
+		}
+
+		return statisticData;
+	}
+	
+	@RequestMapping(value = "/month/complex", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Map<Integer, Double> getCategoriesComplexStatisticDataByMonth(@RequestBody DataRequest dataRequest) {
+		Map<Integer, Double> tempData = new TreeMap<Integer, Double>();
+		Map<Integer, Double> statisticData = new TreeMap<Integer, Double>();
+		Calendar cal = Calendar.getInstance();
+
+		for (CartLine cartLine : cartLineService.findAllCartLines()) {
+
+			if ((UtilMethods.getMonthFromDate(cartLine.getCart().getOrder().getDate()).ordinal() >= dataRequest
+					.getMonthStart().ordinal())
+					&& (UtilMethods.getMonthFromDate(cartLine.getCart().getOrder().getDate()).ordinal() <= dataRequest
+							.getMonthEnd().ordinal())) {
+
+				if (cartLine.getItem().getCategory().getId().equals(dataRequest.getObjectId())) {
+					Double value = cartLine.getValue();
+					cal.setTime(cartLine.getCart().getOrder().getDate());
+					Integer time = (cal.get(Calendar.YEAR) * 100) + cal.get(Calendar.MONTH);
+					if (tempData.get(time) != null) {
+						value += tempData.get(time);
+					}
+					tempData.put(time, value);
+				}
+			}
+		}
+
+		for (Map.Entry<Integer, Double> entry : tempData.entrySet()) {
+			if (entry.getValue() <= dataRequest.getMaxValue() && entry.getValue() >= dataRequest.getMinValue()) {
+				statisticData.put(entry.getKey(), entry.getValue());
+			}
 		}
 
 		return statisticData;
