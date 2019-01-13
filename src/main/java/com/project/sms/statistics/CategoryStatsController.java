@@ -61,4 +61,34 @@ public class CategoryStatsController {
 		return statisticData;
 	}
 
+	@RequestMapping(value = "/share/{request}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Double> getProductsShareInCategoryStatisticDataByMonth(@PathVariable("request") int request) {
+		Integer categoryId = (int) Math.floor(request / 100);
+		Integer month = request % 100;
+		Double total = 0.0;
+
+		Map<String, Double> statisticData = new TreeMap<String, Double>();
+		Calendar cal = Calendar.getInstance();
+
+		for (CartLine cartLine : cartLineService.findAllCartLines()) {
+			cal.setTime(cartLine.getCart().getOrder().getDate());
+
+			if (cartLine.getItem().getCategory().getId().equals(categoryId) && (cal.get(Calendar.MONTH) == month)) {
+				Double value = cartLine.getValue();
+				total += value;
+
+				if (statisticData.get(cartLine.getItem().getName()) != null) {
+					value += statisticData.get(cartLine.getItem().getName());
+				}
+				statisticData.put(cartLine.getItem().getName(), value);
+			}
+		}
+
+		for (Map.Entry<String, Double> entry : statisticData.entrySet()) {
+			statisticData.put(entry.getKey(), (double) Math.round((entry.getValue() / total) * 10000) / 100);
+		}
+
+		return statisticData;
+	}
+
 }

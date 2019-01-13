@@ -49,7 +49,7 @@ export class ProductChartMonthComponent implements OnInit {
   }
 
   populateCategories() {
-    this.categoryService.getCategories().subscribe(data => { this.categories = data });
+    this.categoryService.getNoParentCategories().subscribe(data => { this.categories = data });
   }
 
   populateChart(productId: Number, displayAverage, num, dataPoints) {

@@ -42,8 +42,8 @@ export class CategoryChartMonthComponent implements OnInit {
     this.categoryService.getNoParentCategories().subscribe(data => { this.categories = data; });
   }
 
-  populateChart(productId: Number, displayAverage, num, dataPoints) {
-    this.categoryStatsService.getCompleteCategoriesStatisticDataMonth(productId).subscribe(statData => {
+  populateChart(categoryId: Number, displayAverage, num, dataPoints) {
+    this.categoryStatsService.getCompleteCategoriesStatisticDataMonth(categoryId).subscribe(statData => {
       this.commonStatsService.getAverageFromStatisticData(statData).subscribe(average => {
 
         if (displayAverage) {

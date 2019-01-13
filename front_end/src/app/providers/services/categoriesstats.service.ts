@@ -22,4 +22,9 @@ export class CategoryStatsService {
             .pipe(map((res: Map<Number, Number>) => { return res }));
     }
 
+    getProductsShareInCategoryStatisticDataByMonth(request: Number) {
+        return this.http.get(this.BASE_URL + 'share/' + request)
+            .pipe(map((res: Map<String, Number>) => { return res }));
+    }
+
 }

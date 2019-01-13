@@ -19,6 +19,7 @@ import { ProductForecastMonthComponent } from './components/stats/product-foreca
 import { CategoryChartMonthComponent } from './components/stats/category-chart-month/category-chart-month.component';
 import { BiComponent } from './components/back-office/bi/bi.component';
 import { CategoryForecastMonthComponent } from './components/stats/category-forecast-month/category-forecast-month.component';
+import { ProductsShareInCategoryComponent } from './components/stats/products-share-in-category/products-share-in-category.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
     { path: 'adm', component: AdmHomeComponent },
     { path: 'category-chart-month', component: CategoryChartMonthComponent },
     { path: 'category-forecast-month', component: CategoryForecastMonthComponent },
+    { path: 'products-share-in-category', component: ProductsShareInCategoryComponent },
     { path: 'product-chart-month', component: ProductChartMonthComponent },
     { path: 'product-price-sales-chart', component: ProductPriceSalesChartComponent },
     { path: 'product-forecast-month', component: ProductForecastMonthComponent },

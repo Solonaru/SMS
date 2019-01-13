@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from '../canvasjs.min';
 import { Category } from '../../../entities/category';
-import { Item } from '../../../entities/item';
 import { CategoryService } from '../../../providers/services/category.service';
-import { ItemService } from '../../../providers/services/item.service';
-import { ProductStatsService } from '../../../providers/services/productstats.service';
 import { CommonStatsService } from '../../../providers/services/commonstats.service';
 import { CategoryStatsService } from '../../../providers/services/categoriesstats.service';
 
@@ -41,7 +38,7 @@ export class CategoryForecastMonthComponent implements OnInit {
   }
 
   populateCategories() {
-    this.categoryService.getCategories().subscribe(data => { this.categories = data });
+    this.categoryService.getNoParentCategories().subscribe(data => { this.categories = data });
   }
 
   populateChart(categoryId: Number, displayAverage) {
