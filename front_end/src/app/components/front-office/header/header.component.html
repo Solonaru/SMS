@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Header</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 </head>
+
 <body>
     <section class="hero is-fullwidth">
         <div class="hero-head">
@@ -18,46 +21,72 @@
                 </div>
                 <div class="column is-four-fifths desktop">
                     <ul class="left">
-                        <li class="navbar-item"><a href="#" class="nav-link">Home</a></li>
+                        <li class="navbar-item">
+                            <a href="#" class="nav-link">Home</a>
+                        </li>
                         <li class="navbar-item products">
                             <a class="nav-link">Products</a>
                             <ul *ngIf="categories" class="cat_menu">
                                 <ng-container *ngFor="let category of categories">
                                     <li *ngIf="category.parentCategory == null">
-                                        <a (click)="onClick(category)">{{category.name}}<i class="fas fa-chevron-right ml-auto"></i></a>
+                                        <a (click)="onClick(category)">{{category.name}}
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
                                         <ul *ngIf="category.childCategories.length != 0" class="cat_menu">
                                             <ng-container *ngFor="let subcategory of category.childCategories">
-                                                <a (click)="onClick(subcategory)">{{subcategory.name}}<i class="fas fa-chevron-right ml-auto"></i></a>
+                                                <a (click)="onClick(subcategory)">{{subcategory.name}}</a>
                                             </ng-container>
                                         </ul>
                                     </li>
                                 </ng-container>
                             </ul>
                         </li>
-                        <li class="navbar-item"><a routerLink="/adm" class="nav-link">Admininstrative</a></li>
-                        <li class="navbar-item"><a routerLink="/aboutus" class="nav-link">About us</a></li>
-                        <li class="navbar-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
+                        <li class="navbar-item">
+                            <a routerLink="/adm" class="nav-link">Admininstrative</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a routerLink="/aboutus" class="nav-link">About us</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a routerLink="/contact" class="nav-link">Contact</a>
+                        </li>
                         <li class="navbar-item my-account">
                             <a class="nav-link ">My Account</a>
                             <ul class="sub-nav">
-                                <li class="sub-nav-item"><a href="#" class="sub-nav-link">View profile</a></li>
-                                <li class="sub-nav-item"><a (click)="onLogout()" class="sub-nav-link">Logout</a></li>
+                                <li class="sub-nav-item">
+                                    <a href="#" class="sub-nav-link">View profile</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a (click)="onLogout()" class="sub-nav-link">Logout</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="column right mobile">
-                    <a (click)="toggleMenu()"><i class="fa fa-2x fa-bars hamburger"></i></a>
+                    <a (click)="toggleMenu()">
+                        <i class="fa fa-2x fa-bars hamburger"></i>
+                    </a>
                 </div>
-          </div>
+            </div>
         </div>
         <div class="sidebar center">
             <ul class="sidebar-list">
-                <li class="sidebar-item"><a href="#" class="nav-link">Home</a></li>
-                <li class="sidebar-item"><a routerLink="/category" class="nav-link">Products</a></li>
-                <li class="sidebar-item"><a routerLink="/adm" class="nav-link">Admininstrative</a></li>
-                <li class="sidebar-item"><a routerLink="/aboutus" class="nav-link">About us</a></li>
-                <li class="sidebar-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
+                <li class="sidebar-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="sidebar-item">
+                    <a routerLink="/category" class="nav-link">Products</a>
+                </li>
+                <li class="sidebar-item">
+                    <a routerLink="/adm" class="nav-link">Admininstrative</a>
+                </li>
+                <li class="sidebar-item">
+                    <a routerLink="/aboutus" class="nav-link">About us</a>
+                </li>
+                <li class="sidebar-item">
+                    <a routerLink="/contact" class="nav-link">Contact</a>
+                </li>
                 <li class="sidebar-item my-account">
                     <a href="#" class="nav-link ">My Account</a>
                     <ul class="sidebar-sub-nav">
@@ -69,8 +98,9 @@
                         </li>
                     </ul>
                 </li>
-              </ul>
+            </ul>
         </div>
     </section>
 </body>
+
 </html>
