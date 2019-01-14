@@ -1,3 +1,5 @@
+import { City } from "./city";
+
 export class Address {
     id: Number;
     street: String;
@@ -7,4 +9,5 @@ export class Address {
     floorNr: String;
     apartamentNr: Number;
     zipCode: Number;
+    city: City;
 }

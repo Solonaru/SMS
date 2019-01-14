@@ -103,7 +103,7 @@
                             <div class="column is-5">
                                 <label class="label">Phone Number</label>
                                 <p class="control has-icons-left">
-                                    <input [(ngModel)]="employee.phoneNumber" class="input has-text-centered" type="text">
+                                    <input [(ngModel)]="employee.phoneNumber" class="input has-text-centered" type="tel">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-phone"></i>
                                     </span>
@@ -152,26 +152,38 @@
                     <div class="field is-horizontal">
                         <div class="field-body">
 
-                            <div class="column is-3">
+                            <div class="column is-2">
                                 <label class="label">Floor Nr.</label>
                                 <p class="control">
                                     <input [(ngModel)]="employee.address.floorNr" class="input has-text-centered" type="text">
                                 </p>
                             </div>
 
-                            <div class="column is-3">
+                            <div class="column is-2">
                                 <label class="label">Ap. Nr.</label>
                                 <p class="control">
                                     <input [(ngModel)]="employee.address.apartamentNr" class="input has-text-centered" type="text">
                                 </p>
                             </div>
 
-                            <div class="column is-6">
+                            <div class="column is-3">
                                 <label class="label">Zip code</label>
                                 <p class="control has-icons-left">
                                     <input [(ngModel)]="employee.address.zipCode" class="input has-text-centered" type="text">
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-file-archive"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="column is-5">
+                                <label class="label">City</label>
+                                <p class="control has-icons-left">
+                                    <select [(ngModel)]="selectedCity" class="input has-text-centered is-cursor-pointer" name="city">
+                                        <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-city"></i>
                                     </span>
                                 </p>
                             </div>

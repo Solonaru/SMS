@@ -212,7 +212,6 @@ public class CategoryStatsController {
 			counter++;
 
 			if (topProductsDataRequest.getAmount().equals(counter) && !(entry.getKey().equals(previousValue))) {
-				System.out.println("I'm here");
 				break;
 			}
 

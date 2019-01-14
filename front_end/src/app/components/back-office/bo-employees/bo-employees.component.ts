@@ -3,6 +3,8 @@ import { EmployeeService } from '../../../providers/services/employee.service';
 import { Employee } from '../../../entities/employee';
 import { AddressService } from '../../../providers/services/address.service';
 import { Address } from '../../../entities/address';
+import { City } from '../../../entities/city';
+import { CityService } from '../../../providers/services/city.service';
 
 @Component({
   selector: 'app-bo-employees',
@@ -11,14 +13,22 @@ import { Address } from '../../../entities/address';
 })
 export class BoEmployeesComponent implements OnInit {
 
+  cities: City[];
+  selectedCity: Number;
+
   employees: Employee[];
   employee: Employee;
   shouldShow: boolean;
 
-  constructor(private employeeService: EmployeeService, private addressService: AddressService) { }
+  constructor(private cityService: CityService, private employeeService: EmployeeService, private addressService: AddressService) { }
 
   ngOnInit() {
+    this.populateCities();
     this.populateEmployees();
+  }
+
+  populateCities() {
+    this.cityService.getCities().subscribe(data => { this.cities = data; });
   }
 
   populateEmployees() {
@@ -28,11 +38,13 @@ export class BoEmployeesComponent implements OnInit {
   onAdd() {
     this.employee = new Employee();
     this.employee.address = new Address();
+    this.selectedCity = null;
     this.shouldShow = true;
   }
 
   onUpdate(employee: Employee) {
     this.employee = employee;
+    this.selectedCity = employee.address.city.id;
     this.shouldShow = true;
   }
 
@@ -54,25 +66,31 @@ export class BoEmployeesComponent implements OnInit {
 
   insertEmployee() {
     /* Insert the address, first of all */
-    this.addressService.insertAddress(this.employee.address).subscribe(data => {
-      /* Set the newly persisted address */
-      this.employee.address = data;
-      /* Insert the employee */
-      this.employeeService.insertEmployee(this.employee).subscribe(data => {
-        this.shouldShow = false;
-        /* Reload page to display newly added employee */
-        location.reload();
+    this.cityService.getCityById(this.selectedCity).subscribe(data => {
+      this.employee.address.city = data;
+      this.addressService.insertAddress(this.employee.address).subscribe(data => {
+        /* Set the newly persisted address */
+        this.employee.address = data;
+        /* Insert the employee */
+        this.employeeService.insertEmployee(this.employee).subscribe(data => {
+          this.shouldShow = false;
+          /* Reload page to display newly added employee */
+          location.reload();
+        });
       });
     });
   }
 
   updateEmployee() {
     /* Update the address, first of all */
-    this.addressService.updateAddress(this.employee.address).subscribe(data => {
-      /* Update the employee */
-      this.employeeService.updateEmployee(this.employee).subscribe(data => {
-        /* No need to reload page, due two-way data binding */
-        this.shouldShow = false;
+    this.cityService.getCityById(this.selectedCity).subscribe(data => {
+      this.employee.address.city = data;
+      this.addressService.updateAddress(this.employee.address).subscribe(data => {
+        /* Update the employee */
+        this.employeeService.updateEmployee(this.employee).subscribe(data => {
+          /* No need to reload page, due two-way data binding */
+          this.shouldShow = false;
+        });
       });
     });
   }

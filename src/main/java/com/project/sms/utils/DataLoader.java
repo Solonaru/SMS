@@ -148,14 +148,30 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	private void loadData() {
 		displayData.printInfo("Starting data loading...");
 
-		County county = new County("Iasi", "Moldova");
+		County county1 = new County("Iasi", "Moldova");
+		County county2 = new County("Bacau", "Moldova");
+		County county3 = new County("Botosani", "Moldova");
 
 		City city1 = new City("Iasi");
-		city1.setCounty(county);
+		city1.setCounty(county1);
 		City city2 = new City("Pascani");
-		city2.setCounty(county);
+		city2.setCounty(county1);
 		City city3 = new City("Targu Frumos");
-		city3.setCounty(county);
+		city3.setCounty(county1);
+
+		City city4 = new City("Bacau");
+		city4.setCounty(county2);
+		City city5 = new City("Slanic Moldova");
+		city5.setCounty(county2);
+		City city6 = new City("Ghimes");
+		city6.setCounty(county2);
+
+		City city7 = new City("Botosani");
+		city7.setCounty(county3);
+		City city8 = new City("Darabani");
+		city8.setCounty(county3);
+		City city9 = new City("Flamanzi");
+		city9.setCounty(county3);
 
 		Address address1 = new AddressBuilder("Alexandru cel Bun", 51).setApartamentNr(15).setZipCode(270123)
 				.getAddress();
@@ -1021,11 +1037,19 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		// ------------------------------------------------------------------- //
 		// ------------------------------------------------------------------- //
 
-		countyService.insertCounty(county);
+		countyService.insertCounty(county1);
+		countyService.insertCounty(county2);
+		countyService.insertCounty(county3);
 
 		cityService.insertCity(city1);
 		cityService.insertCity(city2);
 		cityService.insertCity(city3);
+		cityService.insertCity(city4);
+		cityService.insertCity(city5);
+		cityService.insertCity(city6);
+		cityService.insertCity(city7);
+		cityService.insertCity(city8);
+		cityService.insertCity(city9);
 
 		addressService.insertAddress(address1);
 		addressService.insertAddress(address2);

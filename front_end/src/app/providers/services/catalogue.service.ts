@@ -19,6 +19,6 @@ export class CatalogueService {
 
     getCatalogueById(catalogueId: Number) {
         return this.http.get(this.BASE_URL + catalogueId)
-          .pipe(map((res: Catalogue) => { return res }));
-      }
+            .pipe(map((res: Catalogue) => { return res }));
+    }
 }
