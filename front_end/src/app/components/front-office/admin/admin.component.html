@@ -9,7 +9,7 @@
 
 <app-header></app-header>
 
-<section class="hero is-primary">
+<section class="hero is-primary main">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -22,4 +22,27 @@
   </div>
 </section>
 
+<slideshow #slideshow
+		   [imageUrls]="imageUrls"
+		   [height]="height"
+		   [minHeight]="minHeight"
+		   [arrowSize]="arrowSize"
+		   [showArrows]="showArrows"
+		   [disableSwiping]="disableSwiping"
+		   [autoPlay]="autoPlay"
+		   [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
+		   [debug]="debug"
+		   [backgroundSize]="backgroundSize"
+		   [backgroundPosition]="backgroundPosition"
+		   [backgroundRepeat]="backgroundRepeat"
+		   [showDots]="showDots"
+		   [dotColor]="dotColor"
+		   [showCaptions]="showCaptions"
+		   [captionColor]="captionColor"
+		   [captionBackground]="captionBackground"
+		   [lazyLoad]="lazyLoad"
+		   [hideOnNoSlides]="hideOnNoSlides">
+</slideshow>
+
 <app-footer></app-footer>
+

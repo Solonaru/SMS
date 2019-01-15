@@ -26,6 +26,7 @@ import { CategoryForecastMonthComponent } from './components/stats/category-fore
 import { ProductsShareInCategoryComponent } from './components/stats/products-share-in-category/products-share-in-category.component';
 import { TopProductsByQuantityChartComponent } from './components/stats/top-products-by-quantity-chart/top-products-by-quantity-chart.component';
 import { TopProductsByPriceChartComponent } from './components/stats/top-products-by-price-chart/top-products-by-price-chart.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { TopProductsByPriceChartComponent } from './components/stats/top-product
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+	SlideshowModule,
     ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDry7EiIG3ytckPPkpRCV4HrxNz180q2JU'
