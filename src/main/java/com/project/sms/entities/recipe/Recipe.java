@@ -12,6 +12,9 @@ import javax.persistence.MapKey;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Product;
 import com.project.sms.entities.lines.ILine;
@@ -25,6 +28,7 @@ public class Recipe extends Product implements ILineIterator {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@MapKey(name = "componentType")
 	@JsonIgnoreProperties(value = { "recipe", "category" })
 	private Map<ComponentType, RecipeLine> recipeLines = new TreeMap<ComponentType, RecipeLine>();

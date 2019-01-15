@@ -25,7 +25,7 @@ export class CategoryService {
         return this.http.get(this.BASE_URL + 'all/noParent').pipe(map((res: Category[]) => { return res }));
     }
 
-    getCategoryById(categoryId: string) {
+    getCategoryById(categoryId: Number) {
         return this.http.get(this.BASE_URL + categoryId)
             .pipe(map((res: Category) => { return res }));
     }

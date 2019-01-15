@@ -11,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.lines.ILine;
@@ -24,6 +27,7 @@ public class Package extends Item implements ILineIterator {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pack")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnoreProperties(value = { "pack", "category" })
 	private List<PackageLine> packageLines = new ArrayList<PackageLine>();
 
@@ -60,7 +64,7 @@ public class Package extends Item implements ILineIterator {
 			price += packageLine.getProduct().getPrice();
 		}
 
-		return price * 0.9;
+		return (double) Math.round(price * 0.9);
 	}
 
 	public Double getPrice(Month month) {
@@ -72,7 +76,7 @@ public class Package extends Item implements ILineIterator {
 			price += packageLine.getProduct().getPrice(month);
 		}
 
-		return price * 0.9;
+		return (double) Math.round(price * 0.9);
 	}
 
 	public Iterator<? extends ILine> createLinesIterator() {

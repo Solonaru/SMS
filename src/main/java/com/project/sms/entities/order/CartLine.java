@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.lines.ILine;
@@ -28,6 +31,7 @@ public class CartLine implements Serializable, ILine {
 	private Integer id;
 	private Integer quantity;
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnoreProperties(value = { "category", "catalogueItems", "imageUrl", "updateDate", "employee", "comments",
 			"ratings" })
 	private Item item;

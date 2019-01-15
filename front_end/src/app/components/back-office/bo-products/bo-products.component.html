@@ -9,175 +9,129 @@
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
 </head>
 
-
 <body>
-  <app-header></app-header>
-  <main>
 
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <p class="title">A complete list of products available</p>
-          <p class="subtitle">TechNique Product Management</p>
-        </div>
-      </div>
-    </section>
+    <app-header></app-header>
 
-    <br>
+    <main>
 
-    <div>
-      <section class="section">
-        <p class="control level">
-          <a class="button is-success" (click)="onAdd(item)">Add Product</a>
-        </p>
-        <br>
-        <div class="columns is-centered">
-          <div class="column is-narrow">
-            <table class="table is-responsive is-mobile is-centered">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>StockQuantity</th>
-                  <th>Update Date</th>
-                  <th>Category</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of items">
-                  <td>{{item.id}}</td>
-                  <td>{{item.name}}</td>
-                  <td>{{item.stockQuantity}}</td>
-                  <td>{{item.updateDate}}</td>
-                  <td>{{item.category.name}}</td>
-                  <td>
-                    <a class="button is-warning is-small" (click)="onUpdate(item)">Update Product</a>
-                  </td>
-                  <td>
-                    <a class="button is-danger is-small" (click)="onDelete(item)">Delete Product</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-    </div>
-
-      <!-- ***** Modal ***** -->
-      <div *ngIf="item" [ngClass]="{'is-active': shouldShow}" class="modal">
-        <div (click)="onCloseModel()" class="modal-background"></div>
-        <div class="modal-content">
-            <div class="modal-container">
-
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="column is-5">
-                            <label class="label">Product name</label>
-                            <p class="control has-icons-left">
-                                <input [(ngModel)]="item.name" class="input" type="text">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-file-alt"></i>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="column is-5">
-                            <label class="label">Product type</label>
-                            <p class="control has-icons-left is-pulled-left">
-                                <select [(ngModel)]="item" id="item_type">
-                                    <option value="" disabled selected>Type</option>
-                                    <option *ngFor="let item of items" [value]="item.item_type">{{item.item_type}}</option>
-                                </select>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                    
-
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="column is-5">
-                            <label class="label">Description</label>
-                            <p class="control has-icons-left">
-                                <mat-form-field>
-                                    <textarea matInput 
-                                       placeholder="Add description" 
-                                       [(ngModel)]="item.description"
-                                       class="input">
-                                    </textarea>
-                                  </mat-form-field> 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-              
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="column is-5">
-                            <label class="label">Quantity</label>
-                            <p class="control has-icons-left">
-                                <input [(ngModel)]="item.stockQuantity" class="input" type="text">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-sort-numeric-down"></i>
-                                </span>
-                            </p>
-                        </div>
-                         </div>
-                </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="column is-5">
-                            <label class="label">Category</label>
-                            <p class="control has-icons-left ">
-                                <select [(ngModel)]="category" id="name">
-                                    <option value="" disabled selected>Select a category</option>
-                                    <option *ngFor="let category of categories" [value]="category.name">{{categories.name}}</option>
-                                </select>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="column is-5">
-                            <label class="label">Image URL</label>
-                            <p class="control has-icons-left">
-                                <input [(ngModel)]="item.image_url" class="input" type="text">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-home"></i>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="field is-grouped is-grouped-right">
-                    <p class="control">
-                        <a (click)="onSubmit()" class="button is-primary">
-                            Submit
-                        </a>
-                    </p>
-                    <p class="control">
-                        <a (click)="onCloseModel()" class="button is-light">
-                            Cancel
-                        </a>
-                    </p>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <p class="title">This is the complete list of the TechNique products</p>
+                    <p class="subtitle">TechNique Product Management</p>
                 </div>
             </div>
-        </div>
-        <button (click)="onCloseModel()" class="modal-close is-large" aria-label="close"></button>
-    </div>
+        </section>
+        <br>
 
-  </main>
+        <div>
+            <section class="section">
+                <p class="control level">
+                    <a class="button is-success" (click)="onAdd()">Add Product</a>
+                </p>
+                <br>
+                <div class="columns is-centered">
+                    <div class="column is-narrow">
+                        <table class="table is-responsive is-mobile is-centered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Stock</th>
+                                    <th>Listed</th>
+                                    <th>Price</th>
+                                    <th>Update date</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of items">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.category.name}}</td>
+                                    <td>{{item.stockQuantity}} units</td>
+                                    <td>{{item.listed}}</td>
+                                    <td>{{item.price}} lei</td>
+                                    <td>{{item.updateDate}}</td>
+                                    <td>
+                                        <a class="button is-warning is-small" (click)="onUpdate(item)">Update Item</a>
+                                    </td>
+                                    <td>
+                                        <a class="button is-danger is-small" (click)="onDelete(item)">Delete Item</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ***** Modal ***** -->
+        <div *ngIf="item" [ngClass]="{'is-active': shouldShow}" class="modal">
+            <div (click)="onCloseModel()" class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-container">
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="column">
+                                <label class="label">Name</label>
+                                <p class="control has-icons-left">
+                                    <input [(ngModel)]="item.name" class="input" type="text">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="column">
+                                <label class="label">Category</label>
+                                <p class="control has-icons-left">
+                                    <select [(ngModel)]="selectedCategory" class="input has-text-centered is-cursor-pointer" name="category">
+                                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-city"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="column is-3">
+                                <label class="label">Stock quantity</label>
+                                <p class="control">
+                                    <input [(ngModel)]="item.stockQuantity" class="input has-text-centered" type="text">
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                            <a (click)="onSubmit()" class="button is-primary">
+                                Submit
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a (click)="onCloseModel()" class="button is-light">
+                                Cancel
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button (click)="onCloseModel()" class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+    </main>
+
 </body>

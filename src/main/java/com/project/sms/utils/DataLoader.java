@@ -750,6 +750,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
 		SimplePackage simplePackage1 = new SimplePackage("Gaming starter pack", 15,
 				new Date(System.currentTimeMillis()), "");
+		simplePackage1.setCategory(category5);
 		simplePackage1.addComponent(hardware34);
 		simplePackage1.addComponent(hardware17);
 

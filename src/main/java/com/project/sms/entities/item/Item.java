@@ -22,6 +22,8 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.project.sms.entities.catalogue.CatalogueItem;
 import com.project.sms.entities.category.Category;
@@ -51,6 +53,7 @@ public abstract class Item implements Serializable, Comparable<Item> {
 	@OneToMany(mappedBy = "item")
 	protected List<Rating> ratings = new ArrayList<Rating>();
 	@OneToMany(mappedBy = "item")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	protected List<CatalogueItem> catalogueItems = new ArrayList<CatalogueItem>();
 	@ManyToOne

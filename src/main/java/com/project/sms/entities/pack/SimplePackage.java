@@ -55,7 +55,7 @@ public class SimplePackage extends Item {
 			price += component.getPrice();
 		}
 
-		return price * 0.9;
+		return (double) Math.round(price * 0.9);
 	}
 
 	public Double getPrice(Month month) {
@@ -65,7 +65,7 @@ public class SimplePackage extends Item {
 			price += component.getPrice(month);
 		}
 
-		return price * 0.9;
+		return (double) Math.round(price * 0.9);
 	}
 
 }
