@@ -294,6 +294,10 @@ html {
 	box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
 }
 
+.logo {
+  height: 2rem;
+}
+
 .cat_menu li:hover > ul
 {
 	top: 0;
@@ -324,6 +328,17 @@ html {
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-right: 0px;
+}
+
+.show {
+  transform: scaleY(1) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 100 !important;
+}
+
+.biggerZ {
+  z-index: 100 !important;
 }
 
 @media (max-width: 900px) {

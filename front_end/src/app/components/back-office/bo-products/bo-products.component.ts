@@ -12,7 +12,7 @@ import { CategoryService } from '../../../providers/services/category.service';
 export class BoProductsComponent implements OnInit {
 
   categories: Category[];
-  selectedCategory: Number;
+  selectedCategory: string;
 
   items: Item[];
   item: Item;
@@ -42,7 +42,7 @@ export class BoProductsComponent implements OnInit {
 
   onUpdate(item: Item) {
     this.item = item;
-    this.selectedCategory = item.category.id;
+    this.selectedCategory = "" + item.category.id;
     this.shouldShow = true;
   }
 

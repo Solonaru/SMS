@@ -2,7 +2,6 @@ package com.project.sms.utils;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import com.project.sms.entities.catalogue.ICatalogueService;
 import com.project.sms.entities.category.Category;
 import com.project.sms.entities.category.ICategoryService;
 import com.project.sms.entities.customer.Customer;
-import com.project.sms.entities.customer.CustomerProxy;
-import com.project.sms.entities.customer.ICustomer;
 import com.project.sms.entities.employee.Admin;
 import com.project.sms.entities.employee.Employee;
 import com.project.sms.entities.employee.IRight;
@@ -28,7 +25,6 @@ import com.project.sms.entities.item.Hardware;
 import com.project.sms.entities.item.IItemService;
 import com.project.sms.entities.item.Item;
 import com.project.sms.entities.item.Software;
-import com.project.sms.entities.lines.ILine;
 import com.project.sms.entities.lines.LineFactory;
 import com.project.sms.entities.lines.PackageLineFactory;
 import com.project.sms.entities.lines.RecipeLineFactory;
@@ -105,43 +101,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		if (isDBEmpty()) {
 			loadData();
 		}
-
-		System.out.println("------------------------------------------------------ Strategy Pattern");
-
-		Employee employee = (Employee) accountService.findAccountById(400000005).get();
-		System.out.println("EMPLOYEE CAN CREATE CATEGORY: " + employee.getRightType().canCreateCategory());
-		System.out.println("EMPLOYEE CAN CREATE PRODUCT: " + employee.getRightType().canCreateProduct());
-
-		System.out.println("------------------------------------------------------ Iterator Pattern");
-
-		Package package1 = (Package) itemService.findItemById(97).get();
-		Iterator<? extends ILine> packageLinesIterator = package1.createLinesIterator();
-
-		System.out.println("PACKAGE LINES: ");
-		while (packageLinesIterator.hasNext()) {
-			PackageLine packageLine = (PackageLine) packageLinesIterator.next();
-			System.out.println("Package line: " + packageLine.getProduct().getName());
-		}
-
-		System.out.println("------------------------------------------------------");
-
-		Recipe recipe1 = (Recipe) itemService.findItemById(95).get();
-		Iterator<? extends ILine> recipeLinesIterator = recipe1.createLinesIterator();
-
-		System.out.println("RECIPE LINES: ");
-		while (recipeLinesIterator.hasNext()) {
-			RecipeLine recipeLine = (RecipeLine) recipeLinesIterator.next();
-			System.out.println("Recipe line: " + recipeLine.getComponent().getName());
-		}
-
-		System.out.println("------------------------------------------------------ Proxy pattern");
-
-		ICustomer customer = new CustomerProxy((Customer) this.accountService.findAccountById(400000001).get());
-		System.out.println("CUSTOMER NAME: " + customer.getName());
-		System.out.println("CUSTOMER PHONE NUMBER: " + customer.getPhoneNumber());
-
-		System.out.println("------------------------------------------------------");
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -320,70 +279,78 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		Software software4 = new Software("Windows 8 ProPack", 100, new Date(System.currentTimeMillis()), "", "");
 		software4.setCategory(category2);
 		software4.setImageUrl("../../../../assets/images/items/products/components/softwares/software4.jpg");
+		
+		Software software5 = new Software("Microsoft Office 365 Home", 100, new Date(System.currentTimeMillis()), "", "");
+		software5.setCategory(category2);
+		software5.setImageUrl("../../../../assets/images/items/products/components/softwares/software5.jpg");		
+		Software software6 = new Software("Adobe Acrobat Professional", 100, new Date(System.currentTimeMillis()), "", "");
+		software6.setCategory(category2);
+		software6.setImageUrl("../../../../assets/images/items/products/components/softwares/software6.jpg");		
+		Software software7 = new Software("Malwarebytes Anti-Malware 3.0", 100, new Date(System.currentTimeMillis()), "", "");
+		software7.setCategory(category2);
+		software7.setImageUrl("../../../../assets/images/items/products/components/softwares/software7.jpg");		
+		Software software8 = new Software("Symantec Norton Security", 100, new Date(System.currentTimeMillis()), "", "");
+		software8.setCategory(category2);
+		software8.setImageUrl("../../../../assets/images/items/products/components/softwares/software8.jpg");
 
-		Hardware hardware1 = new Hardware("Motherboard: M.2 B250 mATX", 12, new Date(System.currentTimeMillis()), "");
+		Hardware hardware1 = new Hardware("M.2 B250 mATX", 12, new Date(System.currentTimeMillis()), "");
 		hardware1.setCategory(category301);
 		hardware1.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware1.jpg");
-		Hardware hardware2 = new Hardware("CPU: Intel Core i7-8700K", 16, new Date(System.currentTimeMillis()), "");
+		Hardware hardware2 = new Hardware("Intel Core i7-8700K", 16, new Date(System.currentTimeMillis()), "");
 		hardware2.setCategory(category302);
 		hardware2.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware2.jpg");
-		Hardware hardware3 = new Hardware("CPU: AMD Ryzen 7", 9, new Date(System.currentTimeMillis()), "");
+		Hardware hardware3 = new Hardware("AMD Ryzen 7", 9, new Date(System.currentTimeMillis()), "");
 		hardware3.setCategory(category302);
 		hardware3.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware3.jpg");
-		Hardware hardware4 = new Hardware("RAM 16GB", 10, new Date(System.currentTimeMillis()), "");
+		Hardware hardware4 = new Hardware("RAM 16GB Razor blake", 10, new Date(System.currentTimeMillis()), "");
 		hardware4.setCategory(category303);
 		hardware4.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware4.jpg");
-		Hardware hardware5 = new Hardware("RAM 8GB", 43, new Date(System.currentTimeMillis()), "");
+		Hardware hardware5 = new Hardware("RAM 8GB Keyman", 43, new Date(System.currentTimeMillis()), "");
 		hardware5.setCategory(category303);
 		hardware5.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware5.jpg");
-		Hardware hardware6 = new Hardware("RAM 4GB", 32, new Date(System.currentTimeMillis()), "");
+		Hardware hardware6 = new Hardware("RAM 4GB Noman G7", 32, new Date(System.currentTimeMillis()), "");
 		hardware6.setCategory(category303);
 		hardware6.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware6.jpg");
-		Hardware hardware7 = new Hardware("Hard drive: Seagate Barracuda", 32, new Date(System.currentTimeMillis()),
-				"");
+		Hardware hardware7 = new Hardware("Seagate Barracuda", 32, new Date(System.currentTimeMillis()), "");
 		hardware7.setCategory(category304);
 		hardware7.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware7.jpg");
-		Hardware hardware8 = new Hardware("Power supply unit: Seasonic Focus", 15, new Date(System.currentTimeMillis()),
-				"");
+		Hardware hardware8 = new Hardware("Seasonic Focus", 15, new Date(System.currentTimeMillis()), "");
 		hardware8.setCategory(category305);
 		hardware8.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware8.jpg");
-		Hardware hardware9 = new Hardware("Video card: MSI GeForce GTX 1070", 12, new Date(System.currentTimeMillis()),
-				"");
+		Hardware hardware9 = new Hardware("MSI GeForce GTX 1070", 12, new Date(System.currentTimeMillis()), "");
 		hardware9.setCategory(category306);
 		hardware9.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware9.jpg");
-		Hardware hardware10 = new Hardware("Video card: Gigabyte Geforce GTX 1050", 31,
-				new Date(System.currentTimeMillis()), "");
+		Hardware hardware10 = new Hardware("Gigabyte Geforce GTX 1050", 31, new Date(System.currentTimeMillis()), "");
 		hardware10.setCategory(category306);
 		hardware10.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware10.jpg");
-		Hardware hardware11 = new Hardware("Video card: EVGA GeForce GTX 1060", 17,
-				new Date(System.currentTimeMillis()), "");
+		Hardware hardware11 = new Hardware("EVGA GeForce GTX 1060", 17, new Date(System.currentTimeMillis()), "");
 		hardware11.setCategory(category306);
 		hardware11.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware11.jpg");
-		Hardware hardware12 = new Hardware("Sound card: Intel G3260 3MB Haswell Dual-Core 3.3 GHz", 19,
+		Hardware hardware12 = new Hardware("Intel G3260 3MB Haswell Dual-Core 3.3 GHz", 19,
 				new Date(System.currentTimeMillis()), "");
 		hardware12.setCategory(category307);
 		hardware12.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware12.jpg");
-		Hardware hardware13 = new Hardware("Network card: Thecus C10GTR 10GbE Network Interface Card", 12,
+		Hardware hardware13 = new Hardware("Thecus C10GTR 10GbE Network Interface Card", 12,
 				new Date(System.currentTimeMillis()), "");
 		hardware13.setCategory(category308);
 		hardware13.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware13.jpg");
 
-		Hardware hardware14 = new Hardware("Headphones: Skull Candy", 40, new Date(System.currentTimeMillis()), "");
+		Hardware hardware14 = new Hardware("Skull Candy", 40, new Date(System.currentTimeMillis()), "");
 		hardware14.setCategory(category401);
 		hardware14.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware14.jpg");
-		Hardware hardware15 = new Hardware("Headphones: Philips", 20, new Date(System.currentTimeMillis()), "");
+		Hardware hardware15 = new Hardware("Philips", 20, new Date(System.currentTimeMillis()), "");
 		hardware15.setCategory(category401);
 		hardware15.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware15.jpg");
-		Hardware hardware16 = new Hardware("Mouse: Corssair 2018", 13, new Date(System.currentTimeMillis()), "");
+		Hardware hardware16 = new Hardware("Corssair 2018", 13, new Date(System.currentTimeMillis()), "");
 		hardware16.setCategory(category402);
 		hardware16.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware16.jpg");
-		Hardware hardware17 = new Hardware("Mouse: Corssair K20", 33, new Date(System.currentTimeMillis()), "");
+		Hardware hardware17 = new Hardware("Corssair K20", 33, new Date(System.currentTimeMillis()), "");
 		hardware17.setCategory(category402);
 		hardware17.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware17.jpg");
-		Hardware hardware18 = new Hardware("Mouse: Corssair Z92", 12, new Date(System.currentTimeMillis()), "");
+		Hardware hardware18 = new Hardware("Corssair Z92", 12, new Date(System.currentTimeMillis()), "");
 		hardware18.setCategory(category402);
 		hardware18.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware18.jpg");
-		Hardware hardware19 = new Hardware("Keyboard: Logitech K800", 51, new Date(System.currentTimeMillis()), "");
+		Hardware hardware19 = new Hardware("Logitech K800", 51, new Date(System.currentTimeMillis()), "");
 		hardware19.setCategory(category403);
 		hardware19.setImageUrl("../../../../assets/images/items/products/components/hardwares/hardware19.jpg");
 
@@ -679,7 +646,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 				.createLine(new RecipeLineFactory(ComponentType.OPERATING_SYSTEM, 1));
 		recipeLine19.setComponent(software1);
 
-		Recipe recipe1 = new Recipe("Computer: ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
+		Recipe recipe1 = new Recipe("ASUS 2000", 10, new Date(System.currentTimeMillis()), "");
 		recipe1.setCategory(category1);
 		recipe1.setImageUrl("../../../../assets/images/items/products/recipes/recipe1.jpg");
 		recipe1.addLine(recipeLine11);
@@ -719,7 +686,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 				.createLine(new RecipeLineFactory(ComponentType.OPERATING_SYSTEM, 1));
 		recipeLine29.setComponent(software3);
 
-		Recipe recipe2 = new Recipe("Computer: ASUS LK40", 10, new Date(System.currentTimeMillis()), "");
+		Recipe recipe2 = new Recipe("ASUS LK40", 10, new Date(System.currentTimeMillis()), "");
 		recipe2.setCategory(category1);
 		recipe2.setImageUrl("../../../../assets/images/items/products/recipes/recipe2.jpg");
 		recipe2.addLine(recipeLine21);
@@ -731,6 +698,31 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipe2.addLine(recipeLine27);
 		recipe2.addLine(recipeLine28);
 		recipe2.addLine(recipeLine29);
+
+		// ***** TO BE completed computers ***** //
+		Recipe recipe3 = new Recipe("Lenovo ThinkPad E570", 13, new Date(System.currentTimeMillis()), "");
+		recipe3.setCategory(category1);
+		recipe3.setImageUrl("../../../../assets/images/items/products/recipes/recipe3.jpg");
+
+		Recipe recipe4 = new Recipe("Acer Laptop Swift 3", 40, new Date(System.currentTimeMillis()), "");
+		recipe4.setCategory(category1);
+		recipe4.setImageUrl("../../../../assets/images/items/products/recipes/recipe4.jpg");
+
+		Recipe recipe5 = new Recipe("HP ZBook 15 G4", 10, new Date(System.currentTimeMillis()), "");
+		recipe5.setCategory(category1);
+		recipe5.setImageUrl("../../../../assets/images/items/products/recipes/recipe5.jpg");
+
+		Recipe recipe6 = new Recipe("ASUS VivoBook 15.6", 10, new Date(System.currentTimeMillis()), "");
+		recipe6.setCategory(category1);
+		recipe6.setImageUrl("../../../../assets/images/items/products/recipes/recipe6.jpg");
+
+		Recipe recipe7 = new Recipe("ASUS ZenBook 15", 10, new Date(System.currentTimeMillis()), "");
+		recipe7.setCategory(category1);
+		recipe7.setImageUrl("../../../../assets/images/items/products/recipes/recipe7.jpg");
+
+		Recipe recipe8 = new Recipe("ASUS VivoBook S15 15.6", 10, new Date(System.currentTimeMillis()), "");
+		recipe8.setCategory(category1);
+		recipe8.setImageUrl("../../../../assets/images/items/products/recipes/recipe8.jpg");
 
 		// ***** Package: Computer ASUS G1009 + mouse + keyboard ***** //
 		PackageLine packageLine1 = (PackageLine) lineFactory.createLine(new PackageLineFactory(1));
@@ -769,6 +761,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		items.add(software2);
 		items.add(software3);
 		items.add(software4);
+		
+		items.add(software5);
+		items.add(software6);
+		items.add(software7);
+		items.add(software8);
 
 		// ***** Hardware *****
 		items.add(hardware1);
@@ -871,6 +868,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		// ***** Recipes *****
 		items.add(recipe1);
 		items.add(recipe2);
+		
+		items.add(recipe3);
+		items.add(recipe4);
+		items.add(recipe5);
+		items.add(recipe6);
+		items.add(recipe7);
+		items.add(recipe8);
 
 		// ***** Packages *****
 		items.add(package1);
@@ -890,6 +894,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		prices.add(420.0);
 		prices.add(275.0);
 		prices.add(320.0);
+		
+		prices.add(250.0);
+		prices.add(350.0);
+		prices.add(120.0);
+		prices.add(320.0);
+		
 
 		// ***** Hardware *****
 		prices.add(1500.0);
@@ -994,6 +1004,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		// ***** Recipes *****
 		prices.add(7400.0);
 		prices.add(5200.0);
+		
+		prices.add(10420.0);
+		prices.add(5420.0);
+		prices.add(7350.0);
+		prices.add(9300.0);
+		prices.add(4050.0);
+		prices.add(7320.0);
 
 		// ***** Packages *****
 		prices.add(7500.0);
@@ -1102,6 +1119,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		itemService.insertItem(software2);
 		itemService.insertItem(software3);
 		itemService.insertItem(software4);
+		
+		itemService.insertItem(software5);
+		itemService.insertItem(software6);
+		itemService.insertItem(software7);
+		itemService.insertItem(software8);
 
 		itemService.insertItem(hardware1);
 		itemService.insertItem(hardware2);
@@ -1220,6 +1242,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		recipeLineService.insertRecipeLine(recipeLine27);
 		recipeLineService.insertRecipeLine(recipeLine28);
 		recipeLineService.insertRecipeLine(recipeLine29);
+
+		itemService.insertItem(recipe3);
+		itemService.insertItem(recipe4);
+		itemService.insertItem(recipe5);
+		itemService.insertItem(recipe6);
+		itemService.insertItem(recipe7);
+		itemService.insertItem(recipe8);
 
 		itemService.insertItem(package1);
 

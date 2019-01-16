@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,13 +66,21 @@
         <!-- ***** Modal ***** -->
         <div *ngIf="item" [ngClass]="{'is-active': shouldShow}" class="modal">
             <div (click)="onCloseModel()" class="modal-background"></div>
+
             <div class="modal-content">
                 <div class="modal-container">
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="column div-center">
-                                <h1 class="heading__primary"> {{ item.name }} </h1>
-                                <h1 class="heading__primary"> {{ item.price }} lei</h1>
+                                <img src="{{ item.imageUrl }}" alt="Placeholder image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="column div-center">
+                                <h1 class="heading__primary is-size-3 has-text-weight-semibold"> {{ item.name }} </h1>
+                                <h1 class="heading__primary is-italic has-text-link"> Price: {{ item.price }} lei</h1>
                             </div>
                         </div>
                     </div>
@@ -105,6 +114,7 @@
     <app-footer></app-footer>
 
 </body>
+
 </html>
 
 
